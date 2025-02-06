@@ -1,6 +1,6 @@
 # flavr
 
-A new Flutter project.
+Tinder for finding food.
 
 ## Getting Started
 
@@ -14,3 +14,24 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+# Dependencies
+    These are found in the pubspec.yaml file
+
+    **Cupertino icons** are included by default. They're free and open source. We might use.
+    **Huge icons** are also free and open source but they have more / different icons. We might use.
+    **Provider** is used for simpler state management. We will use.
+    **Window Size** is used by the provider example from the docs. We might use.
+
+
+# TODO
+    Navigation bar with icons. 
+    Display a photo on the homepage.
+    Swiping through photos.
+    Add UI elements to indicate left / right swiping.
+    Reporting to QRE.
+    Fetching from QRE.
+    Reporting to DRE.
+    Fetching new data from DRE.
+    Animations / improving animations.
+    Settings page.
