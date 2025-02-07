@@ -3,38 +3,60 @@ Authors: Holden Vail
 Description: This is the main file for flavr's flutter UI
 */
 
+// Dependency imports
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'screens/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+// Widget imports
+import 'widgets/authentication_wrapper.dart';
+
+// Provider imports
 import 'providers/app_state.dart';
 
-void main() {
-  // The runApp function takes a widget and makes it the root of the widget tree.
-  // Here, we are istantiating and wrapping a ChangeNotifierProvider object around an instance
-  // we're of the AppState class that we're instantiating.
+// Service imports
+import 'providers/authentication_state.dart';
+
+void main() async {
+  // Ensures the flutter framework is properly initialized first
+  WidgetsFlutterBinding.ensureInitialized();
+  // Initialize firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // Here we're telling our root widget that it should use these providers
   runApp(
-    ChangeNotifierProvider(
-      // The create function is called to create an instance of AppState.
-      create: (context) => AppState(),
-      // The child parameter is the widget that will be the root of the widget tree.
-      // In this case, it is the MyApp widget.
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AppState()),
+        ChangeNotifierProvider(create: (context) => AuthenticationState()),
+      ],
       child: const MyApp(),
     ),
   );
 }
 
+// Here we're extending MyApp from a stateless widget.
+// We're using const because it's the only instance and root of our widget tree.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
+  // We're overriding the build method of MyApp to instead build a material3 app
+  // widget. This is also where we can set the theme data and home widget.
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'flavr',
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.orangeAccent,
+          brightness: Brightness.dark,
+        ),
       ),
-      home: const HomeScreen(),
+      home: const AuthenticationWrapper(),
     );
   }
 }

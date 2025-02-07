@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "974045621368",
+    "project_id": "flavr-4e17f",
+    "storage_bucket": "flavr-4e17f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974045621368:android:2cfe0bf8d48e4c2b23d18d",
+        "android_client_info": {
+          "package_name": "com.example.flavr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOC0aMx6NR53p2rj5JbKByTNgLgEVMC2Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

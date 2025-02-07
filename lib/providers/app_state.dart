@@ -1,5 +1,6 @@
 /*
-This is file for managing general app state.
+Authors: Holden Vail
+Description: This is file for managing global app states.
 */
 
 import 'package:flutter/material.dart';
