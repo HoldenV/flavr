@@ -1,0 +1,36 @@
+id: QfCbV1_VIjfCkowro_WGNA
+
+alias: luigis-pizza-brooklyn
+
+name: Luigi's Pizza
+
+image_url: https://s3-media1.fl.yelpcdn.com/bphoto/Sn7zejai0MLoI54VcXheIQ/o.jpg
+
+is_closed: False
+
+url: https://www.yelp.com/biz/luigis-pizza-brooklyn?adjust_creative=_q_MC7ebjDOCpX5Ec7TXEQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=_q_MC7ebjDOCpX5Ec7TXEQ
+
+review_count: 606
+
+categories: [{'alias': 'pizza', 'title': 'Pizza'}]
+
+rating: 4.3
+
+coordinates: {'latitude': 40.66163, 'longitude': -73.99334}
+
+transactions: ['pickup', 'delivery']
+
+price: $
+
+location: {'address1': '686 5th Ave', 'address2': '', 'address3': '', 'city': 'Brooklyn', 'zip_code': '11215', 'country': 'US', 'state': 'NY', 'display_address': ['686 5th Ave', 'Brooklyn, NY 11215']}
+
+phone: +17184993857
+
+display_phone: (718) 499-3857
+
+distance: 4871.041578229889
+
+business_hours: [{'open': [{'is_overnight': False, 'start': '1100', 'end': '2130', 'day': 0}, {'is_overnight': False, 'start': '1100', 'end': '2130', 'day': 1}, {'is_overnight': False, 'start': '1100', 'end': '2130', 'day': 2}, {'is_overnight': False, 'start': '1100', 'end': '2130', 'day': 3}, {'is_overnight': False, 'start': '1100', 'end': '2130', 'day': 4}, {'is_overnight': False, 'start': '1100', 'end': '2130', 'day': 5}], 'hours_type': 'REGULAR', 'is_open_now': True}]
+
+attributes: {'business_temp_closed': None, 'menu_url': 'http://luigispizzabrooklyn.com/menu.aspx', 'open24_hours': None, 'waitlist_reservation': None}
+
