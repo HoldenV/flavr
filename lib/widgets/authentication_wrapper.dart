@@ -4,11 +4,11 @@ This is where we'll define the AuthenticationWrapper widget.
 
 // Dependency imports
 import 'package:flavr/providers/authentication_state.dart';
+import 'package:flavr/widgets/app_state_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // Screen imports
-import '../screens/home_screen.dart';
 import '../screens/login_screen.dart';
 
 // Same as our MyApp widget, we're extending this from a stateless widget.
@@ -23,8 +23,8 @@ class AuthenticationWrapper extends StatelessWidget {
       // If they're insn't a user logged in, direct them to the login screen.
       return const LoginScreen();
     } else {
-      // If someone is logged in, display the home screen.
-      return const HomeScreen();
+      // If someone is logged in, continue initializing the app.
+      return const AppStateWrapper();
     }
   }
 }

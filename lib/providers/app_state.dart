@@ -4,7 +4,22 @@ Description: This is file for managing global app states.
 */
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:flavr/services/location_service.dart';
 
 class AppState with ChangeNotifier {
-  // This is the main object for tracking app state
+  Position? _currentPosition;
+  final LocationService _locationService = LocationService();
+
+  Position? get currentPosition => _currentPosition;
+
+  Future<void> updateCurrentLocation() async {
+    try {
+      _currentPosition = await _locationService.getCurrentLocation();
+      notifyListeners();
+    } catch (e) {
+      // Handle the error appropriately in your app
+      print('Error getting location: $e');
+    }
+  }
 }

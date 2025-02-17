@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
   // widget. This is also where we can set the theme data and home widget.
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'flavr',
+      title: 'Flavr',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(

@@ -1,5 +1,7 @@
 /*
 This state is for tracking the authentication state of the app.
+This might be refactored into a sign in service that is merely
+accessed by this state provider
  */
 
 import 'package:flutter/material.dart';

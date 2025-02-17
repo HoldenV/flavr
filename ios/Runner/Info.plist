@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- Location request section -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need your location to provide better services.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We need your location to provide better services.</string>
+	<!-- End location request section-->
+	
 	<!-- Google Sign-in Section -->
 	<key>GIDClientID</key>
 	<string>974045621368-rcb7raltro0rlleu75ebur7t6dseuh2h.apps.googleusercontent.com</string>

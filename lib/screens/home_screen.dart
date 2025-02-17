@@ -3,8 +3,13 @@ Authors: Holden Vail
 Description: This is where we define the widgets of the home screen
 */
 
+// Dependency Imports
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
+
+// Provider Imports
+import 'package:flavr/providers/app_state.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -44,6 +49,22 @@ class HomeScreen extends StatelessWidget {
           cardBuilder: (context, index, percentThresholdX, percentThresholdY) =>
               cards[index],
         ),
+      ),
+      floatingActionButton: Consumer<AppState>(
+        builder: (context, appState, child) {
+          final position = appState.currentPosition;
+          return FloatingActionButton(
+            onPressed: () {
+              appState.updateCurrentLocation();
+            },
+            child: position != null
+                ? Text(
+                    '${position.latitude.toStringAsFixed(2)}, ${position.longitude.toStringAsFixed(2)}',
+                    textAlign: TextAlign.center,
+                  )
+                : const Icon(Icons.location_on),
+          );
+        },
       ),
     );
   }
