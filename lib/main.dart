@@ -14,8 +14,6 @@ import 'widgets/authentication_wrapper.dart';
 
 // Provider imports
 import 'providers/app_state.dart';
-
-// Service imports
 import 'providers/authentication_state.dart';
 
 void main() async {
@@ -33,13 +31,13 @@ void main() async {
         ChangeNotifierProvider(create: (context) => AppState()),
         ChangeNotifierProvider(create: (context) => AuthenticationState()),
       ],
+      // The root widget will be an instance of MyApp()
       child: const MyApp(),
     ),
   );
 }
 
 // Here we're extending MyApp from a stateless widget.
-// We're using const because it's the only instance and root of our widget tree.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -56,6 +54,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
+      // Here we're setting the home widget to our Authentication Wrapper Widget.
       home: const AuthenticationWrapper(),
     );
   }
