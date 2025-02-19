@@ -64,9 +64,9 @@ bool _onSwipe(
   CardSwiperDirection direction,
 ) {
   if (direction == CardSwiperDirection.left) {
-    print('swiped left');
+    print('swiped left'); // TODO: add functionality
   } else if (direction == CardSwiperDirection.right) {
-    print('swiped right');
+    print('swiped right'); // TODO: add functionality
   }
   return true;
 }
