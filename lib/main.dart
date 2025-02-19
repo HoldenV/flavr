@@ -5,6 +5,7 @@ Description: This is the main file for flavr's flutter UI
 
 // Dependency imports
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -24,6 +25,9 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  // Portrait lock app before initialization
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   // Here we're telling our root widget that it should use these providers
   runApp(
     MultiProvider(
@@ -37,24 +41,34 @@ void main() async {
   );
 }
 
-// Here we're extending MyApp from a stateless widget.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  // We're overriding the build method of MyApp to instead build a material3 app
-  // widget. This is also where we can set the theme data and home widget.
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flavr',
       theme: ThemeData(
+        // Set all relevant theme data here
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.orangeAccent,
-          brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.grey[800],
+        primaryColor: Colors.orange,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.grey[900],
+          foregroundColor: Colors.white,
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.grey[900],
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.orange,
+            foregroundColor: Colors.white,
+          ),
         ),
       ),
-      // Here we're setting the home widget to our Authentication Wrapper Widget.
       home: const AuthenticationWrapper(),
     );
   }

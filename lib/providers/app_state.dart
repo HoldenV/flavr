@@ -6,20 +6,49 @@ Description: This is file for managing global app states.
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flavr/services/location_service.dart';
+import 'package:flavr/screens/friends.dart';
+import 'package:flavr/screens/home.dart';
+import 'package:flavr/screens/profile.dart';
+import 'package:flavr/screens/inbox.dart';
 
 class AppState with ChangeNotifier {
-  Position? _currentPosition;
-  final LocationService _locationService = LocationService();
+  // Location Service Management
+  Position? currentPosition;
 
-  Position? get currentPosition => _currentPosition;
+  final locationService = LocationService();
 
   Future<void> updateCurrentLocation() async {
     try {
-      _currentPosition = await _locationService.getCurrentLocation();
+      currentPosition = await locationService.getCurrentLocation();
       notifyListeners();
     } catch (e) {
-      // Handle the error appropriately in your app
       print('Error getting location: $e');
     }
+  }
+
+  // nav bar management
+  bool useNavBar = true;
+  void setUseNavBar(bool value) {
+    useNavBar = value;
+    notifyListeners();
+  }
+
+  int _currentIndex = 0;
+  int get currentIndex => _currentIndex;
+
+  final List<Widget> screens = [
+    const HomeScreen(),
+    const FriendsScreen(),
+    const InboxScreen(),
+    const ProfileScreen(),
+  ];
+
+  Widget _currentScreen = const HomeScreen();
+  Widget get currentScreen => _currentScreen;
+
+  void setCurrentScreen(Widget newScreen, int index) {
+    _currentScreen = newScreen;
+    _currentIndex = index;
+    notifyListeners();
   }
 }
