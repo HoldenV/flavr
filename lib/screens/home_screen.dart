@@ -7,10 +7,6 @@ Description: This is where we define the widgets of the home screen
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 
-// Provider Imports
-import 'package:flavr/providers/app_state.dart';
-import 'package:provider/provider.dart';
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -30,8 +26,8 @@ class HomeScreen extends StatelessWidget {
         elevation: 4,
         child: Center(
           child: SizedBox(
-            width: 300,
-            height: 400,
+            width: 400,
+            height: 600,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16.0),
               child: Image.asset(path, fit: BoxFit.cover),
@@ -42,29 +38,15 @@ class HomeScreen extends StatelessWidget {
     }).toList();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
-      body: Center(
-        child: CardSwiper(
-          cardsCount: cards.length,
-          cardBuilder: (context, index, percentThresholdX, percentThresholdY) =>
-              cards[index],
+      body: SafeArea(
+        child: Center(
+          child: CardSwiper(
+            cardsCount: cards.length,
+            cardBuilder:
+                (context, index, percentThresholdX, percentThresholdY) =>
+                    cards[index],
+          ),
         ),
-      ),
-      floatingActionButton: Consumer<AppState>(
-        builder: (context, appState, child) {
-          final position = appState.currentPosition;
-          return FloatingActionButton(
-            onPressed: () {
-              appState.updateCurrentLocation();
-            },
-            child: position != null
-                ? Text(
-                    '${position.latitude.toStringAsFixed(2)}, ${position.longitude.toStringAsFixed(2)}',
-                    textAlign: TextAlign.center,
-                  )
-                : const Icon(Icons.location_on),
-          );
-        },
       ),
     );
   }
