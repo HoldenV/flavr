@@ -9,9 +9,6 @@ Tinder for finding food.
     **Firebase Core** supports all platforms but linux. Used for many things
 
 # TODO
-    Add UI elements to indicate left / right swiping
-    Adding buttons to force left / right swiping
-    Add upward swipe elements
     Add card tapping sequence
     Animations / improving animations
     Profile / settings page features
@@ -30,3 +27,7 @@ Tinder for finding food.
 
     **Michael**
     Add haptics when navigating / swiping
+    Add UI elements to indicate left / right swiping
+    Adding buttons to force left / right swiping
+    Add upward swipe elements
+
