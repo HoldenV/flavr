@@ -40,21 +40,72 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Home'),
       ),
       body: SafeArea(
-        child: Center(
-          child: CardSwiper(
-            cardsCount: cards.length,
-            allowedSwipeDirection:
-                AllowedSwipeDirection.only(left: true, right: true, up: true),
-            numberOfCardsDisplayed: 3,
-            onTapDisabled: () => _onTap(),
-            onSwipe: _onSwipe,
-            cardBuilder:
-                (context, index, percentThresholdX, percentThresholdY) =>
-                    cards[index],
+          child: Stack(
+        children: [
+          Center(
+            child: CardSwiper(
+              cardsCount: cards.length,
+              allowedSwipeDirection:
+                  AllowedSwipeDirection.only(left: true, right: true, up: true),
+              numberOfCardsDisplayed: 3,
+              onTapDisabled: () => _onTap(),
+              onSwipe: _onSwipe,
+              cardBuilder:
+                  (context, index, percentThresholdX, percentThresholdY) =>
+                      cards[index],
+            ),
           ),
-        ),
-      ),
+          Center(
+            child: ControlOverlay(),
+          )
+        ],
+      )),
     );
+  }
+}
+
+class ControlOverlay extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double iconSize = screenWidth * 0.22;
+
+    return Center(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(height: screenHeight * 0.5),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {
+                print('No button pressed');
+              },
+              child: Image.asset(
+                'lib/assets/No_Icon.png',
+                width: iconSize,
+                height: iconSize,
+              ),
+            ),
+            SizedBox(
+                width: screenWidth -
+                    (iconSize * 3)), // Adds spacing between buttons
+            GestureDetector(
+              onTap: () {
+                print('Yes button pressed');
+              },
+              child: Image.asset(
+                'lib/assets/Yes_Icon.png',
+                width: iconSize,
+                height: iconSize,
+              ),
+            ),
+          ],
+        )
+      ],
+    ));
   }
 }
 
@@ -71,7 +122,7 @@ bool _onSwipe(
     print('swiped right'); // TODO: add functionality
     HapticFeedback.lightImpact();
   } else if (direction == CardSwiperDirection.top) {
-    print("swiped up");
+    print('swiped up');
     HapticFeedback.heavyImpact();
   }
   return true;
