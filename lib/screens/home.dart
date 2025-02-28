@@ -3,7 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  final CardSwiperController _controller =
+      CardSwiperController(); // Controller used to force a swipe
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +47,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           Center(
             child: CardSwiper(
+              controller: _controller,
               cardsCount: cards.length,
               allowedSwipeDirection:
                   AllowedSwipeDirection.only(left: true, right: true, up: true),
@@ -56,7 +60,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Center(
-            child: ControlOverlay(),
+            child: ControlOverlay(controller: _controller),
           )
         ],
       )),
@@ -65,6 +69,10 @@ class HomeScreen extends StatelessWidget {
 }
 
 class ControlOverlay extends StatelessWidget {
+  final CardSwiperController controller;
+
+  ControlOverlay({required this.controller});
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -82,6 +90,7 @@ class ControlOverlay extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 print('No button pressed');
+                controller.swipe(CardSwiperDirection.left);
               },
               child: Image.asset(
                 'lib/assets/No_Icon.png',
@@ -95,6 +104,7 @@ class ControlOverlay extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 print('Yes button pressed');
+                controller.swipe(CardSwiperDirection.right);
               },
               child: Image.asset(
                 'lib/assets/Yes_Icon.png',

@@ -37,13 +37,13 @@ class AppState with ChangeNotifier {
   int get currentIndex => _currentIndex;
 
   final List<Widget> screens = [
-    const HomeScreen(),
+    HomeScreen(),
     const FriendsScreen(),
     const InboxScreen(),
     const ProfileScreen(),
   ];
 
-  Widget _currentScreen = const HomeScreen();
+  Widget _currentScreen = HomeScreen();
   Widget get currentScreen => _currentScreen;
 
   void setCurrentScreen(Widget newScreen, int index) {

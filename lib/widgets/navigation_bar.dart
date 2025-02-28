@@ -32,7 +32,7 @@ Widget useBottomNavigationBar(BuildContext context) {
           onTap: (index) {
             switch (index) {
               case 0:
-                appState.setCurrentScreen(const HomeScreen(), index);
+                appState.setCurrentScreen(HomeScreen(), index);
               case 1:
                 appState.setCurrentScreen(const FriendsScreen(), index);
               case 2:

@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
               // Navigate to home screen if user is signed in
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
                 );
               });
             }
