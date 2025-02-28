@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -43,7 +44,7 @@ class HomeScreen extends StatelessWidget {
           child: CardSwiper(
             cardsCount: cards.length,
             allowedSwipeDirection:
-                AllowedSwipeDirection.only(left: true, right: true),
+                AllowedSwipeDirection.only(left: true, right: true, up: true),
             numberOfCardsDisplayed: 3,
             onTapDisabled: () => _onTap(),
             onSwipe: _onSwipe,
@@ -65,8 +66,13 @@ bool _onSwipe(
 ) {
   if (direction == CardSwiperDirection.left) {
     print('swiped left'); // TODO: add functionality
+    HapticFeedback.lightImpact();
   } else if (direction == CardSwiperDirection.right) {
     print('swiped right'); // TODO: add functionality
+    HapticFeedback.lightImpact();
+  } else if (direction == CardSwiperDirection.top) {
+    print("swiped up");
+    HapticFeedback.heavyImpact();
   }
   return true;
 }
