@@ -12,7 +12,20 @@
           "package_name": "com.example.flavr"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "974045621368-v3af2oii789rdugs4c1mta3pr41e1p5k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flavr",
+            "certificate_hash": "aaaef2ea61db9c8e8188e91ec28159d2f1f3ebc1"
+          }
+        },
+        {
+          "client_id": "974045621368-u1ulgcisjhn8mqkrk4od3buihags16g4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBOC0aMx6NR53p2rj5JbKByTNgLgEVMC2Q"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974045621368-u1ulgcisjhn8mqkrk4od3buihags16g4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "974045621368-rcb7raltro0rlleu75ebur7t6dseuh2h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flavr"
+              }
+            }
+          ]
         }
       }
     }

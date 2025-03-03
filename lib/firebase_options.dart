@@ -64,6 +64,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '974045621368',
     projectId: 'flavr-4e17f',
     storageBucket: 'flavr-4e17f.firebasestorage.app',
+    androidClientId: '974045621368-v3af2oii789rdugs4c1mta3pr41e1p5k.apps.googleusercontent.com',
+    iosClientId: '974045621368-rcb7raltro0rlleu75ebur7t6dseuh2h.apps.googleusercontent.com',
     iosBundleId: 'com.example.flavr',
   );
 
@@ -73,6 +75,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '974045621368',
     projectId: 'flavr-4e17f',
     storageBucket: 'flavr-4e17f.firebasestorage.app',
+    androidClientId: '974045621368-v3af2oii789rdugs4c1mta3pr41e1p5k.apps.googleusercontent.com',
+    iosClientId: '974045621368-rcb7raltro0rlleu75ebur7t6dseuh2h.apps.googleusercontent.com',
     iosBundleId: 'com.example.flavr',
   );
 
@@ -85,4 +89,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'flavr-4e17f.firebasestorage.app',
     measurementId: 'G-H8718CVKNR',
   );
+
 }
