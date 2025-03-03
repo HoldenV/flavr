@@ -10,7 +10,35 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final TextEditingController userName = TextEditingController(); //handle user input
+  bool isEditing = false; //track whether editing or viewing by user
+  final TextEditingController userName = TextEditingController(); //handle user input for username
+  final TextEditingController emailName = TextEditingController(); //handle user input for email
+  final TextEditingController phoneNumber = TextEditingController(); //handle user input for phone number
+  final TextEditingController foodRestrictions = TextEditingController(); //handle user input for food restrictions
+
+  @override
+  void initState() {
+    super.initState(); //default info from UI mock up
+    userName.text = 'John Doe';
+    emailName.text = 'header@gmail.com';
+    phoneNumber.text = '913-000-0000';
+    foodRestrictions.text = 'GF \n Vegan \n Allergens';
+  }
+
+  void changeEdit() {
+    setState(() {
+      isEditing = !isEditing;
+    });
+  }
+
+  void saveProfile() {
+    setState(() {
+      isEditing = false; //once saved bool = false
+    });
+    ScaffoldMessenger.of(context).showSnackBar( //snackbar kinda like a pop up
+      SnackBar(content: Text('Profile Saved')),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,14 +107,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     title: Text('Dietary Restrictions:'),
                     subtitle: Text(
                       "can't eat here",
-                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
                   ListTile(
                     title: Text('Restaurant Distance:'),
                     subtitle: Text(
                       'slider here eventually',
-                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ]
