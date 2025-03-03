@@ -67,6 +67,7 @@ flutter:
     - lib/misc/example_images/image3.png
     - lib/assets/No_Icon.png
     - lib/assets/Yes_Icon.png
+    - lib/assets/default_profile.png #image asset for profile page
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
