@@ -9,7 +9,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flavr Profile'),
+        title: const Text('Your Profile'),
       ),
 
       body: Padding(
@@ -39,6 +39,20 @@ class ProfileScreen extends StatelessWidget {
             ),
             const Divider( //line to divide up sections
               color: Colors.black, thickness: 2,
+            ),
+            Expanded(
+              child: ListView(
+                children: const [
+                  ListTile(
+                    title: Text(''),
+                    subtitle: Text(''),
+                  ),
+                  ListTile(
+                    title: Text(''),
+                    subtitle: Text(''),
+                  ),
+                ]
+              ),
             ),
 
             const SizedBox(height: 10),
