@@ -2880,7 +2880,7 @@
             "orange",
             "brown"
         ],
-        "ingredient visibility": "",
+        "ingredient visibility": 3,
         "percieved heaviness": 5,
         "percieved healthiness": 1,
         "eating method": "spoon",
@@ -3617,7 +3617,7 @@
         "spiciness": 1,
         "seasonality": "yearRound",
         "temperature": "room temp",
-        "texture": "",
+        "texture": "crunchy",
         "crunchiness": 4,
         "color dominance": [
             "pink",
@@ -3770,7 +3770,7 @@
             "tomato",
             "onion"
         ],
-        "sub category": "sandwich, soup",
+        "sub category": "sandwich, soup/stew",
         "spiciness": 1,
         "seasonality": "coldWeather",
         "temperature": "warm",
