@@ -9,6 +9,8 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
+//New screen or just changes mode, flit around with
+
 class _ProfileScreenState extends State<ProfileScreen> {
   bool isEditing = false; //track whether editing or viewing by user
   final TextEditingController userName = TextEditingController(); //handle user input for username
@@ -82,7 +84,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: const [
                   ListTile(
                     title: Text('Username:'),
-                    subtitle: Text('thisismyusername'),
+                    subtitle: Text('thisismyusername',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15, color: Colors.white),
+                    ),
                   ),
                   ListTile(
                     title: Text('Phone Number:'),
@@ -95,7 +100,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(height: 10),
             const Text(
               'Preferences',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
             ),
             const Divider( //line to divide up sections
               color: Colors.black, thickness: 2,
@@ -107,14 +112,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     title: Text('Dietary Restrictions:'),
                     subtitle: Text(
                       "can't eat here",
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                   ),
                   ListTile(
                     title: Text('Restaurant Distance:'),
                     subtitle: Text(
                       'slider here eventually',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                   ),
                 ]
