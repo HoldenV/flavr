@@ -11,9 +11,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> imagePaths = [
-      'lib/misc/example_images/image1.png',
-      'lib/misc/example_images/image2.png',
-      'lib/misc/example_images/image3.png',
+      'lib/assets/dish_images/bacalao-a-la-vizcaina.jpg',
+      'lib/assets/dish_images/bbq-ribs.jpg',
+      'lib/assets/dish_images/beef-and-broccoli.jpg',
+      'lib/assets/dish_images/bibimbap.jpg',
+      'lib/assets/dish_images/birria.jpg',
     ];
 
     final List<Widget> cards = imagePaths.map((path) {
@@ -126,10 +128,10 @@ bool _onSwipe(
   CardSwiperDirection direction,
 ) {
   if (direction == CardSwiperDirection.left) {
-    print('swiped left'); // TODO: add functionality
+    print('swiped left');
     HapticFeedback.lightImpact();
   } else if (direction == CardSwiperDirection.right) {
-    print('swiped right'); // TODO: add functionality
+    print('swiped right');
     HapticFeedback.lightImpact();
   } else if (direction == CardSwiperDirection.top) {
     print('swiped up');
