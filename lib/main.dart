@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // Widget imports
 import 'widgets/authentication_wrapper.dart';
@@ -51,8 +52,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         // Set all relevant theme data here
         useMaterial3: true,
-        scaffoldBackgroundColor: Colors.grey[800],
+        textTheme: GoogleFonts.notoSansTextTheme(),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 0, 0, 0),
         primaryColor: Colors.orange,
+        splashFactory:
+            NoSplash.splashFactory, // Disables annoying ripple effect
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.grey[900],
           foregroundColor: Colors.white,

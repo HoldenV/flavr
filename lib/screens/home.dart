@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -40,32 +41,52 @@ class HomeScreen extends StatelessWidget {
       );
     }).toList();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.orange, Colors.black],
+          stops: [0.01, 0.25],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
       ),
-      body: SafeArea(
-          child: Stack(
-        children: [
-          Center(
-            child: CardSwiper(
-              controller: _controller,
-              cardsCount: cards.length,
-              allowedSwipeDirection:
-                  AllowedSwipeDirection.only(left: true, right: true, up: true),
-              numberOfCardsDisplayed: 3,
-              onTapDisabled: () => _onTap(),
-              onSwipe: _onSwipe,
-              cardBuilder:
-                  (context, index, percentThresholdX, percentThresholdY) =>
-                      cards[index],
-            ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                'FLAVR',
+                style: GoogleFonts.oi(fontSize: 36),
+              ),
+            ],
           ),
-          Center(
-            child: ControlOverlay(controller: _controller),
-          )
-        ],
-      )),
+        ),
+        body: SafeArea(
+            child: Stack(
+          children: [
+            Center(
+              child: CardSwiper(
+                controller: _controller,
+                cardsCount: cards.length,
+                allowedSwipeDirection: AllowedSwipeDirection.only(
+                    left: true, right: true, up: true),
+                numberOfCardsDisplayed: 2,
+                onTapDisabled: () => _onTap(),
+                onSwipe: _onSwipe,
+                cardBuilder:
+                    (context, index, percentThresholdX, percentThresholdY) =>
+                        cards[index],
+              ),
+            ),
+            Center(
+              child: ControlOverlay(controller: _controller),
+            )
+          ],
+        )),
+      ),
     );
   }
 }
@@ -78,14 +99,12 @@ class ControlOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-    double iconSize = screenWidth * 0.22;
+    double iconSize = screenWidth * 0.15;
 
     return Center(
         child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        SizedBox(height: screenHeight * 0.5),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -102,7 +121,7 @@ class ControlOverlay extends StatelessWidget {
             ),
             SizedBox(
                 width: screenWidth -
-                    (iconSize * 3)), // Adds spacing between buttons
+                    (iconSize * 2.5)), // Adds spacing between buttons
             GestureDetector(
               onTap: () {
                 print('Yes button pressed');

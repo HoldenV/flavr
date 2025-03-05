@@ -19,48 +19,67 @@ Widget useBottomNavigationBar(BuildContext context) {
               offset: const Offset(0, -1),
             ),
           ],
+          borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
         ),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: appState.currentIndex,
-          backgroundColor:
-              Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-          selectedItemColor:
-              Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
-          unselectedItemColor:
-              Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
-          onTap: (index) {
-            switch (index) {
-              case 0:
-                appState.setCurrentScreen(HomeScreen(), index);
-              case 1:
-                appState.setCurrentScreen(const FriendsScreen(), index);
-              case 2:
-                appState.setCurrentScreen(const InboxScreen(), index);
-              case 3:
-                appState.setCurrentScreen(const ProfileScreen(), index);
-            }
-          },
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.people),
-              label: 'Friends',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.inbox),
-              label: 'Inbox',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            ),
-          ],
+        child: ClipRRect(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
+          child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: appState.currentIndex,
+            backgroundColor:
+                Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+            selectedItemColor:
+                Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+            unselectedItemColor:
+                Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+            onTap: (index) {
+              switch (index) {
+                case 0:
+                  appState.setCurrentScreen(HomeScreen(), index);
+                  break;
+                case 1:
+                  appState.setCurrentScreen(const FriendsScreen(), index);
+                  break;
+                case 2:
+                  appState.setCurrentScreen(const InboxScreen(), index);
+                  break;
+                case 3:
+                  appState.setCurrentScreen(const ProfileScreen(), index);
+                  break;
+              }
+            },
+            items: [
+              _buildBottomNavigationBarItem(
+                  context, Icons.home, 'Home', appState.currentIndex == 0),
+              _buildBottomNavigationBarItem(
+                  context, Icons.people, 'Friends', appState.currentIndex == 1),
+              _buildBottomNavigationBarItem(
+                  context, Icons.inbox, 'Inbox', appState.currentIndex == 2),
+              _buildBottomNavigationBarItem(
+                  context, Icons.person, 'Profile', appState.currentIndex == 3),
+            ],
+          ),
         ),
       );
     },
+  );
+}
+
+BottomNavigationBarItem _buildBottomNavigationBarItem(
+    BuildContext context, IconData icon, String label, bool isSelected) {
+  return BottomNavigationBarItem(
+    icon: Container(
+      decoration: BoxDecoration(
+        color: isSelected ? Colors.orange : Colors.transparent,
+        shape: BoxShape.circle,
+      ),
+      padding: const EdgeInsets.all(8.0),
+      child: Icon(
+        icon,
+        size: 20.0, // Icon size
+        color: Colors.white,
+      ),
+    ),
+    label: label,
   );
 }
