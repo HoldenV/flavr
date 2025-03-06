@@ -63,6 +63,19 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: IconButton(
+                iconSize: 30.0,
+                icon: Icon(Icons.person_add),
+                onPressed: () {
+                  // Add onPressed code
+                  print('Person add icon pressed');
+                },
+              ),
+            ),
+          ],
         ),
         body: SafeArea(
             child: Stack(
@@ -82,8 +95,8 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             Center(
-              child: ControlOverlay(controller: _controller),
-            )
+                // child: ControlOverlay(controller: _controller),
+                )
           ],
         )),
       ),
@@ -99,7 +112,7 @@ class ControlOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double iconSize = screenWidth * 0.15;
+    double iconSize = screenWidth * 0.18;
 
     return Center(
         child: Column(

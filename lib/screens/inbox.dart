@@ -20,7 +20,10 @@ class InboxScreen extends StatelessWidget {
         ),
       ),
       body: const Center(
-        child: Text('No new notifications!'),
+        child: Text(
+          'No new notifications!',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }

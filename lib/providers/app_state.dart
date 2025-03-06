@@ -51,4 +51,10 @@ class AppState with ChangeNotifier {
     _currentIndex = index;
     notifyListeners();
   }
+
+  void setCurrentIndex(int index) {
+    _currentIndex = index;
+    _currentScreen = screens[index];
+    notifyListeners();
+  }
 }

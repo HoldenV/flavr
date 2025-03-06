@@ -11,7 +11,13 @@ class AppFrame extends StatelessWidget {
     return Consumer<AppState>(
       builder: (context, appState, child) {
         return Scaffold(
-          body: appState.currentScreen,
+          body: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+            child: appState.currentScreen,
+          ),
           bottomNavigationBar: useBottomNavigationBar(context),
         );
       },

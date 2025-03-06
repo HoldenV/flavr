@@ -20,7 +20,10 @@ class FriendsScreen extends StatelessWidget {
         ),
       ),
       body: const Center(
-        child: Text('Add some friends!'),
+        child: Text(
+          'Add some friends!',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }
