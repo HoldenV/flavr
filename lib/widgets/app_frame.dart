@@ -12,7 +12,7 @@ class AppFrame extends StatelessWidget {
       builder: (context, appState, child) {
         return Scaffold(
           body: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 150),
             transitionBuilder: (Widget child, Animation<double> animation) {
               return FadeTransition(opacity: animation, child: child);
             },
