@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/authentication_state.dart';
-import 'home.dart';
+import '../widgets/app_state_wrapper.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -13,10 +13,11 @@ class LoginScreen extends StatelessWidget {
         child: Consumer<AuthenticationState>(
           builder: (context, authState, child) {
             if (authState.user != null) {
-              // Navigate to home screen if user is signed in
+              // Navigate to AppStateWrapper if user is signed in
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const AppStateWrapper()),
                 );
               });
             }
