@@ -3,50 +3,109 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:flavr/providers/app_state.dart';
 
-class RecommendationPopup extends StatelessWidget {
+class RecommendationPopup extends StatefulWidget {
+  @override
+  _RecommendationPopupState createState() => _RecommendationPopupState();
+}
+
+class _RecommendationPopupState extends State<RecommendationPopup>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Offset> _backgroundAnimation;
+  late Animation<double> _cardAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Set up the controller with the overall duration.
+    _controller = AnimationController(
+      duration: Duration(milliseconds: 800),
+      vsync: this,
+    );
+
+    // Background slides in from the bottom over the first 40% of the animation.
+    _backgroundAnimation = Tween<Offset>(
+      begin: Offset(0, 1),
+      end: Offset(0, 0),
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Interval(0.0, 0.4, curve: Curves.easeInOut),
+      ),
+    );
+
+    // Card scales in from 0 to full size, starting a bit later.
+    _cardAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Interval(0.6, 1.0, curve: Curves.elasticOut),
+      ),
+    );
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context);
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-    double iconSize = screenWidth * 0.20;
-
     return Center(
-        child: Stack(
-      children: [
-        GestureDetector(
-          onTap: () {
-            appState.resetSwipeCount();
-          },
-          child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.yellow, Colors.orange],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+      child: Stack(
+        children: [
+          GestureDetector(
+            onTap: () {
+              appState.resetSwipeCount();
+            },
+            child: SlideTransition(
+              position: _backgroundAnimation,
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.orange, Colors.purple],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+              ),
             ),
           ),
-        ),
-        ),
-        Center(
+          Center(
             child: Column(
-          children: [
-            Text(
-              'We Suggest...',
-              style: GoogleFonts.titanOne(
-                color: const Color.fromARGB(255, 255, 255, 255),
-                fontWeight: FontWeight.bold,
-                fontSize: screenWidth * 0.08,
-              ),
-              textAlign: TextAlign.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'We Suggest...',
+                  style: GoogleFonts.titanOne(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: screenWidth * 0.08,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 8),
+                // Wrap the RecommendationCardDisplay in a ScaleTransition.
+                ScaleTransition(
+                  scale: _cardAnimation,
+                  child: RecommendationCardDisplay(
+                    image_path: 'lib/assets/dish_images/bbq-ribs.jpg',
+                    dish_name: "BBQ Ribs",
+                  ),
+                ),
+              ],
             ),
-            RecommendationCardDisplay(
-                image_path: 'lib/assets/dish_images/bbq-ribs.jpg',
-                dish_name: "BBQ Ribs")
-          ],
-        ))
-      ],
-    ));
+          ),
+        ],
+      ),
+    );
   }
 }
 

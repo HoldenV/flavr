@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.orange, Colors.black],
+          colors: appState.swipeCount < 7 ? [Colors.orange, Colors.black] : [Colors.purple, Colors.orange],
           stops: [0.01, 0.25],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -108,13 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: AnimatedSwitcher(
               duration: Duration(milliseconds: 300),
               transitionBuilder: (Widget child, Animation<double> animation) {
-                return ScaleTransition(
-                  scale: CurvedAnimation(
-                    parent: animation,
-                    curve: Curves.elasticOut, // Gives a nice pop effect
-                  ),
-                  child: child,
-                );
+                return FadeTransition(opacity: animation, child: child);
               },
               child: appState.swipeCount >= 7
                   ? RecommendationPopup()
