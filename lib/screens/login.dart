@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/authentication_state.dart';
-import '../widgets/app_state_wrapper.dart';
+import '../providers/app_state.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -10,16 +10,11 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Consumer<AuthenticationState>(
-          builder: (context, authState, child) {
+        child: Consumer2<AuthenticationState, AppState>(
+          builder: (context, authState, appState, child) {
             if (authState.user != null) {
-              // Navigate to AppStateWrapper if user is signed in
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                      builder: (context) => const AppStateWrapper()),
-                );
-              });
+              // Check if the username is 'null_username' and navigate accordingly
+              appState.checkUsernameAndNavigate(context, authState);
             }
             return ElevatedButton(
               onPressed: () {

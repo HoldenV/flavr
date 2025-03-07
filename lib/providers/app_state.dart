@@ -10,6 +10,9 @@ import 'package:flavr/screens/friends.dart';
 import 'package:flavr/screens/home.dart';
 import 'package:flavr/screens/profile.dart';
 import 'package:flavr/screens/inbox.dart';
+import 'package:flavr/screens/account_creation.dart';
+import 'package:flavr/providers/authentication_state.dart';
+import 'package:flavr/widgets/app_state_wrapper.dart';
 
 class AppState with ChangeNotifier {
   // Location Service Management
@@ -38,9 +41,9 @@ class AppState with ChangeNotifier {
 
   final List<Widget> screens = [
     HomeScreen(),
-    const FriendsScreen(),
-    const InboxScreen(),
-    const ProfileScreen(),
+    FriendsScreen(),
+    InboxScreen(),
+    ProfileScreen(),
   ];
 
   Widget _currentScreen = HomeScreen();
@@ -57,6 +60,7 @@ class AppState with ChangeNotifier {
     _currentScreen = screens[index];
     notifyListeners();
   }
+
   void incrementSwipeCount() {
     swipeCount++;
     notifyListeners();
@@ -68,4 +72,24 @@ class AppState with ChangeNotifier {
   }
 
   int swipeCount = 0;
+
+  // Method to check username and navigate to AccountCreationScreen if needed
+  Future<void> checkUsernameAndNavigate(
+      BuildContext context, AuthenticationState authState) async {
+    if (authState.userModel?.username == 'null_username') {
+      // Navigate to AccountCreationScreen if username is 'null_username'
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => AccountCreationScreen()),
+        );
+      });
+    } else {
+      // Navigate to AppStateWrapper if user is signed in and username is valid
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const AppStateWrapper()),
+        );
+      });
+    }
+  }
 }

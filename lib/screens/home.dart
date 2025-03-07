@@ -10,6 +10,7 @@ class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomeScreenState createState() => _HomeScreenState();
 }
 
@@ -53,7 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: appState.swipeCount < 7 ? [Colors.orange, Colors.black] : [Colors.purple, Colors.orange],
+          colors: appState.swipeCount < 7
+              ? [Colors.orange, Colors.black]
+              : [Colors.purple, Colors.orange],
           stops: [0.01, 0.25],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -112,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               child: appState.swipeCount >= 7
                   ? RecommendationPopup()
-                  : Container(key: ValueKey("empty")),
+                  : Container(key: ValueKey('empty')),
             ))
           ],
         )),

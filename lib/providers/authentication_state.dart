@@ -14,8 +14,10 @@ class AuthenticationState extends ChangeNotifier {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   User? _user;
+  UserModel? _userModel;
 
   User? get user => _user;
+  UserModel? get userModel => _userModel;
 
   Future<void> signInWithGoogle() async {
     try {
@@ -40,11 +42,12 @@ class AuthenticationState extends ChangeNotifier {
 
       if (_user != null) {
         // Check if user already exists in Firestore
-        UserModel? existingUser = await UserModel.fromFirestore(_user!.uid);
-        if (existingUser == null) {
+        _userModel = await UserModel.fromFirestore(_user!.uid);
+        if (_userModel == null) {
           // Create a new UserModel and save it to Firestore
-          final userModel = UserModel(uid: _user!.uid, email: _user!.email!);
-          await userModel.saveToFirestore();
+          _userModel = UserModel(
+              uid: _user!.uid, email: _user!.email!, username: 'null_username');
+          await _userModel!.saveToFirestore();
         }
       }
 
@@ -59,6 +62,7 @@ class AuthenticationState extends ChangeNotifier {
     await _auth.signOut();
     await _googleSignIn.signOut();
     _user = null;
+    _userModel = null;
     notifyListeners();
   }
 }

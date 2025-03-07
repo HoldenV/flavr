@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -5,6 +7,7 @@ import 'package:flavr/providers/app_state.dart';
 
 class RecommendationPopup extends StatefulWidget {
   @override
+  // ignore: library_private_types_in_public_api
   _RecommendationPopupState createState() => _RecommendationPopupState();
 }
 
@@ -96,8 +99,8 @@ class _RecommendationPopupState extends State<RecommendationPopup>
                 ScaleTransition(
                   scale: _cardAnimation,
                   child: RecommendationCardDisplay(
-                    image_path: 'lib/assets/dish_images/bbq-ribs.jpg',
-                    dish_name: "BBQ Ribs",
+                    imagePath: 'lib/assets/dish_images/bbq-ribs.jpg',
+                    dishName: 'BBQ Ribs',
                   ),
                 ),
               ],
@@ -110,11 +113,10 @@ class _RecommendationPopupState extends State<RecommendationPopup>
 }
 
 class RecommendationCardDisplay extends StatelessWidget {
-  final String image_path;
-  final String dish_name;
+  final String imagePath;
+  final String dishName;
 
-  RecommendationCardDisplay(
-      {required this.image_path, required this.dish_name});
+  RecommendationCardDisplay({required this.imagePath, required this.dishName});
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +133,7 @@ class RecommendationCardDisplay extends StatelessWidget {
             borderRadius: BorderRadius.circular(16.0),
             child: Stack(children: [
               Image.asset(
-                image_path,
+                imagePath,
                 width: screenWidth * 0.9,
                 height: screenHeight * 0.65,
                 fit: BoxFit.cover,
@@ -165,16 +167,17 @@ class RecommendationCardDisplay extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      dish_name,
+                      dishName,
                       style: TextStyle(
                         fontFamily: 'Arial Rounded MT Bold',
                         fontSize: screenWidth * 0.1,
                         color: Colors.white,
                       ),
                       textAlign: TextAlign.left,
-                    ), SizedBox(height: screenHeight * 0.005), 
+                    ),
+                    SizedBox(height: screenHeight * 0.005),
                     // Wrap the restaurant cards in a container with a defined height
-                    Container(
+                    SizedBox(
                       width: screenWidth *
                           0.8, // Constrain the width to the card's width
                       height: screenHeight * 0.20, // adjust as needed
@@ -184,18 +187,18 @@ class RecommendationCardDisplay extends StatelessWidget {
                           children: [
                             RestaurantCard(
                               image_path: 'lib/assets/dish_images/kofta.jpg',
-                              restaurant_name: "Restaurant 1",
+                              restaurant_name: 'Restaurant 1',
                             ),
                             SizedBox(width: 5), // spacing between cards
                             RestaurantCard(
                               image_path: 'lib/assets/dish_images/pad-thai.jpg',
-                              restaurant_name: "Restaurant 2",
+                              restaurant_name: 'Restaurant 2',
                             ),
                             SizedBox(width: 5),
                             RestaurantCard(
                               image_path:
                                   'lib/assets/dish_images/pasta-salad.jpg',
-                              restaurant_name: "Restaurant 3",
+                              restaurant_name: 'Restaurant 3',
                             ),
                           ],
                         ),
