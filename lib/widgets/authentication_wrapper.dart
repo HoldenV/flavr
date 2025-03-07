@@ -15,10 +15,16 @@ class AuthenticationWrapper extends StatelessWidget {
   const AuthenticationWrapper({super.key});
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<AuthenticationState>(context).user;
+    final authState = Provider.of<AuthenticationState>(context);
+    final user = authState.user;
+
     if (user == null) {
       return const LoginScreen();
     } else {
+      // Check username and navigate accordingly
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        authState.checkUsernameAndNavigate(context, authState);
+      });
       return const AppStateWrapper();
     }
   }

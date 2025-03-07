@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
-class UserModel {
-  final String uid;
-  final String email;
-  final String username;
+class UserModel extends ChangeNotifier {
+  String uid;
+  String email;
+  String username;
 
   UserModel({required this.uid, required this.email, required this.username});
 
@@ -39,5 +40,13 @@ class UserModel {
       );
     }
     return null;
+  }
+
+  // Update username
+  Future<void> updateUsername(String newUsername) async {
+    username = newUsername;
+    await saveToFirestore();
+    // Notify listeners to update the UI
+    notifyListeners();
   }
 }

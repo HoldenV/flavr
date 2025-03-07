@@ -10,9 +10,6 @@ import 'package:flavr/screens/friends.dart';
 import 'package:flavr/screens/home.dart';
 import 'package:flavr/screens/profile.dart';
 import 'package:flavr/screens/inbox.dart';
-import 'package:flavr/screens/account_creation.dart';
-import 'package:flavr/providers/authentication_state.dart';
-import 'package:flavr/widgets/app_state_wrapper.dart';
 
 class AppState with ChangeNotifier {
   // Location Service Management

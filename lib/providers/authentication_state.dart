@@ -23,44 +23,38 @@ class AuthenticationState extends ChangeNotifier {
 
   Future<void> signInWithGoogle() async {
     try {
-      // begin interactive sign-in process
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-
-      // obtain auth details from request
       final GoogleSignInAuthentication googleAuth =
           await googleUser!.authentication;
-
-      // create new credential for user
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      // sign in!
       UserCredential userCredential =
           await _auth.signInWithCredential(credential);
-
       _user = userCredential.user;
 
       if (_user != null) {
-        // Check if user already exists in Firestore
         _userModel = await UserModel.fromFirestore(_user!.uid);
         if (_userModel == null) {
-          // Create a new UserModel and save it to Firestore
           _userModel = UserModel(
               uid: _user!.uid, email: _user!.email!, username: 'null_username');
           await _userModel!.saveToFirestore();
         }
+        _userModel!.addListener(notifyListeners);
       }
 
       notifyListeners();
     } catch (e) {
-      // in case where user closes dialog without signing in
       print('Google sign in cancelled: $e');
     }
   }
 
   Future<void> signOut() async {
+    if (_userModel != null) {
+      _userModel!.removeListener(notifyListeners);
+    }
     await _auth.signOut();
     await _googleSignIn.signOut();
     _user = null;
@@ -68,18 +62,15 @@ class AuthenticationState extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Method to check username and navigate to AccountCreationScreen if needed
   Future<void> checkUsernameAndNavigate(
       BuildContext context, AuthenticationState authState) async {
     if (authState.userModel?.username == 'null_username') {
-      // Navigate to AccountCreationScreen if username is 'null_username'
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => AccountCreationScreen()),
         );
       });
     } else {
-      // Navigate to AppStateWrapper if user is signed in and username is valid
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const AppStateWrapper()),
