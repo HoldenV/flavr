@@ -20,13 +20,21 @@ class LoginScreen extends StatelessWidget {
                 );
               });
             }
-            return ElevatedButton(
-              onPressed: () {
-                Provider.of<AuthenticationState>(context, listen: false)
-                    .signInWithGoogle();
-              },
-              child: const Text('Sign in with Google'),
-            );
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [Image.asset(
+                    'lib/assets/flavr-logo.png',
+                    scale: 5), SizedBox(height: 40),
+              GestureDetector(
+                  onTap: () {
+                    Provider.of<AuthenticationState>(context, listen: false)
+                        .signInWithGoogle();
+                  },
+                  child: Image.asset(
+                    'lib/assets/continue_with_google.png',
+                    scale: 4,
+                  ))
+            ]);
           },
         ),
       ),
