@@ -71,6 +71,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
 
+            //username will need to be updates in user.dart inside models folder as well
+            //need to also update authentication_state.dart inside providers
             const SizedBox(height: 10),
             const Text(
               'User Information',
