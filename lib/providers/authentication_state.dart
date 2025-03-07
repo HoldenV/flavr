@@ -4,6 +4,8 @@ This might be refactored into a sign in service that is merely
 accessed by this state provider
  */
 
+import 'package:flavr/screens/account_creation.dart';
+import 'package:flavr/widgets/app_state_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -64,5 +66,25 @@ class AuthenticationState extends ChangeNotifier {
     _user = null;
     _userModel = null;
     notifyListeners();
+  }
+
+  // Method to check username and navigate to AccountCreationScreen if needed
+  Future<void> checkUsernameAndNavigate(
+      BuildContext context, AuthenticationState authState) async {
+    if (authState.userModel?.username == 'null_username') {
+      // Navigate to AccountCreationScreen if username is 'null_username'
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => AccountCreationScreen()),
+        );
+      });
+    } else {
+      // Navigate to AppStateWrapper if user is signed in and username is valid
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const AppStateWrapper()),
+        );
+      });
+    }
   }
 }

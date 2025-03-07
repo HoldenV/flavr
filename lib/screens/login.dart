@@ -14,23 +14,23 @@ class LoginScreen extends StatelessWidget {
           builder: (context, authState, appState, child) {
             if (authState.user != null) {
               // Check if the username is 'null_username' and navigate accordingly
-              appState.checkUsernameAndNavigate(context, authState);
+              authState.checkUsernameAndNavigate(context, authState);
             }
             return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [Image.asset(
-                    'lib/assets/flavr-logo.png',
-                    scale: 5), SizedBox(height: 40),
-              GestureDetector(
-                  onTap: () {
-                    Provider.of<AuthenticationState>(context, listen: false)
-                        .signInWithGoogle();
-                  },
-                  child: Image.asset(
-                    'lib/assets/continue_with_google.png',
-                    scale: 4,
-                  ))
-            ]);
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('lib/assets/flavr-logo.png', scale: 5),
+                  SizedBox(height: 40),
+                  GestureDetector(
+                      onTap: () {
+                        Provider.of<AuthenticationState>(context, listen: false)
+                            .signInWithGoogle();
+                      },
+                      child: Image.asset(
+                        'lib/assets/continue_with_google.png',
+                        scale: 4,
+                      ))
+                ]);
           },
         ),
       ),

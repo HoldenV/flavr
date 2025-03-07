@@ -72,24 +72,4 @@ class AppState with ChangeNotifier {
   }
 
   int swipeCount = 0;
-
-  // Method to check username and navigate to AccountCreationScreen if needed
-  Future<void> checkUsernameAndNavigate(
-      BuildContext context, AuthenticationState authState) async {
-    if (authState.userModel?.username == 'null_username') {
-      // Navigate to AccountCreationScreen if username is 'null_username'
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => AccountCreationScreen()),
-        );
-      });
-    } else {
-      // Navigate to AppStateWrapper if user is signed in and username is valid
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const AppStateWrapper()),
-        );
-      });
-    }
-  }
 }
