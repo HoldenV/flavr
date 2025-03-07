@@ -132,7 +132,7 @@ class RecommendationCardDisplay extends StatelessWidget {
             child: Stack(children: [
               Image.asset(
                 image_path,
-                width: screenWidth * 0.8,
+                width: screenWidth * 0.9,
                 height: screenHeight * 0.65,
                 fit: BoxFit.cover,
               ),
@@ -172,12 +172,12 @@ class RecommendationCardDisplay extends StatelessWidget {
                         color: Colors.white,
                       ),
                       textAlign: TextAlign.left,
-                    ),
+                    ), SizedBox(height: screenHeight * 0.005), 
                     // Wrap the restaurant cards in a container with a defined height
                     Container(
                       width: screenWidth *
                           0.8, // Constrain the width to the card's width
-                      height: screenHeight * 0.25, // adjust as needed
+                      height: screenHeight * 0.20, // adjust as needed
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
@@ -260,7 +260,7 @@ class RestaurantCard extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 16, // adjust as needed
+                bottom: 8, // adjust as needed
                 left: 16, // adjust as needed
                 child: Text(
                   restaurant_name,
