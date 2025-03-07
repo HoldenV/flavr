@@ -57,4 +57,15 @@ class AppState with ChangeNotifier {
     _currentScreen = screens[index];
     notifyListeners();
   }
+  void incrementSwipeCount() {
+    swipeCount++;
+    notifyListeners();
+  }
+
+  void resetSwipeCount() {
+    swipeCount = 0;
+    notifyListeners();
+  }
+
+  int swipeCount = 0;
 }

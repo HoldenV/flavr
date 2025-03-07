@@ -11,6 +11,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
 // Widget imports
 import 'widgets/authentication_wrapper.dart';
 

@@ -19,10 +19,10 @@ Widget useBottomNavigationBar(BuildContext context) {
               offset: const Offset(0, -1),
             ),
           ],
-          borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(0.0)),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(0.0)),
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             currentIndex: appState.currentIndex,

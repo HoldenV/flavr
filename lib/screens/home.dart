@@ -2,15 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flavr/widgets/recommendation_popup.dart';
+import 'package:provider/provider.dart';
+import 'package:flavr/providers/app_state.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
 
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final CardSwiperController _controller =
       CardSwiperController(); // Controller used to force a swipe
 
   @override
   Widget build(BuildContext context) {
+    final appState = Provider.of<AppState>(context); // listen: true by default
     final List<String> imagePaths = [
       'lib/assets/dish_images/bacalao-a-la-vizcaina.jpg',
       'lib/assets/dish_images/bbq-ribs.jpg',
@@ -44,7 +53,7 @@ class HomeScreen extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.orange, Colors.black],
+          colors: appState.swipeCount < 7 ? [Colors.orange, Colors.black] : [Colors.purple, Colors.orange],
           stops: [0.01, 0.25],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -96,11 +105,43 @@ class HomeScreen extends StatelessWidget {
             ),
             Center(
                 // child: ControlOverlay(controller: _controller),
-                )
+                child: AnimatedSwitcher(
+              duration: Duration(milliseconds: 300),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return FadeTransition(opacity: animation, child: child);
+              },
+              child: appState.swipeCount >= 7
+                  ? RecommendationPopup()
+                  : Container(key: ValueKey("empty")),
+            ))
           ],
         )),
       ),
     );
+  }
+
+// Local functions
+  bool _onSwipe(
+    int previousIndex,
+    int? currentIndex,
+    CardSwiperDirection direction,
+  ) {
+    // Access the provider without listening to avoid unnecessary rebuilds
+    final appState = Provider.of<AppState>(context, listen: false);
+    appState
+        .incrementSwipeCount(); // Ensure this method updates swipeCount and calls notifyListeners()
+
+    if (direction == CardSwiperDirection.left) {
+      print('swiped left');
+      HapticFeedback.lightImpact();
+    } else if (direction == CardSwiperDirection.right) {
+      print('swiped right');
+      HapticFeedback.lightImpact();
+    } else if (direction == CardSwiperDirection.top) {
+      print('swiped up');
+      HapticFeedback.heavyImpact();
+    }
+    return true;
   }
 }
 
@@ -151,25 +192,6 @@ class ControlOverlay extends StatelessWidget {
       ],
     ));
   }
-}
-
-// Local functions
-bool _onSwipe(
-  int previousIndex,
-  int? currentIndex,
-  CardSwiperDirection direction,
-) {
-  if (direction == CardSwiperDirection.left) {
-    print('swiped left');
-    HapticFeedback.lightImpact();
-  } else if (direction == CardSwiperDirection.right) {
-    print('swiped right');
-    HapticFeedback.lightImpact();
-  } else if (direction == CardSwiperDirection.top) {
-    print('swiped up');
-    HapticFeedback.heavyImpact();
-  }
-  return true;
 }
 
 bool _onTap() {
