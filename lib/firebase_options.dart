@@ -46,6 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '974045621368',
     projectId: 'flavr-4e17f',
     authDomain: 'flavr-4e17f.firebaseapp.com',
+    databaseURL: 'https://flavr-4e17f-default-rtdb.firebaseio.com',
     storageBucket: 'flavr-4e17f.firebasestorage.app',
     measurementId: 'G-5Y1XDRKBRZ',
   );
@@ -55,6 +56,7 @@ class DefaultFirebaseOptions {
     appId: '1:974045621368:android:2cfe0bf8d48e4c2b23d18d',
     messagingSenderId: '974045621368',
     projectId: 'flavr-4e17f',
+    databaseURL: 'https://flavr-4e17f-default-rtdb.firebaseio.com',
     storageBucket: 'flavr-4e17f.firebasestorage.app',
   );
 
@@ -63,6 +65,7 @@ class DefaultFirebaseOptions {
     appId: '1:974045621368:ios:240f64604e4ca0ad23d18d',
     messagingSenderId: '974045621368',
     projectId: 'flavr-4e17f',
+    databaseURL: 'https://flavr-4e17f-default-rtdb.firebaseio.com',
     storageBucket: 'flavr-4e17f.firebasestorage.app',
     androidClientId: '974045621368-v3af2oii789rdugs4c1mta3pr41e1p5k.apps.googleusercontent.com',
     iosClientId: '974045621368-rcb7raltro0rlleu75ebur7t6dseuh2h.apps.googleusercontent.com',
@@ -74,6 +77,7 @@ class DefaultFirebaseOptions {
     appId: '1:974045621368:ios:240f64604e4ca0ad23d18d',
     messagingSenderId: '974045621368',
     projectId: 'flavr-4e17f',
+    databaseURL: 'https://flavr-4e17f-default-rtdb.firebaseio.com',
     storageBucket: 'flavr-4e17f.firebasestorage.app',
     androidClientId: '974045621368-v3af2oii789rdugs4c1mta3pr41e1p5k.apps.googleusercontent.com',
     iosClientId: '974045621368-rcb7raltro0rlleu75ebur7t6dseuh2h.apps.googleusercontent.com',
@@ -86,6 +90,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '974045621368',
     projectId: 'flavr-4e17f',
     authDomain: 'flavr-4e17f.firebaseapp.com',
+    databaseURL: 'https://flavr-4e17f-default-rtdb.firebaseio.com',
     storageBucket: 'flavr-4e17f.firebasestorage.app',
     measurementId: 'G-H8718CVKNR',
   );
