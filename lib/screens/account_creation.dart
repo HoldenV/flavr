@@ -15,7 +15,9 @@ class AccountCreationState extends State<AccountCreationScreen> {
     final authState = Provider.of<AuthenticationState>(context, listen: false);
     if (authState.userModel != null) {
       await authState.userModel!.updateUsername(username);
-      authState.checkUsernameAndNavigate(context, authState);
+      if (mounted) {
+        authState.checkUsernameAndNavigate(context, authState);
+      }
     }
     print('Username: $username');
   }

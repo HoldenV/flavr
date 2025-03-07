@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flavr/providers/notifications_provider.dart';
 
 // Widget imports
 import 'widgets/authentication_wrapper.dart';
@@ -36,6 +36,8 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => AppState()),
         ChangeNotifierProvider(create: (context) => AuthenticationState()),
+        ChangeNotifierProvider(
+            create: (_) => NotificationsProvider()..addDefaultNotifications()),
       ],
       // The root widget will be an instance of MyApp()
       child: const MyApp(),
