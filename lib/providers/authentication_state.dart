@@ -7,6 +7,7 @@ accessed by this state provider
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import '../models/user.dart';
 
 class AuthenticationState extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -36,6 +37,17 @@ class AuthenticationState extends ChangeNotifier {
           await _auth.signInWithCredential(credential);
 
       _user = userCredential.user;
+
+      if (_user != null) {
+        // Check if user already exists in Firestore
+        UserModel? existingUser = await UserModel.fromFirestore(_user!.uid);
+        if (existingUser == null) {
+          // Create a new UserModel and save it to Firestore
+          final userModel = UserModel(uid: _user!.uid, email: _user!.email!);
+          await userModel.saveToFirestore();
+        }
+      }
+
       notifyListeners();
     } catch (e) {
       // in case where user closes dialog without signing in

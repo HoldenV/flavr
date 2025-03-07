@@ -36,16 +36,12 @@ Widget useBottomNavigationBar(BuildContext context) {
               switch (index) {
                 case 0:
                   appState.setCurrentScreen(HomeScreen(), index);
-                  break;
                 case 1:
                   appState.setCurrentScreen(const FriendsScreen(), index);
-                  break;
                 case 2:
                   appState.setCurrentScreen(const InboxScreen(), index);
-                  break;
                 case 3:
                   appState.setCurrentScreen(const ProfileScreen(), index);
-                  break;
               }
             },
             items: [
