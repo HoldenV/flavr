@@ -1,6 +1,4 @@
-//code for the profile page on the UI
-
-import 'package:flutter/material.dart'; //import statement for Flutter material package
+import 'package:flutter/material.dart'; // Import statement for Flutter material package
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -9,25 +7,25 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-//New screen or just changes mode, flit around with
-
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool isEditing = false; //track whether editing or viewing by user
-  final TextEditingController userName = TextEditingController(); //handle user input for username
-  final TextEditingController emailName = TextEditingController(); //handle user input for email
-  final TextEditingController phoneNumber = TextEditingController(); //handle user input for phone number
-  final TextEditingController foodRestrictions = TextEditingController(); //handle user input for food restrictions
+  bool isEditing = false; // Editing boolean
+
+  final TextEditingController userName = TextEditingController();
+  final TextEditingController emailName = TextEditingController();
+  final TextEditingController phoneNumber = TextEditingController();
+  final TextEditingController foodRestrictions = TextEditingController();
+  double restaurantDistance = 10; // Slider value
 
   @override
   void initState() {
-    super.initState(); //default info from UI mock up
+    super.initState();
     userName.text = 'John Doe';
     emailName.text = 'header@gmail.com';
     phoneNumber.text = '913-000-0000';
     foodRestrictions.text = 'GF \n Vegan \n Allergens';
   }
 
-  void changeEdit() {
+  void toggleEdit() {
     setState(() {
       isEditing = !isEditing;
     });
@@ -35,101 +33,176 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void saveProfile() {
     setState(() {
-      isEditing = false; //once saved bool = false
+      isEditing = false;
     });
-    ScaffoldMessenger.of(context).showSnackBar( //snackbar kinda like a pop up
-      SnackBar(content: Text('Profile Saved')),
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Profile Saved')),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: const Text('Your Profile'),
+        title: const Text('Your Profile', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.black,
+        iconTheme: const IconThemeData(color: Colors.white),
+        actions: [
+          TextButton(
+            onPressed: isEditing ? saveProfile : toggleEdit,
+            child: Text(
+              isEditing ? 'Save' : 'Edit',
+              style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(15.0), //15 pixels
-        child: Column(
-          children: [
-            const Center(
-              child: CircleAvatar( //circle for profile image to fill
-                radius: 70,
-                backgroundImage: AssetImage('lib/assets/default_profile.png'),
-                //not loading correctly, try new path --> update pubspec.yaml assets to fix
-              )
-            ),
-            
-            const SizedBox(height: 10), //space between pic and text for name
-            TextField (
-              controller: userName,
-              decoration: const InputDecoration(
-                labelText: 'Name', //label
-                border: OutlineInputBorder(),
-              ),
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-
-            //username will need to be updates in user.dart inside models folder as well
-            //need to also update authentication_state.dart inside providers
-            const SizedBox(height: 10),
-            const Text(
-              'User Information',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            ),
-            const Divider( //line to divide up sections
-              color: Colors.black, thickness: 2,
-            ),
-            Expanded(
-              child: ListView(
-                children: const [
-                  ListTile(
-                    title: Text('Username:'),
-                    subtitle: Text('thisismyusername',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15, color: Colors.white),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text('Phone Number:'),
-                    subtitle: Text('913-579-2305'),
-                  ),
-                ]
-              ),
-            ),
-
-            const SizedBox(height: 10),
-            const Text(
-              'Preferences',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
-            ),
-            const Divider( //line to divide up sections
-              color: Colors.black, thickness: 2,
-            ),
-            Expanded(
-              child: ListView(
-                children: const [
-                  ListTile(
-                    title: Text('Dietary Restrictions:'),
-                    subtitle: Text(
-                      "can't eat here",
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text('Restaurant Distance:'),
-                    subtitle: Text(
-                      'slider here eventually',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-                    ),
-                  ),
-                ]
-              ),
-            ),
-          ]
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.orange, Colors.purple],
+          ),
         ),
-      )
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: ListView(
+            children: [
+              const Center(
+                child: CircleAvatar(
+                  radius: 70,
+                  backgroundImage: AssetImage('lib/assets/default_profile.png'),
+                ),
+              ),
+              const SizedBox(height: 20),
+
+              TextField(
+                controller: userName,
+                decoration: InputDecoration(
+                  labelText: 'Name',
+                  labelStyle: const TextStyle(color: Colors.white),
+                  border: const OutlineInputBorder(),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                readOnly: !isEditing,
+              ),
+
+              const SizedBox(height: 15),
+              const Text(
+                'User Information',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
+              ),
+              const Divider(color: Colors.white, thickness: 2),
+              const SizedBox(height: 20),
+
+              TextField(
+                controller: emailName,
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  labelStyle: const TextStyle(color: Colors.white),
+                  border: const OutlineInputBorder(),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
+                style: const TextStyle(color: Colors.white),
+                readOnly: !isEditing,
+              ),
+
+              const SizedBox(height: 10),
+
+              TextField(
+                controller: phoneNumber,
+                decoration: InputDecoration(
+                  labelText: 'Phone Number',
+                  labelStyle: const TextStyle(color: Colors.white),
+                  border: const OutlineInputBorder(),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
+                style: const TextStyle(color: Colors.white),
+                readOnly: !isEditing,
+              ),
+
+              const SizedBox(height: 20),
+              const Text(
+                'Preferences',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
+              ),
+              const Divider(color: Colors.white, thickness: 2),
+              const SizedBox(height: 20),
+
+              // Preferences Box with Border
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextField(
+                      controller: foodRestrictions,
+                      decoration: InputDecoration(
+                        labelText: 'Dietary Restrictions',
+                        labelStyle: const TextStyle(color: Colors.white),
+                        border: const OutlineInputBorder(),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      style: const TextStyle(color: Colors.white),
+                      maxLines: 3,
+                      readOnly: !isEditing,
+                    ),
+                    const SizedBox(height: 10),
+
+                    // Slider with Label
+                    const Text(
+                      'Restaurant Distance:',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Slider(
+                      value: restaurantDistance,
+                      min: 1,
+                      max: 200,
+                      divisions: 20,
+                      label: '${restaurantDistance.toInt()} miles',
+                      onChanged: isEditing
+                          ? (double value) {
+                              setState(() {
+                                restaurantDistance = value;
+                              });
+                            }
+                          : null,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
