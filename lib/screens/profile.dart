@@ -21,7 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController emailName = TextEditingController();
   final TextEditingController phoneNumber = TextEditingController();
   final TextEditingController foodRestrictions = TextEditingController();
-  double restaurantDistance = 10; // Slider value
+  double restaurantDistance = 10;
 
   @override
   void initState() {
@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     userName.text = 'John Doe';
     emailName.text = 'header@gmail.com';
     phoneNumber.text = '913-000-0000';
-    foodRestrictions.text = 'GF \n Vegan \n Allergens';
+    foodRestrictions.text = 'GF \n Vegan \n Allergens'; //eventually want non-text input
   }
 
   void toggleEdit() {
@@ -155,7 +155,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const Divider(color: Colors.white, thickness: 2),
               const SizedBox(height: 20),
 
-              // Preferences Box with Border
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
@@ -169,6 +168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       controller: foodRestrictions,
                       decoration: InputDecoration(
                         labelText: 'Dietary Restrictions',
+
                         labelStyle: const TextStyle(color: Colors.white),
                         border: const OutlineInputBorder(),
                         enabledBorder: const OutlineInputBorder(
@@ -184,16 +184,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     const SizedBox(height: 10),
 
-                    // Slider with Label
                     const Text(
-                      'Restaurant Distance:',
+                      'Restaurant Distance:', //rename this is this descriptive enough?
                       style: TextStyle(color: Colors.white),
                     ),
                     Slider(
                       value: restaurantDistance,
                       min: 1,
                       max: 200,
-                      divisions: 20,
+                      divisions: 5,
                       label: '${restaurantDistance.toInt()} miles',
                       onChanged: isEditing
                           ? (double value) {
