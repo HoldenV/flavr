@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart'; // Import statement for Flutter material package
 
+//Future edits
+//  logarithmic scaling for slider
+//  style app bar (match other screens) --> chunky font top left
+//  remove gradient, black and dark gray/orange ish fill ins
+//  make the slider always editable?
+// link with authentication file 
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
