@@ -23,8 +23,8 @@
             "tan"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "hands",
         "allergens/diet stuff": [
             "vegitarian",
@@ -58,8 +58,8 @@
             "green"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 2,
-        "percieved healthiness": 3,
+        "perceived heaviness": 2,
+        "perceived healthiness": 3,
         "eating method": "hands",
         "allergens/diet stuff": [
             "vegitarian",
@@ -95,8 +95,8 @@
             "tan"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "hands",
         "allergens/diet stuff": [
             "vegitarian",
@@ -122,8 +122,8 @@
             "brown"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 5,
-        "percieved healthiness": 3,
+        "perceived heaviness": 5,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -150,8 +150,8 @@
             "yellow"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegitarian",
@@ -179,8 +179,8 @@
             "white"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -210,8 +210,8 @@
             "white"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 2,
+        "perceived heaviness": 3,
+        "perceived healthiness": 2,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "dairy free",
@@ -240,8 +240,8 @@
             "red"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegitarian",
@@ -273,8 +273,8 @@
             "yellow"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -302,8 +302,8 @@
             "yellow"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 2,
+        "perceived heaviness": 3,
+        "perceived healthiness": 2,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "dairy free",
@@ -333,8 +333,8 @@
             "white"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 2,
+        "perceived heaviness": 3,
+        "perceived healthiness": 2,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegitarian",
@@ -366,8 +366,8 @@
             "tan"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 5,
-        "percieved healthiness": 2,
+        "perceived heaviness": 5,
+        "perceived healthiness": 2,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegitarian",
@@ -394,8 +394,8 @@
             "yellow"
         ],
         "ingredient visibility": 1,
-        "percieved heaviness": 1,
-        "percieved healthiness": 4,
+        "perceived heaviness": 1,
+        "perceived healthiness": 4,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "nut free",
@@ -425,8 +425,8 @@
             "red"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 5,
-        "percieved healthiness": 2,
+        "perceived heaviness": 5,
+        "perceived healthiness": 2,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -457,8 +457,8 @@
             "brown"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 5,
-        "percieved healthiness": 2,
+        "perceived heaviness": 5,
+        "perceived healthiness": 2,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "dairy free",
@@ -495,8 +495,8 @@
             "brown"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 4,
-        "percieved healthiness": 3,
+        "perceived heaviness": 4,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "dairy free",
@@ -521,8 +521,8 @@
             "green"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 4,
-        "percieved healthiness": 3,
+        "perceived heaviness": 4,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -555,8 +555,8 @@
             "brown"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 5,
-        "percieved healthiness": 3,
+        "perceived heaviness": 5,
+        "perceived healthiness": 3,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -588,8 +588,8 @@
             "tan"
         ],
         "ingredient visibility": 1,
-        "percieved heaviness": 3,
-        "percieved healthiness": 2,
+        "perceived heaviness": 3,
+        "perceived healthiness": 2,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "nut free"
@@ -613,8 +613,8 @@
             "tan"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 2,
-        "percieved healthiness": 4,
+        "perceived heaviness": 2,
+        "perceived healthiness": 4,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -642,8 +642,8 @@
             "yellow"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 5,
-        "percieved healthiness": 1,
+        "perceived heaviness": 5,
+        "perceived healthiness": 1,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -676,8 +676,8 @@
             "tan"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 2,
-        "percieved healthiness": 4,
+        "perceived heaviness": 2,
+        "perceived healthiness": 4,
         "eating method": "hands",
         "allergens/diet stuff": [
             "vegetarian",
@@ -709,8 +709,8 @@
             "brown"
         ],
         "ingredient visibility": 1,
-        "percieved heaviness": 3,
-        "percieved healthiness": 2,
+        "perceived heaviness": 3,
+        "perceived healthiness": 2,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -750,8 +750,8 @@
             "varies"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -782,8 +782,8 @@
             "brown"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 5,
+        "perceived heaviness": 3,
+        "perceived healthiness": 5,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -814,8 +814,8 @@
             "tan"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "hands",
         "allergens/diet stuff": [
             "vegetarian",
@@ -845,8 +845,8 @@
             "tan"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 4,
-        "percieved healthiness": 4,
+        "perceived heaviness": 4,
+        "perceived healthiness": 4,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -877,8 +877,8 @@
             "brown"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -903,8 +903,8 @@
             "brown"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 4,
-        "percieved healthiness": 5,
+        "perceived heaviness": 4,
+        "perceived healthiness": 5,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -942,8 +942,8 @@
             "orange"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 2,
-        "percieved healthiness": 5,
+        "perceived heaviness": 2,
+        "perceived healthiness": 5,
         "eating method": "hands",
         "allergens/diet stuff": [
             "vegetarian",
@@ -978,8 +978,8 @@
             "yellow"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 4,
-        "percieved healthiness": 3,
+        "perceived heaviness": 4,
+        "perceived healthiness": 3,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1007,8 +1007,8 @@
             "tan"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "gluten free",
@@ -1034,8 +1034,8 @@
             "tan"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "gluten free",
@@ -1061,8 +1061,8 @@
             "brown"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "hands",
         "allergens/diet stuff": [
             "gluten free",
@@ -1093,8 +1093,8 @@
             "white"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 4,
-        "percieved healthiness": 3,
+        "perceived heaviness": 4,
+        "perceived healthiness": 3,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1128,8 +1128,8 @@
             "brown"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 2,
-        "percieved healthiness": 2,
+        "perceived heaviness": 2,
+        "perceived healthiness": 2,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1168,8 +1168,8 @@
             "green"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 5,
-        "percieved healthiness": 4,
+        "perceived heaviness": 5,
+        "perceived healthiness": 4,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "gluten free",
@@ -1207,8 +1207,8 @@
             "green"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 3,
-        "percieved healthiness": 5,
+        "perceived heaviness": 3,
+        "perceived healthiness": 5,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1244,8 +1244,8 @@
             "white"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 5,
-        "percieved healthiness": 2,
+        "perceived heaviness": 5,
+        "perceived healthiness": 2,
         "eating method": "hands",
         "allergens/diet stuff": [
             "nut free"
@@ -1274,8 +1274,8 @@
             "brown"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 5,
-        "percieved healthiness": 2,
+        "perceived heaviness": 5,
+        "perceived healthiness": 2,
         "eating method": "hands",
         "allergens/diet stuff": [
             "nut free"
@@ -1300,8 +1300,8 @@
             "green"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 4,
-        "percieved healthiness": 5,
+        "perceived heaviness": 4,
+        "perceived healthiness": 5,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1333,8 +1333,8 @@
             "white"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 3,
-        "percieved healthiness": 4,
+        "perceived heaviness": 3,
+        "perceived healthiness": 4,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1362,8 +1362,8 @@
             "green"
         ],
         "ingredient visibility": 1,
-        "percieved heaviness": 2,
-        "percieved healthiness": 1,
+        "perceived heaviness": 2,
+        "perceived healthiness": 1,
         "eating method": "hands",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1395,8 +1395,8 @@
             "white"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 4,
-        "percieved healthiness": 3,
+        "perceived heaviness": 4,
+        "perceived healthiness": 3,
         "eating method": "hands",
         "allergens/diet stuff": [
             "nut free"
@@ -1423,8 +1423,8 @@
             "brown"
         ],
         "ingredient visibility": 1,
-        "percieved heaviness": 3,
-        "percieved healthiness": 1,
+        "perceived heaviness": 3,
+        "perceived healthiness": 1,
         "eating method": "hands",
         "allergens/diet stuff": [
             "gluten free",
@@ -1456,8 +1456,8 @@
             "brown"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 5,
-        "percieved healthiness": 2,
+        "perceived heaviness": 5,
+        "perceived healthiness": 2,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1494,8 +1494,8 @@
             "red"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 2,
-        "percieved healthiness": 3,
+        "perceived heaviness": 2,
+        "perceived healthiness": 3,
         "eating method": "hands",
         "allergens/diet stuff": [
             "nut free"
@@ -1524,8 +1524,8 @@
             "white"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 4,
-        "percieved healthiness": 4,
+        "perceived heaviness": 4,
+        "perceived healthiness": 4,
         "eating method": "hands",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1555,8 +1555,8 @@
             "green"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 5,
-        "percieved healthiness": 2,
+        "perceived heaviness": 5,
+        "perceived healthiness": 2,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1595,8 +1595,8 @@
             "white"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "hands",
         "allergens/diet stuff": [
             "nut free"
@@ -1626,8 +1626,8 @@
             "tan"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 4,
-        "percieved healthiness": 4,
+        "perceived heaviness": 4,
+        "perceived healthiness": 4,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "gluten free",
@@ -1658,8 +1658,8 @@
             "white"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 4,
-        "percieved healthiness": 4,
+        "perceived heaviness": 4,
+        "perceived healthiness": 4,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1692,8 +1692,8 @@
             "brown"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 3,
-        "percieved healthiness": 4,
+        "perceived heaviness": 3,
+        "perceived healthiness": 4,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -1720,8 +1720,8 @@
             "tan"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "gluten free",
@@ -1752,8 +1752,8 @@
             "white"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "dairy free",
@@ -1780,8 +1780,8 @@
             "tan"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 4,
+        "perceived heaviness": 3,
+        "perceived healthiness": 4,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1817,8 +1817,8 @@
             "white"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "gluten free",
@@ -1852,8 +1852,8 @@
             "green"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 5,
-        "percieved healthiness": 5,
+        "perceived heaviness": 5,
+        "perceived healthiness": 5,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1888,8 +1888,8 @@
             "tan"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1920,8 +1920,8 @@
             "green"
         ],
         "ingredient visibility": 1,
-        "percieved heaviness": 2,
-        "percieved healthiness": 3,
+        "perceived heaviness": 2,
+        "perceived healthiness": 3,
         "eating method": "hands",
         "allergens/diet stuff": [
             "vegetarian",
@@ -1953,8 +1953,8 @@
             "white"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "gluten free",
@@ -1982,8 +1982,8 @@
             "brown"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 3,
-        "percieved healthiness": 2,
+        "perceived heaviness": 3,
+        "perceived healthiness": 2,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "gluten free",
@@ -2013,8 +2013,8 @@
             "white"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 4,
-        "percieved healthiness": 3,
+        "perceived heaviness": 4,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "nut free",
@@ -2045,8 +2045,8 @@
             "tan"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 4,
-        "percieved healthiness": 3,
+        "perceived heaviness": 4,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -2080,8 +2080,8 @@
             "green"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -2112,8 +2112,8 @@
             "tan"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 3,
-        "percieved healthiness": 4,
+        "perceived heaviness": 3,
+        "perceived healthiness": 4,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -2144,8 +2144,8 @@
             "tan"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 3,
-        "percieved healthiness": 2,
+        "perceived heaviness": 3,
+        "perceived healthiness": 2,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -2175,8 +2175,8 @@
             "black"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 4,
-        "percieved healthiness": 3,
+        "perceived heaviness": 4,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -2211,8 +2211,8 @@
             "green"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -2246,8 +2246,8 @@
             "yellow"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 2,
-        "percieved healthiness": 4,
+        "perceived heaviness": 2,
+        "perceived healthiness": 4,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -2281,8 +2281,8 @@
             "white"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -2320,8 +2320,8 @@
             "green"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -2355,8 +2355,8 @@
             "green"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 4,
+        "perceived heaviness": 3,
+        "perceived healthiness": 4,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -2390,8 +2390,8 @@
             "green"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 2,
-        "percieved healthiness": 5,
+        "perceived heaviness": 2,
+        "perceived healthiness": 5,
         "eating method": "hands",
         "allergens/diet stuff": [
             "dairy free",
@@ -2421,8 +2421,8 @@
             "red"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 2,
-        "percieved healthiness": 4,
+        "perceived heaviness": 2,
+        "perceived healthiness": 4,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "dairy free",
@@ -2460,8 +2460,8 @@
             "yellow"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 3,
-        "percieved healthiness": 4,
+        "perceived heaviness": 3,
+        "perceived healthiness": 4,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -2493,8 +2493,8 @@
             "brown"
         ],
         "ingredient visibility": 1,
-        "percieved heaviness": 2,
-        "percieved healthiness": 3,
+        "perceived heaviness": 2,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -2524,8 +2524,8 @@
             "black"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 5,
-        "percieved healthiness": 2,
+        "perceived heaviness": 5,
+        "perceived healthiness": 2,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "nut free",
@@ -2553,8 +2553,8 @@
             "orange"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 4,
-        "percieved healthiness": 3,
+        "perceived heaviness": 4,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "nut free",
@@ -2584,8 +2584,8 @@
             "red"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "nut free",
@@ -2622,8 +2622,8 @@
             "yellow"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 2,
-        "percieved healthiness": 5,
+        "perceived heaviness": 2,
+        "perceived healthiness": 5,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -2656,8 +2656,8 @@
             "green"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -2686,8 +2686,8 @@
             "brown"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 4,
-        "percieved healthiness": 4,
+        "perceived heaviness": 4,
+        "perceived healthiness": 4,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "nut free",
@@ -2716,8 +2716,8 @@
             "green"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "hands",
         "allergens/diet stuff": [
             "nut free",
@@ -2751,8 +2751,8 @@
             "white"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 3,
-        "percieved healthiness": 5,
+        "perceived heaviness": 3,
+        "perceived healthiness": 5,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -2780,8 +2780,8 @@
             "brown"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 4,
-        "percieved healthiness": 3,
+        "perceived heaviness": 4,
+        "perceived healthiness": 3,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "gluten free",
@@ -2812,8 +2812,8 @@
             "green"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 4,
+        "perceived heaviness": 3,
+        "perceived healthiness": 4,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "vegetarian",
@@ -2846,8 +2846,8 @@
             "yellow"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "gluten free",
@@ -2881,8 +2881,8 @@
             "brown"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 5,
-        "percieved healthiness": 1,
+        "perceived heaviness": 5,
+        "perceived healthiness": 1,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "gluten free",
@@ -2911,8 +2911,8 @@
             "tan"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 4,
-        "percieved healthiness": 1,
+        "perceived heaviness": 4,
+        "perceived healthiness": 1,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -2952,8 +2952,8 @@
             "pink"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 2,
-        "percieved healthiness": 5,
+        "perceived heaviness": 2,
+        "perceived healthiness": 5,
         "eating method": "chopsticks",
         "allergens/diet stuff": [
             "gluten free",
@@ -2982,8 +2982,8 @@
             "tan"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -3019,8 +3019,8 @@
             "tan"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 2,
-        "percieved healthiness": 4,
+        "perceived heaviness": 2,
+        "perceived healthiness": 4,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -3048,8 +3048,8 @@
             "yellow"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 2,
-        "percieved healthiness": 2,
+        "perceived heaviness": 2,
+        "perceived healthiness": 2,
         "eating method": "hands",
         "allergens/diet stuff": [
             "vegetarian",
@@ -3077,8 +3077,8 @@
             "tan"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 4,
-        "percieved healthiness": 1,
+        "perceived heaviness": 4,
+        "perceived healthiness": 1,
         "eating method": "hands",
         "allergens/diet stuff": [
             "gluten free",
@@ -3106,8 +3106,8 @@
             "tan"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 2,
+        "perceived heaviness": 3,
+        "perceived healthiness": 2,
         "eating method": "hands",
         "allergens/diet stuff": [
             "gluten free",
@@ -3137,8 +3137,8 @@
             "green"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 4,
-        "percieved healthiness": 3,
+        "perceived heaviness": 4,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "nut free",
@@ -3173,8 +3173,8 @@
             "red"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "gluten free",
@@ -3201,8 +3201,8 @@
             "pink"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 2,
-        "percieved healthiness": 5,
+        "perceived heaviness": 2,
+        "perceived healthiness": 5,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -3229,8 +3229,8 @@
             "brown"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 5,
-        "percieved healthiness": 1,
+        "perceived heaviness": 5,
+        "perceived healthiness": 1,
         "eating method": "hands",
         "allergens/diet stuff": [
             "nut free",
@@ -3263,8 +3263,8 @@
             "white"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "nut free"
@@ -3289,8 +3289,8 @@
             "brown"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 3,
-        "percieved healthiness": 1,
+        "perceived heaviness": 3,
+        "perceived healthiness": 1,
         "eating method": "hands",
         "allergens/diet stuff": [
             "dairy free",
@@ -3322,8 +3322,8 @@
             "tan"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "hands",
         "allergens/diet stuff": [
             "dairy free",
@@ -3358,8 +3358,8 @@
             "brown"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 2,
-        "percieved healthiness": 5,
+        "perceived heaviness": 2,
+        "perceived healthiness": 5,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "nut free",
@@ -3387,8 +3387,8 @@
             "white"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 1,
-        "percieved healthiness": 5,
+        "perceived heaviness": 1,
+        "perceived healthiness": 5,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -3421,8 +3421,8 @@
             "tan"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 1,
-        "percieved healthiness": 5,
+        "perceived heaviness": 1,
+        "perceived healthiness": 5,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -3461,8 +3461,8 @@
             "black"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 2,
-        "percieved healthiness": 4,
+        "perceived heaviness": 2,
+        "perceived healthiness": 4,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "dairy free",
@@ -3493,8 +3493,8 @@
             "white"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 1,
-        "percieved healthiness": 5,
+        "perceived heaviness": 1,
+        "perceived healthiness": 5,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -3527,8 +3527,8 @@
             "tan"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 1,
-        "percieved healthiness": 5,
+        "perceived heaviness": 1,
+        "perceived healthiness": 5,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -3562,8 +3562,8 @@
             "brown"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 1,
-        "percieved healthiness": 5,
+        "perceived heaviness": 1,
+        "perceived healthiness": 5,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "gluten free",
@@ -3594,8 +3594,8 @@
             "red"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 2,
-        "percieved healthiness": 3,
+        "perceived heaviness": 2,
+        "perceived healthiness": 3,
         "eating method": "fork/knife",
         "allergens/diet stuff": [
             "vegetarian",
@@ -3625,8 +3625,8 @@
             "tan"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "hands",
         "allergens/diet stuff": [
             "nut free",
@@ -3657,8 +3657,8 @@
             "pink"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 2,
+        "perceived heaviness": 3,
+        "perceived healthiness": 2,
         "eating method": "hands",
         "allergens/diet stuff": [
             "dairy free",
@@ -3689,8 +3689,8 @@
             "tan"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 4,
-        "percieved healthiness": 1,
+        "perceived heaviness": 4,
+        "perceived healthiness": 1,
         "eating method": "hands",
         "allergens/diet stuff": [
             "gluten free",
@@ -3722,8 +3722,8 @@
             "green"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 4,
-        "percieved healthiness": 1,
+        "perceived heaviness": 4,
+        "perceived healthiness": 1,
         "eating method": "hands",
         "allergens/diet stuff": [
             "gluten free",
@@ -3751,8 +3751,8 @@
             "tan"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 5,
-        "percieved healthiness": 1,
+        "perceived heaviness": 5,
+        "perceived healthiness": 1,
         "eating method": "hands",
         "allergens/diet stuff": [
             "gluten free",
@@ -3782,8 +3782,8 @@
             "yellow"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "hands",
         "allergens/diet stuff": [
             "gluten free",
@@ -3813,8 +3813,8 @@
             "tan"
         ],
         "ingredient visibility": 5,
-        "percieved heaviness": 2,
-        "percieved healthiness": 4,
+        "perceived heaviness": 2,
+        "perceived healthiness": 4,
         "eating method": "hands",
         "allergens/diet stuff": [
             "gluten free",
@@ -3846,8 +3846,8 @@
             "brown"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "hands",
         "allergens/diet stuff": [
             "gluten free",
@@ -3880,8 +3880,8 @@
             "green"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "hands",
         "allergens/diet stuff": [
             "gluten free",
@@ -3909,8 +3909,8 @@
             "tan"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 5,
-        "percieved healthiness": 1,
+        "perceived heaviness": 5,
+        "perceived healthiness": 1,
         "eating method": "hands",
         "allergens/diet stuff": [
             "gluten free",
@@ -3940,8 +3940,8 @@
             "brown"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 5,
-        "percieved healthiness": 2,
+        "perceived heaviness": 5,
+        "perceived healthiness": 2,
         "eating method": "hands",
         "allergens/diet stuff": [
             "gluten free",
@@ -3972,8 +3972,8 @@
             "green"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 4,
-        "percieved healthiness": 4,
+        "perceived heaviness": 4,
+        "perceived healthiness": 4,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "gluten free",
@@ -4003,8 +4003,8 @@
             "green"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 2,
-        "percieved healthiness": 4,
+        "perceived heaviness": 2,
+        "perceived healthiness": 4,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -4040,8 +4040,8 @@
             "yellow"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 3,
-        "percieved healthiness": 3,
+        "perceived heaviness": 3,
+        "perceived healthiness": 3,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -4070,8 +4070,8 @@
             "yellow"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 4,
-        "percieved healthiness": 2,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -4099,8 +4099,8 @@
             "white"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 5,
-        "percieved healthiness": 3,
+        "perceived heaviness": 5,
+        "perceived healthiness": 3,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "gluten free",
@@ -4125,8 +4125,8 @@
             "white"
         ],
         "ingredient visibility": 1,
-        "percieved heaviness": 4,
-        "percieved healthiness": 3,
+        "perceived heaviness": 4,
+        "perceived healthiness": 3,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -4158,8 +4158,8 @@
             "tan"
         ],
         "ingredient visibility": 3,
-        "percieved heaviness": 2,
-        "percieved healthiness": 4,
+        "perceived heaviness": 2,
+        "perceived healthiness": 4,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -4189,8 +4189,8 @@
             "green"
         ],
         "ingredient visibility": 4,
-        "percieved heaviness": 3,
-        "percieved healthiness": 2,
+        "perceived heaviness": 3,
+        "perceived healthiness": 2,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "vegetarian",
@@ -4220,8 +4220,8 @@
             "orange"
         ],
         "ingredient visibility": 2,
-        "percieved heaviness": 3,
-        "percieved healthiness": 2,
+        "perceived heaviness": 3,
+        "perceived healthiness": 2,
         "eating method": "spoon",
         "allergens/diet stuff": [
             "dairy free",
