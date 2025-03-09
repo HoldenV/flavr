@@ -12,35 +12,35 @@ with open('dishes.json') as f:
 df = pd.DataFrame(json_data)
 df.set_index('dish name', inplace=True)
 
-# define weights, these are arbitrary but must sum to 1
+# define weights, these are arbitrary and can be added to or changed
 weights = {
-    'cuisine': .15,
+    'cuisine': 15,
 
-    'key ingredients': .25 * .8,
-    'sub category': .25 * .2,
+    'key ingredients': 20,
+    'sub category': 5,
     
-    'spiciness': .15,
+    'spiciness': 15,
     
-    'seasonality': .075 * .25,
-    'temperature': .075 * .75,
+    'seasonality': 1.875,
+    'temperature': 5.625,
 
-    'texture': .1 * .6,
-    'crunchiness': .1 * .4,
+    'texture': 6,
+    'crunchiness': 4,
     
-    'color dominance': .1 * .5,
-    'ingredient visibility': .1 * .5,
+    'color dominance': 5,
+    'ingredient visibility': 5,
     
-    'perceived heaviness': .125 * .5,
-    'perceived healthiness': .125 * .5,
+    'perceived heaviness': 6.25,
+    'perceived healthiness': 6.25,
     
-    'eating method': .05,
+    'eating method': 5,
 
     'allergens/diet stuff': 0
 }
 
 sum_weights = round(sum(weights.values()), 3)
-if sum_weights != 1:
-    raise ValueError(f"Weights must sum to 1, currently sum to {sum_weights}")
+for key, weight in weights.items():
+    weights[key] = round(weight / sum_weights, 6)
 
 df.drop(columns=['description'], inplace=True)
 df.drop(columns=['allergens/diet stuff'], inplace=True)
