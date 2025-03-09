@@ -49,9 +49,6 @@ def get_user_taste_vector(swipes, history):
 
     return df['wave_rating']
 
-print(get_user_taste_vector(swipes, history))
-
-
 
 
 
