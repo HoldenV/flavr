@@ -59,12 +59,6 @@ with open('data/history.pickle', 'wb') as f:
 with open('data/swipes.pickle', 'wb') as f:
     pickle.dump(swipe_data[num_weeks-1], f)
 
-with open('data/history.pickle', 'rb') as f:
-    history = pickle.load(f)
-
-with open('data/swipes.pickle', 'rb') as f:
-    swipes = pickle.load(f)
-
 print("Making user taste vector from history and swipes...")
 user_taste_vector = get_user_taste_vector(swipes, history)
 user_taste_vector.to_csv('data/user_taste_vector.csv')
