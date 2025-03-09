@@ -25,7 +25,7 @@ history = {1:{'dish name': 'pizza', 'swiped': -1, 'was_recommended': 0, 'timesta
 
 def get_user_taste_vector(swipes, history):
     df = pd.DataFrame(index=dishes, columns=['rating', 'count'])
-    df['rating'] = 0
+    df['rating'] = float(0)
     df['count'] = 0
 
     for i in history:
