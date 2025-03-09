@@ -46,3 +46,6 @@ app.*.map.json
 
 #Secret firebase key
 firebase_key.json
+
+#Fake Data stuff
+/backend/fake_data/data
