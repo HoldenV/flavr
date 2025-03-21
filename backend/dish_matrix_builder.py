@@ -68,7 +68,8 @@ for col in list_columns:
     # one hot encode, be sure to weight the columns
     weight = weights[col]
     one_hot = pd.DataFrame(mlb.fit_transform(df[col]), columns=mlb.classes_, index=df.index)
-    one_hot = round(one_hot * weight, 8)
+    number_of_columns = len(one_hot.columns)
+    one_hot = round(one_hot * weight / number_of_columns, 8)
     encoded_dfs.append(one_hot)
 
 for col in categorical_columns:
@@ -92,4 +93,4 @@ df_final.at['panini/grilled cheese w/ tomato soup', 'soup/stew'] = weights['sub 
 # df_final = df_final.astype(int)
 
 print(df_final.head())
-df_final.to_csv('dish_metadata.csv')
+df_final.to_csv('dish_metadata1.csv')

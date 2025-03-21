@@ -3,9 +3,9 @@ import pandas as pd
 
 def cbe(user_taste_vector, fake_data=False):
     if fake_data:
-        dish_matrix = pd.read_csv('../dish_metadata.csv')
+        dish_matrix = pd.read_csv('../dish_metadata1.csv')
     else:
-        dish_matrix = pd.read_csv('dish_metadata.csv')
+        dish_matrix = pd.read_csv('dish_metadata1.csv')
     dish_matrix.set_index('dish name', inplace=True)
 
     dish_matrix = dish_matrix.loc[user_taste_vector.index]
