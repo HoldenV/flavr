@@ -9,8 +9,10 @@ Tinder for finding food.
     **Firebase Core** supports all platforms but linux. Used for many things
 
 # TODO
+    Develop style guide (exact colors, fonts, font sizes, haptics)
     Card tapping sequence
     App Icon
+    Flavr Final Logo
     Splash Screen
     Suggestion for real-world dish / restaurant dialogue
     Allowing multiple cards to be manipulated at once?
@@ -22,6 +24,7 @@ Tinder for finding food.
     New account preferences dialogue (dietary preferences, etc)
     Account friends attribute via user objects?
     Friend management dialogue
+    
 
 
 
@@ -33,8 +36,7 @@ Tinder for finding food.
     Account / Setting page design
 
     **Michael**
-    Add haptics when navigating / swiping
-    Add UI elements to indicate left / right swiping
-    Adding buttons to force left / right swiping
-    Add upward swipe elements
-
+    Get random food cards
+    Track swipes
+    Swipe up
+    More haptics
