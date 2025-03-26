@@ -99,8 +99,8 @@ class _RecommendationPopupState extends State<RecommendationPopup>
                 ScaleTransition(
                   scale: _cardAnimation,
                   child: RecommendationCardDisplay(
-                    imagePath: 'lib/assets/dish_images/bbq-ribs.jpg',
-                    dishName: 'BBQ Ribs',
+                    imagePath: 'lib/assets/dish_images/hot-pot.jpg',
+                    dishName: 'Hot Pot',
                   ),
                 ),
               ],
@@ -186,19 +186,19 @@ class RecommendationCardDisplay extends StatelessWidget {
                         child: Row(
                           children: [
                             RestaurantCard(
-                              image_path: 'lib/assets/dish_images/kofta.jpg',
-                              restaurant_name: 'Restaurant 1',
+                              image_path: 'lib/assets/res1.jpg',
+                              restaurant_name: "KPOT",
                             ),
                             SizedBox(width: 5), // spacing between cards
                             RestaurantCard(
-                              image_path: 'lib/assets/dish_images/pad-thai.jpg',
-                              restaurant_name: 'Restaurant 2',
+                              image_path: 'lib/assets/res2.jpg',
+                              restaurant_name: "Three Bowl",
                             ),
                             SizedBox(width: 5),
                             RestaurantCard(
                               image_path:
-                                  'lib/assets/dish_images/pasta-salad.jpg',
-                              restaurant_name: 'Restaurant 3',
+                                  'lib/assets/res3.jpg',
+                              restaurant_name: 'Lotus Hot Pot',
                             ),
                           ],
                         ),

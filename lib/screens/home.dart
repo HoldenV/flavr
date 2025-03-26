@@ -22,11 +22,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context); // listen: true by default
     final List<String> imagePaths = [
-      'lib/assets/dish_images/bacalao-a-la-vizcaina.jpg',
-      'lib/assets/dish_images/bbq-ribs.jpg',
-      'lib/assets/dish_images/beef-and-broccoli.jpg',
-      'lib/assets/dish_images/bibimbap.jpg',
-      'lib/assets/dish_images/birria.jpg',
+      'lib/assets/dish_images/steak.jpg',
+      'lib/assets/dish_images/street-tacos.jpg',
+      'lib/assets/dish_images/tom-kha-gai.jpg',
+      'lib/assets/dish_images/fried-chicken.jpg',
+      'lib/assets/dish_images/fajita.jpg',
+      'lib/assets/dish_images/po-boy.jpg',
+      'lib/assets/dish_images/udon.jpg',
+      'lib/assets/dish_images/sushi.jpeg',
+      'lib/assets/dish_images/french-onion-soup.jpg',
+      'lib/assets/dish_images/dolma.jpg'
     ];
 
     final List<Widget> cards = imagePaths.map((path) {
