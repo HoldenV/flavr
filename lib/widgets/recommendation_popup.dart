@@ -65,6 +65,7 @@ class _RecommendationPopupState extends State<RecommendationPopup>
           GestureDetector(
             onTap: () {
               appState.resetSwipeCount();
+              appState.resetSession();
             },
             child: SlideTransition(
               position: _backgroundAnimation,

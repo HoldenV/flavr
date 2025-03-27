@@ -69,4 +69,32 @@ class AppState with ChangeNotifier {
   }
 
   int swipeCount = 0;
+
+  List<String> positiveSwipes = [];
+  List<String> negativeSwipes = [];
+
+  void positiveSwipe(String foodName) {
+    positiveSwipes.add(foodName);
+    notifyListeners();
+  }
+
+  void negativeSwipe(String foodName) {
+    negativeSwipes.add(foodName);
+    notifyListeners();
+  }
+
+  void resetSession() {
+    swipeCount = 0;
+    positiveSwipes = [];
+    negativeSwipes = [];
+    notifyListeners();
+  }
+
+  List<String> imagePaths = [];
+
+  void addCard(String path) {
+    imagePaths.add(path);
+    notifyListeners();
+  }
+
 }
