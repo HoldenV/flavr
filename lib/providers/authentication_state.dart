@@ -71,7 +71,7 @@ class AuthenticationState extends ChangeNotifier {
         _userModel = await UserModel.fromFirestore(_user!.uid);
         if (_userModel == null) {
           _userModel = UserModel(
-              uid: _user!.uid, email: _user!.email!, username: 'null_username');
+              uid: _user!.uid, email: _user!.email!, username: 'null');
           await _userModel!.saveToFirestore();
         }
         await _userModel!.saveToLocalStorage(); // Cache it locally

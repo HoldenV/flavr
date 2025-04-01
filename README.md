@@ -30,7 +30,39 @@ Tinder for finding food.
 
 # CLAIMED
     **Holden**
-    Alternative sign in methods
+    Implement the following User Model Attributes
+    User has[
+        -- the following are collected at sign in
+        firebase uid (for retrieving appropriate user model object)
+        -- if available, we can also get these
+        email (must, I think we should only support quick sign-in methods)
+        photoURL
+        phoneNumber
+        providerData (other sign-in methods they've used for our app. For routing all to one account)
+
+        -- These will be manually collected by our account creation screen
+        username (unique),
+        first name,
+        last name,
+        bio,
+        preferred location and radius,
+        profile picture,
+        dietary preferences,
+        allergies,
+        basic cuisine preferences (to build a jumpstart recommendations?)
+
+        -- These will be used for internal purposes
+        friends list (list of usernames),
+        friend requests sent,
+        friend requests received,
+        notifications,
+        account created time,
+        last login time,
+        preferred location & radius,
+        favorite dishes?
+    ]
+
+    After I've implemented unique username enforcement I'll start on friends.
 
     **Katie**
     Account / Setting page design
