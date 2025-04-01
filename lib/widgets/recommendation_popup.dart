@@ -188,17 +188,16 @@ class RecommendationCardDisplay extends StatelessWidget {
                           children: [
                             RestaurantCard(
                               image_path: 'lib/assets/res1.jpg',
-                              restaurant_name: "KPOT",
+                              restaurant_name: 'KPOT',
                             ),
                             SizedBox(width: 5), // spacing between cards
                             RestaurantCard(
                               image_path: 'lib/assets/res2.jpg',
-                              restaurant_name: "Three Bowl",
+                              restaurant_name: 'Three Bowl',
                             ),
                             SizedBox(width: 5),
                             RestaurantCard(
-                              image_path:
-                                  'lib/assets/res3.jpg',
+                              image_path: 'lib/assets/res3.jpg',
                               restaurant_name: 'Lotus Hot Pot',
                             ),
                           ],

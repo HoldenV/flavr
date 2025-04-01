@@ -1,10 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'dart:convert'; // For JSON encoding/decoding
 
 class UserModel extends ChangeNotifier {
   String uid;
   String email;
   String username;
+
+  static const localStorage = FlutterSecureStorage();
+  static const localStorageKey = 'user_model';
 
   UserModel({required this.uid, required this.email, required this.username});
 
@@ -17,10 +22,17 @@ class UserModel extends ChangeNotifier {
     };
   }
 
-  // Save user to Firestore
+  // Save user to Firestore and local storage
   Future<void> saveToFirestore() async {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
     await firestore.collection('users').doc(uid).set(toMap());
+    await saveToLocalStorage(); // Save to local storage
+  }
+
+  // Save user to local storage
+  Future<void> saveToLocalStorage() async {
+    final String jsonString = jsonEncode(toMap());
+    await localStorage.write(key: localStorageKey, value: jsonString);
   }
 
   // Fetch user from Firestore
@@ -42,11 +54,24 @@ class UserModel extends ChangeNotifier {
     return null;
   }
 
+  // Fetch user from local storage
+  static Future<UserModel?> fromLocalStorage() async {
+    final String? jsonString = await localStorage.read(key: localStorageKey);
+    if (jsonString != null) {
+      final Map<String, dynamic> data = jsonDecode(jsonString);
+      return UserModel(
+        uid: data['uid'],
+        email: data['email'],
+        username: data['username'],
+      );
+    }
+    return null;
+  }
+
   // Update username
   Future<void> updateUsername(String newUsername) async {
     username = newUsername;
     await saveToFirestore();
-    // Notify listeners to update the UI
     notifyListeners();
   }
 }

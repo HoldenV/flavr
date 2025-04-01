@@ -21,6 +21,38 @@ class AuthenticationState extends ChangeNotifier {
   User? get user => _user;
   UserModel? get userModel => _userModel;
 
+  AuthenticationState() {
+    _initializeAuthState();
+  }
+
+  // Initialize authentication state
+  Future<void> _initializeAuthState() async {
+    // Check if a user is already signed in with Firebase
+    _user = _auth.currentUser;
+
+    if (_user != null) {
+      // Try to load the user model from local storage
+      _userModel = await UserModel.fromLocalStorage();
+
+      // If no local data is found, fetch from Firestore
+      if (_userModel == null) {
+        _userModel = await UserModel.fromFirestore(_user!.uid);
+        if (_userModel != null) {
+          await _userModel!.saveToLocalStorage(); // Cache it locally
+        }
+      }
+    } else {
+      // If no Firebase user, try to load user data from local storage
+      _userModel = await UserModel.fromLocalStorage();
+    }
+
+    if (_userModel != null) {
+      _userModel!.addListener(notifyListeners);
+    }
+
+    notifyListeners();
+  }
+
   Future<void> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
@@ -42,6 +74,7 @@ class AuthenticationState extends ChangeNotifier {
               uid: _user!.uid, email: _user!.email!, username: 'null_username');
           await _userModel!.saveToFirestore();
         }
+        await _userModel!.saveToLocalStorage(); // Cache it locally
         _userModel!.addListener(notifyListeners);
       }
 
@@ -59,6 +92,10 @@ class AuthenticationState extends ChangeNotifier {
     await _googleSignIn.signOut();
     _user = null;
     _userModel = null;
+
+    // Clear local storage
+    await UserModel.localStorage.delete(key: UserModel.localStorageKey);
+
     notifyListeners();
   }
 

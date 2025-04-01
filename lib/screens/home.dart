@@ -5,9 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flavr/widgets/recommendation_popup.dart';
 import 'package:provider/provider.dart';
 import 'package:flavr/providers/app_state.dart';
-import 'dart:io';
 import 'dart:math';
-import 'package:flutter/services.dart' show rootBundle;
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
