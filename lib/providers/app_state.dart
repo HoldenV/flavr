@@ -96,5 +96,4 @@ class AppState with ChangeNotifier {
     imagePaths.add(path);
     notifyListeners();
   }
-
 }
