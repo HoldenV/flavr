@@ -87,10 +87,10 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.only(right: 16.0),
               child: IconButton(
                 iconSize: 30.0,
-                icon: Icon(Icons.person_add),
+                icon: Icon(Icons.history_edu),
                 onPressed: () {
                   // Add onPressed code
-                  print('Person add icon pressed');
+                  print('Recommendation history icon pressed');
                 },
               ),
             ),
