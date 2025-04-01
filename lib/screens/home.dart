@@ -184,55 +184,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class ControlOverlay extends StatelessWidget {
-  final CardSwiperController controller;
-
-  ControlOverlay({required this.controller});
-
-  @override
-  Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double iconSize = screenWidth * 0.18;
-
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: () {
-                print('No button pressed');
-                controller.swipe(CardSwiperDirection.left);
-              },
-              child: Image.asset(
-                'lib/assets/No_Icon.png',
-                width: iconSize,
-                height: iconSize,
-              ),
-            ),
-            SizedBox(
-                width: screenWidth -
-                    (iconSize * 2.5)), // Adds spacing between buttons
-            GestureDetector(
-              onTap: () {
-                print('Yes button pressed');
-                controller.swipe(CardSwiperDirection.right);
-              },
-              child: Image.asset(
-                'lib/assets/Yes_Icon.png',
-                width: iconSize,
-                height: iconSize,
-              ),
-            ),
-          ],
-        )
-      ],
-    ));
-  }
-}
-
 bool _onTap() {
   print('Card tapped');
   return true;
