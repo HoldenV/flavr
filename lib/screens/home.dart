@@ -18,14 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final CardSwiperController _controller = CardSwiperController();
 
-  @override
-  void initState() {
-    super.initState();
-    _initializeFoods();
-  }
-
   Future<void> _initializeFoods() async {
-    // Use listen: false since we are calling this outside of build
     final appState = Provider.of<AppState>(context, listen: false);
     for (int i = 0; i < 3; i++) {
       String newPath = await generateFoodPath();
@@ -35,7 +28,35 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final appState = Provider.of<AppState>(context); // Get the instance
+    return FutureBuilder(
+      future: _initializeFoods(), // Wait for this Future to complete
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          // Show a loading indicator while waiting for the Future to complete
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+
+        if (snapshot.hasError) {
+          // Handle any errors that occurred during initialization
+          return Scaffold(
+            body: Center(
+              child: Text('Error loading data: ${snapshot.error}'),
+            ),
+          );
+        }
+
+        // Once the Future is complete, render the actual screen content
+        return _buildHomeScreenContent(context);
+      },
+    );
+  }
+
+  Widget _buildHomeScreenContent(BuildContext context) {
+    final appState = Provider.of<AppState>(context);
     List<Widget> cards = appState.imagePaths.map((path) {
       return Card(
         shape: RoundedRectangleBorder(
