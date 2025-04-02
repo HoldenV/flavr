@@ -1,5 +1,4 @@
 import pandas as pd
-from sklearn.metrics.pairwise import cosine_similarity
 from similar_users_matrix import make_similar_users_matrix
 
 # This function needs to be fast
@@ -8,7 +7,7 @@ def cre(similar_users_matrix, user_taste_vector, user_id):
     similar_users_matrix.loc[user_id] = user_taste_vector.squeeze()
 
     # Calculate User Similarity using cosine similarity
-    user_similarity = cosine_similarity(similar_users_matrix)
+    user_similarity = similar_users_matrix @ similar_users_matrix.T
     user_similarity_df = pd.DataFrame(user_similarity, 
                                       index=similar_users_matrix.index, 
                                       columns=similar_users_matrix.index)
