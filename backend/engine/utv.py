@@ -38,20 +38,3 @@ def get_user_taste_vector(swipes, history):
     np.arctan(df['wave_rating'])
 
     return df['wave_rating']
-
-
-def main():
-    # open the pickled history and swipes
-    with open('fake_data/data/history.pickle', 'rb') as f:
-        history = pickle.load(f)
-
-    with open('fake_data/data/swipes.pickle', 'rb') as f:
-        swipes = pickle.load(f)
-
-    user_taste_vector = get_user_taste_vector(swipes, history)
-    print(user_taste_vector)
-    user_taste_vector.to_csv('fake_data/data/user_taste_vector.csv')
-
-if __name__ == "__main__":
-    main()
-
