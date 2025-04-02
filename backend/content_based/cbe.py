@@ -21,5 +21,5 @@ def cbe(user_taste_vector, fake_data=False):
     return recommended_dishes
 
 if __name__ == "__main__":
-    user_taste_vector = pd.read_csv(r'backend\fake_data\data\user_taste_vector.csv', index_col='dish')
+    user_taste_vector = pd.read_csv(r'backend/fake_data/data/user_taste_vector.csv', index_col='dish')
     cbe(user_taste_vector)

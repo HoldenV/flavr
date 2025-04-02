@@ -1,5 +1,38 @@
 import pandas as pd
-from similar_users_matrix import make_similar_users_matrix
+import json
+
+def SMU_from_json(json_name, download=False):
+    # support "file_name" and "file_name.json"
+    if json_name[-5:] != ".json":
+        json_name += ".json"
+
+    # load data, survey_responses.json could be loaded dynamically from firestore
+    with open(json_name) as f:
+        json_data = json.load(f)
+        
+    df = pd.DataFrame(json_data)
+    df.columns = df.columns.str.lower()
+    df.set_index('user_number', inplace=True)
+
+    # do some pandas magic, convert "Looks good" to 1, "" to 0, and "Doesn't look good" to -1
+    df.replace({"Looks good": 1, "": 0, "Doesn't look good": -1}, inplace=True)
+
+    return df
+
+def SMU_from_csv(csv_name):
+    # support "file_name" and "file_name.csv"
+    if csv_name[-4:] != ".csv":
+        csv_name += ".csv"
+
+    # load data, survey_responses.csv could be loaded dynamically from firestore
+    df = pd.read_csv(csv_name)
+    df.columns = df.columns.str.lower()
+    df.set_index('user_number', inplace=True)
+
+    # do some pandas magic, convert "Looks good" to 1, "" to 0, and "Doesn't look good" to -1
+    df.replace({"Looks good": 1, "": 0, "Doesn't look good": -1}, inplace=True)
+
+    return df
 
 # This function needs to be fast
 def cre(similar_users_matrix, user_taste_vector, user_id):
@@ -32,11 +65,10 @@ def cre(similar_users_matrix, user_taste_vector, user_id):
 
     return recommended_dishes
 
-
 def main():
     # load pre-made data
-    SMU = make_similar_users_matrix("survey_responses.json")
-    SMU = SMU.drop(columns=['timestamp'])
+    SMU = SMU_from_csv("survey_responses")
+    SMU = SMU.drop(columns=['timestamp']) # might need timestamp later
     UTV = pd.read_csv('user_taste_vector.csv', index_col='dish')
 
     # print result of CRE
