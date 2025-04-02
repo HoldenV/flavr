@@ -97,4 +97,4 @@ df_final.at['panini/grilled cheese w/ tomato soup', 'soup/stew'] = weights['sub 
 # df_final = df_final.astype(int)
 
 print(df_final.head())
-df_final.to_csv('dish_metadata1.csv')
+df_final.to_csv('dish_metadata.csv')
