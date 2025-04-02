@@ -27,7 +27,8 @@ def cre(similar_users_matrix, user_taste_vector, user_id):
 
     # average similar user's tastes to get our guy's recommendations
     recommended_dishes = recommendations_df.mean(axis=0)
-    recommended_dishes = recommended_dishes.sort_values(ascending=False) 
+    recommended_dishes = recommended_dishes.sort_values(ascending=False)
+    recommended_dishes['rank'] = range(1, len(recommended_dishes) + 1)
 
     return recommended_dishes
 
