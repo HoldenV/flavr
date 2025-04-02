@@ -1,5 +1,3 @@
 - fake_data folder needs to be moved to backend/
 - fake_data scripts need to use both cbe and cre
-- cre algorithms
-    - need to generate similar users matrix -- similar_users_matrix.py
-    - do the math -- cre.py
+- Organize :(
