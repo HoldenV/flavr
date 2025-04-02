@@ -2,5 +2,4 @@
 - fake_data scripts need to use both cbe and cre
 - cre algorithms
     - need to generate similar users matrix -- similar_users_matrix.py
-    - need to generate our user's dish vector -- user_dish_vector.py
     - do the math -- cre.py
