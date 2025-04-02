@@ -6,8 +6,12 @@ from sklearn.preprocessing import MultiLabelBinarizer
 ### THIS WHOLE SCRIPT IS FOR PREBAKING DISH_METADATA.CSV ###
 
 # Read JSON data into a pandas DataFrame
-with open('dishes.json') as f:
-    json_data = json.load(f)
+try:
+    with open('dishes.json') as f:
+        json_data = json.load(f)
+except FileNotFoundError:
+    print("dishes.json not found. Download it from Firebase and place it in the same directory as this script.")
+    exit()
 
 df = pd.DataFrame(json_data)
 df.set_index('dish name', inplace=True)

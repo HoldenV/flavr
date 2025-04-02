@@ -16,6 +16,7 @@ def SMU_from_json(json_name, download=False):
 
     # do some pandas magic, convert "Looks good" to 1, "" to 0, and "Doesn't look good" to -1
     df.replace({"Looks good": 1, "": 0, "Doesn't look good": -1}, inplace=True)
+    df.drop(columns=['timestamp'], inplace=True) # might need timestamp later
 
     return df
 
@@ -31,11 +32,12 @@ def SMU_from_csv(csv_name):
 
     # do some pandas magic, convert "Looks good" to 1, "" to 0, and "Doesn't look good" to -1
     df.replace({"Looks good": 1, "": 0, "Doesn't look good": -1}, inplace=True)
+    df.drop(columns=['timestamp'], inplace=True) # might need timestamp later
 
     return df
 
 # This function needs to be fast
-def cre(similar_users_matrix, user_taste_vector, user_id):
+def cre(similar_users_matrix, user_taste_vector, user_id = 0):
     # Align the user_taste_vector with the columns of similar_users_matrix
     similar_users_matrix.loc[user_id] = user_taste_vector.squeeze()
 
@@ -61,19 +63,24 @@ def cre(similar_users_matrix, user_taste_vector, user_id):
     # average similar user's tastes to get our guy's recommendations
     recommended_dishes = recommendations_df.mean(axis=0)
     recommended_dishes = recommended_dishes.sort_values(ascending=False)
-    recommended_dishes['rank'] = range(1, len(recommended_dishes) + 1)
+    
+    # min/max normalize the recommendations
+    min_val = recommended_dishes.min()
+    max_val = recommended_dishes.max()
+    recommended_dishes = 2* ((recommended_dishes - min_val) / (max_val - min_val)) - 1
 
     return recommended_dishes
 
-def main():
-    # load pre-made data
-    SMU = SMU_from_csv("survey_responses")
-    SMU = SMU.drop(columns=['timestamp']) # might need timestamp later
-    UTV = pd.read_csv('user_taste_vector.csv', index_col='dish')
+# FOR REFERENCE:
+# def main():
+#     # load pre-made data
+#     SMU = SMU_from_csv("survey_responses")
+#     SMU = SMU.drop(columns=['timestamp']) # might need timestamp later
+#     UTV = pd.read_csv('user_taste_vector.csv', index_col='dish')
 
-    # print result of CRE
-    print(cre(SMU, UTV, 0))
+#     # print result of CRE
+#     print(cre(SMU, UTV, 0))
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
