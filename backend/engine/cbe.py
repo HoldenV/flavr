@@ -1,20 +1,16 @@
 import pandas as pd
 
-def DM_from_csv(csv_path):
-    if csv_path[-4:] != ".csv":
-        csv_path += ".csv"
-
-    dish_matrix = pd.read_csv(csv_path)    
-    dish_matrix.set_index('dish name', inplace=True)
-    
-    return dish_matrix
-
 def cbe(dish_matrix, user_taste_vector):
     """Get recommendations using the content-based recommendation algorithm.
-    @param dish_matrix: a pandas DataFrame prebaked by DM_prebaker.py
-    @param user_taste_vector: a pandas Series with the user's taste vector
+
+    Args:
+        dish_matrix: a pandas DataFrame prebaked by DM_prebaker.py
+        user_taste_vector: a pandas Series with the user's taste vector
     
-    @return: a pandas Series with the recommended dishes and their scores, normalized to [-1, 1]"""
+    Returns:
+        a pandas Series with the recommended dishes and their scores, normalized to [-1, 1]
+    """
+    
     # Align the user_taste_vector with the columns of dish_matrix
     dish_matrix = dish_matrix.loc[user_taste_vector.index]
 

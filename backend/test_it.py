@@ -1,8 +1,8 @@
 from datetime import datetime, timedelta
-import pickle, random
+import random
 import pandas as pd
-from engine import cbe, ube, utv
 
+import cre
 
 all_dishes = ['pizza', 'flatbread pizza', 'burrito', 'steak', 'mac and cheese', 'chicken tikka masala', "general tso's chicken", 'chili', 'lasagna', 'pasta carbonara', 'fettuccine alfredo', 'calzone', 'gnocchi', 'saltimbocca', 'coq au vin', 'bouillabaisse', 'duck confit', 'cassoulet', 'quiche lorraine', 'sole meunière', 'tartiflette', 'street tacos', 'mole poblano', 'enchiladas', 'pozole', 'tamales', 'cochinita pibil', 'birria', 'carne asada', 'sushi', 'ramen', 'shrimp tempura', 'tonkatsu', 'yakitori', 'udon', 'okonomiyaki', 'shabu-shabu', 'donburi', 'shawarma', 'kofta', 'tabbouleh', 'shakshuka', 'falafel', 'mansaf', 'kibbeh', 'moussaka', 'souvlaki', 'dolma (stuffed grapeleaves)', 'spanakopita', 'gyros', 'stifado', 'fasolada', 'kleftiko', 'peking duck', 'kung pao chicken', 'mapo tofu', 'sweet and sour pork', 'hot pot', 'chow mein', 'zongzi', 'beef and broccoli', 'char siu', 'butter chicken', 'biryani', 'rogan josh', 'paneer tikka', 'chana masala', 'tandoori chicken', 'vindaloo', 'pad thai', 'green curry', 'massaman curry', 'khao soi', 'larb', 'tom kha gai', 'paella', 'tortilla española', 'fabada', 'cochinillo', 'bacalao a la vizcaína', 'bibimbap', 'kimchi jjigae', 'bulgogi', 'samgyeopsal', 'sundubu jjigae', 'galbi', 'naengmyeon', 'dakgalbi', "shepard's pie", 'fish and chips', 'poke', 'huli huli', 'fajita', 'quesadilla', 'bbq ribs', 'buffalo wings', 'pot roast', 'jambalaya', 'alaskan salmon', 'fried chicken', 'chicken pot pie', 'chicken nuggets or tenders', 'po boy', 'cobb salad', 'caesar salad', 'italian salad', 'taco salad', 'greek salad', 'fattoush', 'wedge salad', 'pasta salad', 'reuben sandwich', 'club sandwich', 'philly cheese steak', 'fried chicken sandwich', 'pulled pork sandwich', 'panini/grilled cheese w/ tomato soup', 'blt', 'french dip', 'italian sandwich', 'sloppy joe', 'meatball sub', 'chicken noodle soup', 'pho', 'minestrone', 'french onion soup', 'clam chowder', 'cream of mushroom soup', 'lentil soup', 'broccoli and cheddar soup', 'tortilla soup']
 
@@ -27,7 +27,6 @@ for i in range(0, num_weeks):
 
 
 # Now let's convert the swipes to history
-print("\nConverting swipes to history and current swipes...")
 history = []
 
 # loop through all swipes except the most recent
@@ -45,29 +44,14 @@ for i in range(0, num_weeks-1):
                         'was_recommended': was_recommended, 
                         'timestamp': time})
 
-# pickle history
-with open('data/history.pickle', 'wb') as f:
-    pickle.dump(history, f)
+# store history as a csv
+# history_file = 'data/history.csv'
+# history_df = pd.DataFrame(history)
+# history_df.to_csv(history_file, index=False)
 
-# pickle the most recent swipes
-with open('data/swipes.pickle', 'wb') as f:
-    pickle.dump(swipe_data[num_weeks-1], f)
+# history = cre.history_from_csv('data/history.csv')
+DM = cre.DM_from_csv('data/dish_metadata.csv')
+UM = cre.UM_from_csv('data/survey_responses.csv')
 
-print("Making user taste vector from history and swipes...")
-user_taste_vector = utv.get_user_taste_vector(swipes, history)
-user_taste_vector.to_csv('data/user_taste_vector.csv')
-
-print("Running CBE...")
-dish_matrix = cbe.DM_from_csv("data/dish_metadata.csv")
-cbe_recs = cbe.cbe(dish_matrix, user_taste_vector)
-
-print("Running CRE...")
-users_matrix = ube.UM_from_csv("data/survey_responses")
-ube_recs = ube.ube(users_matrix, user_taste_vector)
-
-# Combine recommendations from CBE and CRE
-combined_recs = pd.concat([cbe_recs, ube_recs], axis=1)
-combined_recs.columns = ['CBE', 'ube']
-combined_recs = combined_recs.mean(axis=1)
-combined_recs = combined_recs.sort_values(ascending=False)
-print(combined_recs)
+recommendations = cre.cre(DM, UM, history, num_recent=5)
+print(recommendations)

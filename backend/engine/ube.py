@@ -1,46 +1,18 @@
 import pandas as pd
 import json
 
-def UM_from_json(json_name, download=False):
-    # support "file_name" and "file_name.json"
-    if json_name[-5:] != ".json":
-        json_name += ".json"
-
-    # load data, survey_responses.json could be loaded dynamically from firestore
-    with open(json_name) as f:
-        json_data = json.load(f)
-        
-    df = pd.DataFrame(json_data)
-    df.set_index('user_number', inplace=True)
-
-    # do some pandas magic, convert "Looks good" to 1, "" to 0, and "Doesn't look good" to -1
-    df.replace({"Looks good": 1, "": 0, "Doesn't look good": -1}, inplace=True)
-    df.drop(columns=['timestamp'], inplace=True) # might need timestamp later
-
-    return df
-
-def UM_from_csv(csv_name):
-    # support "file_name" and "file_name.csv"
-    if csv_name[-4:] != ".csv":
-        csv_name += ".csv"
-
-    # load data, survey_responses.csv could be loaded dynamically from firestore
-    df = pd.read_csv(csv_name)
-    df.set_index('user_number', inplace=True)
-
-    # do some pandas magic, convert "Looks good" to 1, "" to 0, and "Doesn't look good" to -1
-    df.replace({"Looks good": 1, "": 0, "Doesn't look good": -1}, inplace=True)
-    df.drop(columns=['timestamp'], inplace=True) # might need timestamp later
-
-    return df # users_matrix -- user taste vectors stacked on each other
-
 # This function needs to be fast
 def ube(users_matrix, user_taste_vector, user_id = 0):
     """Get recommendations using the collaborative recommendation (user-based) algorithm.
-    @param users_matrix: a bunch of UTVs stacked on top of each other with user_number as index
-    @param user_taste_vector: a pandas Series with the user's taste vector
     
-    @return: a pandas Series with the recommended dishes and their scores, normalized to [-1, 1]"""
+    Args:
+        users_matrix: a bunch of UTVs stacked on top of each other with user_number as index
+        user_taste_vector: a pandas Series with the user's taste vector
+    
+    Returns:
+        a pandas Series with the recommended dishes and their scores, normalized to [-1, 1]
+    """
+
     # Align the user_taste_vector with the columns of similar_users_matrix
     users_matrix.loc[user_id] = user_taste_vector.squeeze()
 
