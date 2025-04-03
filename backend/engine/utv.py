@@ -28,7 +28,9 @@ def get_user_taste_vector(history, swipe_count=5):
         rating =  swipe['swiped']
         rating *= 2 if swipe['was_recommended'] else 1
         
-        swipe['timestamp'] = datetime.strptime(swipe['timestamp'], '%Y-%m-%d %H:%M:%S.%f')
+        if type(swipe['timestamp']) == str:
+            swipe['timestamp'] = datetime.strptime(swipe['timestamp'], '%Y-%m-%d %H:%M:%S.%f')
+        
         months_ago = (datetime.now() - swipe['timestamp']).days // 30
 
         #inverse logistic time decay function
