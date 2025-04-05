@@ -53,8 +53,8 @@ Tinder for finding food.
 
         -- These will be used for internal purposes
         friends list (list of usernames),
-        friend requests sent,
-        friend requests received,
+        friend requests sent (list of usernames),
+        friend requests received (list of usernames),
         notifications,
         account created time,
         last login time,

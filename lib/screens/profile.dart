@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart'; // Import statement for Flutter material package
+import 'package:provider/provider.dart'; // Import Provider
+import '../providers/authentication_state.dart'; // Import AuthenticationState
 
 //Future edits
 //  logarithmic scaling for slider
 //  style app bar (match other screens) --> chunky font top left
 //  remove gradient, black and dark gray/orange ish fill ins
 //  make the slider always editable?
-// link with authentication file 
+// link with authentication file
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -29,7 +31,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     userName.text = 'John Doe';
     emailName.text = 'header@gmail.com';
     phoneNumber.text = '913-000-0000';
-    foodRestrictions.text = 'GF \n Vegan \n Allergens'; //eventually want non-text input
+    foodRestrictions.text =
+        'GF \n Vegan \n Allergens'; //eventually want non-text input
   }
 
   void toggleEdit() {
@@ -52,7 +55,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: const Text('Your Profile', style: TextStyle(color: Colors.white)),
+        title:
+            const Text('Your Profile', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.black,
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
@@ -60,12 +64,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             onPressed: isEditing ? saveProfile : toggleEdit,
             child: Text(
               isEditing ? 'Save' : 'Edit',
-              style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
             ),
           ),
         ],
       ),
-
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -85,7 +91,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-
               TextField(
                 controller: userName,
                 decoration: InputDecoration(
@@ -99,18 +104,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                 ),
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
                 readOnly: !isEditing,
               ),
-
               const SizedBox(height: 15),
               const Text(
                 'User Information',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               const Divider(color: Colors.white, thickness: 2),
               const SizedBox(height: 20),
-
               TextField(
                 controller: emailName,
                 decoration: InputDecoration(
@@ -127,9 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 style: const TextStyle(color: Colors.white),
                 readOnly: !isEditing,
               ),
-
               const SizedBox(height: 10),
-
               TextField(
                 controller: phoneNumber,
                 decoration: InputDecoration(
@@ -146,15 +153,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 style: const TextStyle(color: Colors.white),
                 readOnly: !isEditing,
               ),
-
               const SizedBox(height: 20),
               const Text(
                 'Preferences',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               const Divider(color: Colors.white, thickness: 2),
               const SizedBox(height: 20),
-
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
@@ -168,7 +176,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       controller: foodRestrictions,
                       decoration: InputDecoration(
                         labelText: 'Dietary Restrictions',
-
                         labelStyle: const TextStyle(color: Colors.white),
                         border: const OutlineInputBorder(),
                         enabledBorder: const OutlineInputBorder(
@@ -183,7 +190,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       readOnly: !isEditing,
                     ),
                     const SizedBox(height: 10),
-
                     const Text(
                       'Restaurant Distance:', //rename this is this descriptive enough?
                       style: TextStyle(color: Colors.white),
@@ -203,6 +209,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           : null,
                     ),
                   ],
+                ),
+              ),
+              const SizedBox(height: 30),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    final authState = Provider.of<AuthenticationState>(context,
+                        listen: false);
+                    authState.signOut();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 15),
+                  ),
+                  child: const Text(
+                    'Sign Out',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ],

@@ -1,17 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'dart:convert'; // For JSON encoding/decoding
+import 'dart:convert';
 
 class UserModel extends ChangeNotifier {
   String uid;
   String email;
   String username;
+  String firstName;
+  String lastName;
+  String bio;
+  String? profilePhotoURL;
+  List<String> friends;
+  List<String> friendRequestsSent;
+  List<String> friendRequestsReceived;
 
   static const localStorage = FlutterSecureStorage();
   static const localStorageKey = 'user_model';
 
-  UserModel({required this.uid, required this.email, required this.username});
+  UserModel({
+    required this.uid,
+    required this.email,
+    required this.username,
+    required this.firstName,
+    required this.lastName,
+    required this.bio,
+    this.profilePhotoURL,
+    this.friends = const [],
+    this.friendRequestsSent = const [],
+    this.friendRequestsReceived = const [],
+  });
 
   // Convert UserModel to a map for Firestore
   Map<String, dynamic> toMap() {
@@ -19,14 +37,27 @@ class UserModel extends ChangeNotifier {
       'uid': uid,
       'email': email,
       'username': username,
+      'firstName': firstName,
+      'lastName': lastName,
+      'bio': bio,
+      'profilePhoto': profilePhotoURL,
+      'friends': friends,
+      'friendRequestsSent': friendRequestsSent,
+      'friendRequestsReceived': friendRequestsReceived,
     };
   }
 
   // Save user to Firestore and local storage
   Future<void> saveToFirestore() async {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
-    await firestore.collection('users').doc(uid).set(toMap());
-    await saveToLocalStorage(); // Save to local storage
+    final data = toMap();
+
+    await firestore.collection('users').doc(uid).set(data);
+
+    // Log the data being sent to Firestore
+    print('Saved user to Firestore');
+
+    await saveToLocalStorage();
   }
 
   // Save user to local storage
@@ -41,14 +72,19 @@ class UserModel extends ChangeNotifier {
     final DocumentSnapshot doc =
         await firestore.collection('users').doc(uid).get();
     if (doc.exists) {
+      final data = doc.data() as Map<String, dynamic>;
       return UserModel(
-        uid: doc['uid'],
-        email: doc['email'],
-        username:
-            (doc.data() as Map<String, dynamic>?)?.containsKey('username') ==
-                    true
-                ? doc['username']
-                : '',
+        uid: data['uid'],
+        email: data['email'],
+        username: data['username'],
+        firstName: data['firstName'] ?? '',
+        lastName: data['lastName'] ?? '',
+        bio: data['bio'] ?? '',
+        profilePhotoURL: data['profilePhotoURL'] ?? '',
+        friends: List<String>.from(data['friends'] ?? []),
+        friendRequestsSent: List<String>.from(data['friendRequestsSent'] ?? []),
+        friendRequestsReceived:
+            List<String>.from(data['friendRequestsReceived'] ?? []),
       );
     }
     return null;
@@ -63,6 +99,14 @@ class UserModel extends ChangeNotifier {
         uid: data['uid'],
         email: data['email'],
         username: data['username'],
+        firstName: data['firstName'] ?? '',
+        lastName: data['lastName'] ?? '',
+        bio: data['bio'] ?? '',
+        profilePhotoURL: data['profilePhotoURL'] ?? '',
+        friends: List<String>.from(data['friends'] ?? []),
+        friendRequestsSent: List<String>.from(data['friendRequestsSent'] ?? []),
+        friendRequestsReceived:
+            List<String>.from(data['friendRequestsReceived'] ?? []),
       );
     }
     return null;
