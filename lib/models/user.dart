@@ -7,9 +7,9 @@ class UserModel extends ChangeNotifier {
   String uid;
   String email;
   String username;
-  String firstName;
-  String lastName;
-  String bio;
+  String? firstName;
+  String? lastName;
+  String? bio;
   String? profilePhotoURL;
   List<String> friends;
   List<String> friendRequestsSent;
@@ -22,9 +22,9 @@ class UserModel extends ChangeNotifier {
     required this.uid,
     required this.email,
     required this.username,
-    required this.firstName,
-    required this.lastName,
-    required this.bio,
+    this.firstName,
+    this.lastName,
+    this.bio,
     this.profilePhotoURL,
     this.friends = const [],
     this.friendRequestsSent = const [],
