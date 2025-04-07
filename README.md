@@ -66,6 +66,7 @@ Tinder for finding food.
 
     **Katie**
     Account / Setting page design
+    Building API using Flask
 
     **Michael**
     Get random food cards
