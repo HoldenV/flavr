@@ -30,9 +30,6 @@ class AuthenticationState extends ChangeNotifier {
   Future<void> initializeAuthState() async {
     final firebaseUser = auth.currentUser;
 
-    // Debugging: Check the current FirebaseAuth user
-    print('FirebaseAuth currentUser: $firebaseUser');
-
     if (firebaseUser != null) {
       // Try to fetch the user from local storage or Firestore
       user = await UserModel.fromLocalStorage() ??
@@ -52,9 +49,6 @@ class AuthenticationState extends ChangeNotifier {
         print('No user found in local storage.');
       }
     }
-
-    // Debugging: Check the updated user state
-    print('AuthenticationState user updated: $user');
 
     // Notify listeners to rebuild dependent widgets
     notifyListeners();

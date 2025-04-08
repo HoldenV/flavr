@@ -19,8 +19,6 @@ class AuthenticationWrapper extends StatelessWidget {
     final authState = Provider.of<AuthenticationState>(context);
     final user = authState.user;
 
-    print('AuthenticationWrapper rebuild triggered. User: $user'); // Debugging
-
     if (user == null) {
       // Direct to login screen if no user is signed in
       return const LoginScreen();
