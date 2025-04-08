@@ -61,7 +61,7 @@ class UserModel extends ChangeNotifier {
       'firstName': firstName,
       'lastName': lastName,
       'bio': bio,
-      'profilePhoto': profilePhotoURL,
+      'profilePhotoURL': profilePhotoURL,
       'friends': friends,
       'friendRequestsSent': friendRequestsSent,
       'friendRequestsReceived': friendRequestsReceived,
@@ -101,7 +101,7 @@ class UserModel extends ChangeNotifier {
         firstName: data['firstName'] ?? '',
         lastName: data['lastName'] ?? '',
         bio: data['bio'] ?? '',
-        profilePhotoURL: data['profilePhotoURL'] ?? '',
+        profilePhotoURL: data['profilePhotoURL'] ?? '', // Ensure this is loaded
         friends: List<String>.from(data['friends'] ?? []),
         friendRequestsSent: List<String>.from(data['friendRequestsSent'] ?? []),
         friendRequestsReceived:
@@ -123,7 +123,7 @@ class UserModel extends ChangeNotifier {
         firstName: data['firstName'] ?? '',
         lastName: data['lastName'] ?? '',
         bio: data['bio'] ?? '',
-        profilePhotoURL: data['profilePhotoURL'] ?? '',
+        profilePhotoURL: data['profilePhotoURL'] ?? '', // Ensure this is loaded
         friends: List<String>.from(data['friends'] ?? []),
         friendRequestsSent: List<String>.from(data['friendRequestsSent'] ?? []),
         friendRequestsReceived:

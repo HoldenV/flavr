@@ -51,9 +51,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authState = Provider.of<AuthenticationState>(context, listen: false);
+    final authState = Provider.of<AuthenticationState>(context);
     final photoURL = authState.user?.profilePhotoURL;
-    print('Photo URL: $photoURL');
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -90,7 +89,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Center(
                 child: CircleAvatar(
                   radius: 70,
-                  backgroundImage: AssetImage('lib/assets/default_profile.png'),
+                  backgroundImage: (photoURL != null && photoURL.isNotEmpty)
+                      ? NetworkImage(photoURL)
+                      : const AssetImage('lib/assets/default_profile.png')
+                          as ImageProvider,
                 ),
               ),
               const SizedBox(height: 20),

@@ -90,10 +90,8 @@ class AuthenticationState extends ChangeNotifier {
           );
         } else {
           // Update the user's profile photo URL if it is not already set
-          if (user!.profilePhotoURL == null || user!.profilePhotoURL!.isEmpty) {
-            user = user!.copyWith(profilePhotoURL: profilePhotoUrl);
-            await user!.saveToFirestore();
-          }
+          user = user!.copyWith(profilePhotoURL: profilePhotoUrl);
+          await user!.saveToFirestore();
 
           // Save the user to local storage
           await user!.saveToLocalStorage();
