@@ -28,11 +28,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    userName.text = 'John Doe';
-    emailName.text = 'header@gmail.com';
-    phoneNumber.text = '913-000-0000';
-    foodRestrictions.text =
-        'GF \n Vegan \n Allergens'; //eventually want non-text input
+    final authState = Provider.of<AuthenticationState>(context, listen: false);
+    userName.text = authState.user?.username ?? 'John Doe';
+    emailName.text = authState.user?.email ?? 'header@gmail.com';
+    foodRestrictions.text = 'GF \n Vegan \n Allergens';
   }
 
   void toggleEdit() {
@@ -52,6 +51,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authState = Provider.of<AuthenticationState>(context, listen: false);
+    final photoURL = authState.user?.profilePhotoURL;
+    print('Photo URL: $photoURL');
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
@@ -84,7 +87,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           padding: const EdgeInsets.all(15.0),
           child: ListView(
             children: [
-              const Center(
+              Center(
                 child: CircleAvatar(
                   radius: 70,
                   backgroundImage: AssetImage('lib/assets/default_profile.png'),

@@ -1,9 +1,7 @@
-import 'dart:typed_data';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flavr/widgets/app_state_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:image_picker/image_picker.dart';
 // import 'package:firebase_storage/firebase_storage.dart';
 import '../models/user.dart';
 import '../providers/authentication_state.dart';
@@ -22,25 +20,12 @@ class AccountCreationState extends State<AccountCreationScreen> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController bioController = TextEditingController();
-  Uint8List? profilePhoto;
-
-  final ImagePicker picker = ImagePicker();
-
-  // Function to pick a profile photo
-  Future<void> pickProfilePhoto() async {
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      final bytes = await image.readAsBytes();
-      setState(() {
-        profilePhoto = Uint8List.fromList(bytes);
-      });
-    }
-  }
 
   // Function to create the user account
   Future<void> createAccount() async {
     final uid = widget.userCredential.user?.uid;
     final email = widget.userCredential.user?.email;
+    final profilePhotoUrl = widget.userCredential.user?.photoURL;
 
     if (uid == null || email == null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -57,27 +42,6 @@ class AccountCreationState extends State<AccountCreationScreen> {
       );
       return;
     }
-
-    String? profilePhotoUrl;
-
-    // Upload profile photo to Firebase Storage if it exists
-    // if (profilePhoto != null) {
-    //   try {
-    //     final storageRef = FirebaseStorage.instance
-    //         .ref()
-    //         .child('profile_photos/$uid.jpg'); // Use UID for unique naming
-    //     final uploadTask = await storageRef.putData(profilePhoto!);
-    //     profilePhotoUrl = await uploadTask.ref.getDownloadURL();
-    //   } catch (e) {
-    //     print('Error uploading profile photo: $e');
-    //     // ignore: use_build_context_synchronously
-    //     ScaffoldMessenger.of(context).showSnackBar(
-    //       SnackBar(
-    //           content: Text('Error uploading profile photo: ${e.toString()}')),
-    //     );
-    //     return;
-    //   }
-    // }
 
     // Create the UserModel
     final userModel = UserModel(
@@ -168,20 +132,6 @@ class AccountCreationState extends State<AccountCreationScreen> {
               maxLines: 3,
             ),
             const SizedBox(height: 20),
-            // Row(
-            //   children: [
-            //     ElevatedButton(
-            //       onPressed: pickProfilePhoto,
-            //       child: const Text('Pick Profile Photo'),
-            //     ),
-            //     const SizedBox(width: 10),
-            //     if (profilePhoto != null)
-            //       const Text(
-            //         'Photo Selected',
-            //         style: TextStyle(color: Colors.green),
-            //       ),
-            //   ],
-            // ),
             const SizedBox(height: 20),
             Center(
               child: ElevatedButton(

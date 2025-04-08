@@ -57,7 +57,10 @@ class AuthenticationState extends ChangeNotifier {
   Future<void> signInWithGoogle(BuildContext context) async {
     try {
       final googleUser = await googleSignIn.signIn();
-      if (googleUser == null) return;
+      if (googleUser == null) {
+        print('Google sign-in canceled by user.');
+        return; // User canceled the sign-in
+      }
 
       final googleAuth = await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
@@ -69,9 +72,14 @@ class AuthenticationState extends ChangeNotifier {
       final firebaseUser = userCredential.user;
 
       if (firebaseUser != null) {
+        // Retrieve the profile photo URL from Google
+        final profilePhotoUrl = googleUser.photoUrl;
+
+        // Fetch the user from Firestore or create a new one
         user = await UserModel.fromFirestore(firebaseUser.uid);
 
         if (user == null) {
+          // If the user does not exist, navigate to the account creation screen
           if (!context.mounted) return;
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
@@ -81,6 +89,13 @@ class AuthenticationState extends ChangeNotifier {
             ),
           );
         } else {
+          // Update the user's profile photo URL if it is not already set
+          if (user!.profilePhotoURL == null || user!.profilePhotoURL!.isEmpty) {
+            user = user!.copyWith(profilePhotoURL: profilePhotoUrl);
+            await user!.saveToFirestore();
+          }
+
+          // Save the user to local storage
           await user!.saveToLocalStorage();
           notifyListeners();
         }

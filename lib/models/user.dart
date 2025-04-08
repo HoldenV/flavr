@@ -4,13 +4,13 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:convert';
 
 class UserModel extends ChangeNotifier {
-  String uid;
-  String email;
+  final String uid;
+  final String email;
   String username;
-  String? firstName;
-  String? lastName;
-  String? bio;
-  String? profilePhotoURL;
+  final String? firstName;
+  final String? lastName;
+  final String? bio;
+  final String? profilePhotoURL;
   List<String> friends;
   List<String> friendRequestsSent;
   List<String> friendRequestsReceived;
@@ -30,6 +30,27 @@ class UserModel extends ChangeNotifier {
     this.friendRequestsSent = const [],
     this.friendRequestsReceived = const [],
   });
+
+  // Define the copyWith method
+  UserModel copyWith({
+    String? uid,
+    String? email,
+    String? username,
+    String? firstName,
+    String? lastName,
+    String? bio,
+    String? profilePhotoURL,
+  }) {
+    return UserModel(
+      uid: uid ?? this.uid,
+      email: email ?? this.email,
+      username: username ?? this.username,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      bio: bio ?? this.bio,
+      profilePhotoURL: profilePhotoURL ?? this.profilePhotoURL,
+    );
+  }
 
   // Convert UserModel to a map for Firestore
   Map<String, dynamic> toMap() {
