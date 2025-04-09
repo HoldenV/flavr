@@ -26,10 +26,13 @@ class UserModel extends ChangeNotifier {
     this.lastName,
     this.bio,
     this.profilePhotoURL,
-    this.friends = const [],
-    this.friendRequestsSent = const [],
-    this.friendRequestsReceived = const [],
-  });
+    List<String>? friends,
+    List<String>? friendRequestsSent,
+    List<String>? friendRequestsReceived,
+  })  : friends = friends ?? List.empty(growable: true),
+        friendRequestsSent = friendRequestsSent ?? List.empty(growable: true),
+        friendRequestsReceived =
+            friendRequestsReceived ?? List.empty(growable: true);
 
   // Define the copyWith method
   UserModel copyWith({
@@ -71,12 +74,17 @@ class UserModel extends ChangeNotifier {
   // Save user to Firestore and local storage
   Future<void> saveToFirestore() async {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    // Only update fields that are not null
     final data = toMap();
+    final updateData = <String, dynamic>{};
+    data.forEach((key, value) {
+      if (value != null) {
+        updateData[key] = value;
+      }
+    });
 
-    await firestore.collection('users').doc(uid).set(data);
-
-    // Log the data being sent to Firestore
-    print('Saved user to Firestore');
+    await firestore.collection('users').doc(uid).update(updateData);
 
     await saveToLocalStorage();
   }
@@ -92,21 +100,30 @@ class UserModel extends ChangeNotifier {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
     final DocumentSnapshot doc =
         await firestore.collection('users').doc(uid).get();
+
     if (doc.exists) {
       final data = doc.data() as Map<String, dynamic>;
-      return UserModel(
+
+      // Create the UserModel instance
+      final user = UserModel(
         uid: data['uid'],
         email: data['email'],
         username: data['username'],
         firstName: data['firstName'] ?? '',
         lastName: data['lastName'] ?? '',
         bio: data['bio'] ?? '',
-        profilePhotoURL: data['profilePhotoURL'] ?? '', // Ensure this is loaded
-        friends: List<String>.from(data['friends'] ?? []),
-        friendRequestsSent: List<String>.from(data['friendRequestsSent'] ?? []),
-        friendRequestsReceived:
-            List<String>.from(data['friendRequestsReceived'] ?? []),
+        profilePhotoURL: data['profilePhotoURL'] ?? '',
+        friends: List<String>.from(data['friends'] ?? []), // Ensure mutable
+        friendRequestsSent: List<String>.from(
+            data['friendRequestsSent'] ?? []), // Ensure mutable
+        friendRequestsReceived: List<String>.from(
+            data['friendRequestsReceived'] ?? []), // Ensure mutable
       );
+
+      // Save the fetched data to local storage
+      await user.saveToLocalStorage();
+
+      return user;
     }
     return null;
   }
@@ -123,11 +140,12 @@ class UserModel extends ChangeNotifier {
         firstName: data['firstName'] ?? '',
         lastName: data['lastName'] ?? '',
         bio: data['bio'] ?? '',
-        profilePhotoURL: data['profilePhotoURL'] ?? '', // Ensure this is loaded
-        friends: List<String>.from(data['friends'] ?? []),
-        friendRequestsSent: List<String>.from(data['friendRequestsSent'] ?? []),
-        friendRequestsReceived:
-            List<String>.from(data['friendRequestsReceived'] ?? []),
+        profilePhotoURL: data['profilePhotoURL'] ?? '',
+        friends: List<String>.from(data['friends'] ?? []), // Ensure mutable
+        friendRequestsSent: List<String>.from(
+            data['friendRequestsSent'] ?? []), // Ensure mutable
+        friendRequestsReceived: List<String>.from(
+            data['friendRequestsReceived'] ?? []), // Ensure mutable
       );
     }
     return null;

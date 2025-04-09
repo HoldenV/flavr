@@ -1,26 +1,48 @@
 import 'package:flavr/providers/authentication_state.dart';
+import 'package:flavr/widgets/add_friend_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
-class FriendsScreen extends StatelessWidget {
+class FriendsScreen extends StatefulWidget {
   const FriendsScreen({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _FriendsScreenState createState() => _FriendsScreenState();
+}
+
+class _FriendsScreenState extends State<FriendsScreen> {
+  late Future<List<List<Map<String, dynamic>>>> _friendsData;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchFriendsData();
+  }
+
+  void _fetchFriendsData() {
+    final authState = Provider.of<AuthenticationState>(context, listen: false);
+    final currentUserId = authState.user?.uid;
+    _friendsData = Future.wait([
+      getFriendRequests(currentUserId!),
+      getFriends(currentUserId),
+      getSentFriendRequests(currentUserId),
+    ]);
+  }
 
   Future<List<Map<String, dynamic>>> getFriendRequests(
       String currentUserId) async {
     final firestore = FirebaseFirestore.instance;
 
-    // Retrieve the current user's friend requests (array of uids)
     final userDoc =
         await firestore.collection('users').doc(currentUserId).get();
-    final friendRequests =
-        userDoc.data()?['friendRequests'] as List<dynamic>? ?? [];
+    final friendRequestsReceived =
+        userDoc.data()?['friendRequestsReceived'] as List<dynamic>? ?? [];
 
-    // Fetch details of each user in the friendRequests array
     final List<Map<String, dynamic>> friendRequestDetails = [];
-    for (var requestingUid in friendRequests) {
-      // Query the user by username or uid
+    for (var requestingUid in friendRequestsReceived) {
       final querySnapshot = await firestore
           .collection('users')
           .where('uid', isEqualTo: requestingUid)
@@ -29,6 +51,7 @@ class FriendsScreen extends StatelessWidget {
       if (querySnapshot.docs.isNotEmpty) {
         final userData = querySnapshot.docs.first.data();
         friendRequestDetails.add({
+          'uid': requestingUid,
           'profilePhotoURL': userData['profilePhotoURL'],
           'firstName': userData['firstName'],
           'lastName': userData['lastName'],
@@ -43,12 +66,10 @@ class FriendsScreen extends StatelessWidget {
   Future<List<Map<String, dynamic>>> getFriends(String currentUserId) async {
     final firestore = FirebaseFirestore.instance;
 
-    // Retrieve the current user's friends (array of uids)
     final userDoc =
         await firestore.collection('users').doc(currentUserId).get();
     final friends = userDoc.data()?['friends'] as List<dynamic>? ?? [];
 
-    // Fetch details of each user in the friends array
     final List<Map<String, dynamic>> friendDetails = [];
     for (var friendUid in friends) {
       final querySnapshot = await firestore
@@ -74,13 +95,11 @@ class FriendsScreen extends StatelessWidget {
       String currentUserId) async {
     final firestore = FirebaseFirestore.instance;
 
-    // Retrieve the current user's sent friend requests (array of uids)
     final userDoc =
         await firestore.collection('users').doc(currentUserId).get();
     final sentRequests =
         userDoc.data()?['friendRequestsSent'] as List<dynamic>? ?? [];
 
-    // Fetch details of each user in the sentRequests array
     final List<Map<String, dynamic>> sentRequestDetails = [];
     for (var sentUid in sentRequests) {
       final querySnapshot = await firestore
@@ -91,6 +110,7 @@ class FriendsScreen extends StatelessWidget {
       if (querySnapshot.docs.isNotEmpty) {
         final userData = querySnapshot.docs.first.data();
         sentRequestDetails.add({
+          'uid': sentUid,
           'profilePhotoURL': userData['profilePhotoURL'],
           'firstName': userData['firstName'],
           'lastName': userData['lastName'],
@@ -105,7 +125,6 @@ class FriendsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authState = Provider.of<AuthenticationState>(context);
-    final currentUserId = authState.user?.uid;
 
     return Scaffold(
       appBar: AppBar(
@@ -125,7 +144,14 @@ class FriendsScreen extends StatelessWidget {
             onPressed: () {
               showDialog(
                 context: context,
-                builder: (context) => AddFriendPopup(authState: authState),
+                builder: (context) => AddFriendPopup(
+                  authState: authState,
+                  onFriendRequestSent: () {
+                    setState(() {
+                      _fetchFriendsData();
+                    });
+                  },
+                ),
               );
             },
           ),
@@ -133,11 +159,7 @@ class FriendsScreen extends StatelessWidget {
       ),
       backgroundColor: Colors.black,
       body: FutureBuilder<List<List<Map<String, dynamic>>>>(
-        future: Future.wait([
-          getFriendRequests(currentUserId!),
-          getFriends(currentUserId),
-          getSentFriendRequests(currentUserId),
-        ]),
+        future: _friendsData,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -165,6 +187,7 @@ class FriendsScreen extends StatelessWidget {
                     ),
                   ),
                 ...friendRequests.map((friend) => FriendTile(
+                      uid: friend['uid'],
                       photoURL: friend['profilePhotoURL']!,
                       name: '${friend['firstName']} ${friend['lastName']}',
                       username: friend['username']!,
@@ -194,6 +217,7 @@ class FriendsScreen extends StatelessWidget {
                     ),
                   ),
                 ...friends.map((friend) => FriendTile(
+                      uid: friend['uid'],
                       photoURL: friend['profilePhotoURL']!,
                       name: '${friend['firstName']} ${friend['lastName']}',
                       username: friend['username']!,
@@ -217,17 +241,22 @@ class FriendsScreen extends StatelessWidget {
                     ),
                   ),
                 ...sentRequests.map((friend) => FriendTile(
+                      uid: friend['uid'],
                       photoURL: friend['profilePhotoURL']!,
                       name: '${friend['firstName']} ${friend['lastName']}',
                       username: friend['username']!,
                       actions: [
                         TextButton(
                           onPressed: () async {
-                            final targetUid =
-                                friend['uid']; // Ensure this is not null
+                            final targetUid = friend['uid'];
+                            print(
+                                'Canceling friend request for UID: $targetUid');
                             if (targetUid != null) {
                               await authState.user
                                   ?.cancelFriendRequest(targetUid);
+                              setState(() {
+                                _fetchFriendsData();
+                              });
                             } else {
                               print('Error: targetUid is null');
                             }
@@ -267,12 +296,14 @@ class SectionHeader extends StatelessWidget {
 }
 
 class FriendTile extends StatelessWidget {
+  final String uid;
   final String photoURL;
   final String name;
   final String username;
   final List<Widget> actions;
 
   const FriendTile({
+    required this.uid,
     required this.photoURL,
     required this.name,
     required this.username,
@@ -305,134 +336,3 @@ class FriendTile extends StatelessWidget {
     );
   }
 }
-
-class AddFriendPopup extends StatefulWidget {
-  final AuthenticationState authState;
-
-  const AddFriendPopup({required this.authState, super.key});
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _AddFriendPopupState createState() => _AddFriendPopupState();
-}
-
-class _AddFriendPopupState extends State<AddFriendPopup> {
-  final TextEditingController _searchController = TextEditingController();
-  List<Map<String, dynamic>> _searchResults = [];
-  bool _isLoading = false;
-
-  Future<void> _searchUsers(String username) async {
-    // Remove the '@' symbol if it exists at the beginning of the username
-    if (username.startsWith('@')) {
-      username = username.substring(1);
-    }
-
-    if (username.isEmpty) {
-      setState(() {
-        _searchResults = [];
-      });
-      return;
-    }
-
-    setState(() {
-      _isLoading = true;
-    });
-
-    final firestore = FirebaseFirestore.instance;
-    final currentUserId = widget.authState.user?.uid;
-    final querySnapshot = await firestore
-        .collection('users')
-        .where('username', isGreaterThanOrEqualTo: username)
-        .where('username', isLessThanOrEqualTo: '$username\uf8ff')
-        .get();
-
-    setState(() {
-      _searchResults = querySnapshot.docs
-          .where((doc) => doc['uid'] != currentUserId)
-          .map((doc) => {
-                'uid': doc['uid'],
-                'profilePhotoURL': doc['profilePhotoURL'],
-                'firstName': doc['firstName'],
-                'lastName': doc['lastName'],
-                'username': doc['username'],
-              })
-          .toList();
-      _isLoading = false;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      backgroundColor: Colors.grey[900],
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: _searchController,
-              style: const TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                hintText: '@username',
-                hintStyle: const TextStyle(color: Colors.grey),
-                filled: true,
-                fillColor: Colors.grey[800],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: BorderSide.none,
-                ),
-                prefixIcon: const Icon(Icons.search, color: Colors.white),
-              ),
-              onChanged: _searchUsers,
-            ),
-            const SizedBox(height: 8.0),
-            const Text(
-              '*case sensitive',
-              style: TextStyle(color: Colors.orange, fontSize: 12.0),
-            ),
-            const SizedBox(height: 16.0),
-            if (_isLoading)
-              const Center(
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                ),
-              )
-            else if (_searchResults.isEmpty)
-              const Text(
-                'No results found',
-                style: TextStyle(color: Colors.orange),
-              )
-            else
-              ..._searchResults.map((user) => ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(user['profilePhotoURL']),
-                    ),
-                    title: Text(
-                      '${user['firstName']} ${user['lastName']}',
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    subtitle: Text(
-                      '@${user['username']}',
-                      style: const TextStyle(color: Colors.grey),
-                    ),
-                    trailing: TextButton(
-                      onPressed: () {
-                        widget.authState.user?.sendFriendRequest(user['uid']);
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text(
-                        'Add Friend',
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                    ),
-                  )),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-
-// this is a good and working state...
