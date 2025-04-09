@@ -40,6 +40,13 @@ class _AddFriendPopupState extends State<AddFriendPopup> {
 
     final firestore = FirebaseFirestore.instance;
     final currentUserId = widget.authState.user?.uid;
+
+    // Fetch the current user's friends list
+    final currentUserDoc =
+        await firestore.collection('users').doc(currentUserId).get();
+    final currentUserFriends =
+        List<String>.from(currentUserDoc.data()?['friends'] ?? []);
+
     final querySnapshot = await firestore
         .collection('users')
         .where('username', isGreaterThanOrEqualTo: username)
@@ -48,7 +55,9 @@ class _AddFriendPopupState extends State<AddFriendPopup> {
 
     setState(() {
       _searchResults = querySnapshot.docs
-          .where((doc) => doc['uid'] != currentUserId)
+          .where((doc) =>
+              doc['uid'] != currentUserId && // Exclude the current user
+              !currentUserFriends.contains(doc['uid'])) // Exclude friends
           .map((doc) => {
                 'uid': doc['uid'],
                 'profilePhotoURL': doc['profilePhotoURL'],

@@ -8,11 +8,13 @@ import 'package:flavr/screens/account_creation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/user.dart';
 
 class AuthenticationState extends ChangeNotifier {
   final auth = FirebaseAuth.instance;
   final googleSignIn = GoogleSignIn();
+  final firestore = FirebaseFirestore.instance;
 
   UserModel? _user;
 
@@ -31,27 +33,17 @@ class AuthenticationState extends ChangeNotifier {
     final firebaseUser = auth.currentUser;
 
     if (firebaseUser != null) {
-      // Try to fetch the user from local storage or Firestore
-      user = await UserModel.fromLocalStorage() ??
-          await UserModel.fromFirestore(firebaseUser.uid);
+      // Try to fetch the user from Firestore
+      user = await UserModel.fromFirestore(firebaseUser.uid);
 
       // If the user is found, save it to local storage
       if (user != null) {
         await user!.saveToLocalStorage();
-      } else {
-        print(
-            'No user found in Firestore or local storage for UID: ${firebaseUser.uid}');
       }
-    } else {
-      // If no FirebaseAuth user is found, try to load from local storage
-      user = await UserModel.fromLocalStorage();
-      if (user == null) {
-        print('No user found in local storage.');
-      }
-    }
 
-    // Notify listeners to rebuild dependent widgets
-    notifyListeners();
+      // Notify listeners to rebuild dependent widgets
+      notifyListeners();
+    }
   }
 
   Future<void> signInWithGoogle(BuildContext context) async {
@@ -89,9 +81,13 @@ class AuthenticationState extends ChangeNotifier {
             ),
           );
         } else {
-          // Update the user's profile photo URL if it is not already set
-          user = user!.copyWith(profilePhotoURL: profilePhotoUrl);
-          await user!.saveToFirestore();
+          // Update only the profile photo URL if necessary
+          if (user!.profilePhotoURL != profilePhotoUrl) {
+            user = user!.copyWith(profilePhotoURL: profilePhotoUrl);
+            await firestore.collection('users').doc(user!.uid).update({
+              'profilePhotoURL': profilePhotoUrl,
+            });
+          }
 
           // Save the user to local storage
           await user!.saveToLocalStorage();
@@ -108,6 +104,7 @@ class AuthenticationState extends ChangeNotifier {
     await googleSignIn.signOut();
     user = null;
     await UserModel.localStorage.delete(key: UserModel.localStorageKey);
+    await UserModel.localStorage.deleteAll();
     notifyListeners();
   }
 }

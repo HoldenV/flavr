@@ -51,11 +51,11 @@ class _FriendsScreenState extends State<FriendsScreen> {
       if (querySnapshot.docs.isNotEmpty) {
         final userData = querySnapshot.docs.first.data();
         friendRequestDetails.add({
-          'uid': requestingUid,
-          'profilePhotoURL': userData['profilePhotoURL'],
-          'firstName': userData['firstName'],
-          'lastName': userData['lastName'],
-          'username': userData['username'],
+          'uid': requestingUid ?? 'Unknown UID',
+          'profilePhotoURL': userData['profilePhotoURL'] ?? '',
+          'firstName': userData['firstName'] ?? 'Unknown',
+          'lastName': userData['lastName'] ?? '',
+          'username': userData['username'] ?? 'Unknown Username',
         });
       }
     }
@@ -80,10 +80,20 @@ class _FriendsScreenState extends State<FriendsScreen> {
       if (querySnapshot.docs.isNotEmpty) {
         final userData = querySnapshot.docs.first.data();
         friendDetails.add({
-          'profilePhotoURL': userData['profilePhotoURL'],
-          'firstName': userData['firstName'],
-          'lastName': userData['lastName'],
-          'username': userData['username'],
+          'uid': friendUid ?? 'Unknown UID',
+          'profilePhotoURL': userData['profilePhotoURL'] ?? '',
+          'firstName': userData['firstName'] ?? 'Unknown',
+          'lastName': userData['lastName'] ?? '',
+          'username': userData['username'] ?? 'Unknown Username',
+        });
+      } else {
+        // Handle case where the friend's document is missing
+        friendDetails.add({
+          'uid': friendUid ?? 'Unknown UID',
+          'profilePhotoURL': '',
+          'firstName': 'Unknown',
+          'lastName': '',
+          'username': 'Unknown Username',
         });
       }
     }
@@ -110,11 +120,11 @@ class _FriendsScreenState extends State<FriendsScreen> {
       if (querySnapshot.docs.isNotEmpty) {
         final userData = querySnapshot.docs.first.data();
         sentRequestDetails.add({
-          'uid': sentUid,
-          'profilePhotoURL': userData['profilePhotoURL'],
-          'firstName': userData['firstName'],
-          'lastName': userData['lastName'],
-          'username': userData['username'],
+          'uid': sentUid ?? 'Unknown UID',
+          'profilePhotoURL': userData['profilePhotoURL'] ?? '',
+          'firstName': userData['firstName'] ?? 'Unknown',
+          'lastName': userData['lastName'] ?? '',
+          'username': userData['username'] ?? 'Unknown Username',
         });
       }
     }
@@ -170,9 +180,9 @@ class _FriendsScreenState extends State<FriendsScreen> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
-            final friendRequests = snapshot.data![0];
-            final friends = snapshot.data![1];
-            final sentRequests = snapshot.data![2];
+            final friendRequests = snapshot.data?[0] ?? [];
+            final friends = snapshot.data?[1] ?? [];
+            final sentRequests = snapshot.data?[2] ?? [];
 
             return ListView(
               children: [
@@ -193,8 +203,26 @@ class _FriendsScreenState extends State<FriendsScreen> {
                       username: friend['username']!,
                       actions: [
                         TextButton(
-                          onPressed: () => authState.user
-                              ?.acceptFriendRequest(friend['uid']),
+                          onPressed: () async {
+                            final requesterUid = friend['uid'];
+                            if (requesterUid != null) {
+                              // Call the acceptFriendRequest function
+                              await authState.user
+                                  ?.acceptFriendRequest(requesterUid);
+
+                              // Update the local state immediately
+                              setState(() {
+                                // Remove the friend request from the friendRequests list
+                                friendRequests.removeWhere((request) =>
+                                    request['uid'] == requesterUid);
+
+                                // Add the friend to the friends list
+                                friends.add(friend);
+                              });
+                            } else {
+                              print('Error: requesterUid is null');
+                            }
+                          },
                           child: const Text('Accept',
                               style: TextStyle(color: Colors.green)),
                         ),
@@ -227,6 +255,23 @@ class _FriendsScreenState extends State<FriendsScreen> {
                               print('Message ${friend['username']}'),
                           child: const Text('Invite',
                               style: TextStyle(color: Colors.blue)),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            final targetUid = friend['uid'];
+                            if (targetUid != null) {
+                              await authState.user?.removeFriend(targetUid);
+                              setState(() {
+                                _fetchFriendsData();
+                              });
+                            } else {
+                              print('Error: targetUid is null');
+                            }
+                          },
+                          child: const Text(
+                            'Remove',
+                            style: TextStyle(color: Colors.red),
+                          ),
                         ),
                       ],
                     )),
@@ -304,9 +349,9 @@ class FriendTile extends StatelessWidget {
 
   const FriendTile({
     required this.uid,
-    required this.photoURL,
-    required this.name,
-    required this.username,
+    this.photoURL = '', // Default to an empty string
+    this.name = 'Unknown', // Default to 'Unknown'
+    this.username = 'Unknown Username', // Default to 'Unknown Username'
     required this.actions,
     super.key,
   });
@@ -318,7 +363,10 @@ class FriendTile extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundImage: NetworkImage(photoURL),
+          backgroundImage: photoURL.isNotEmpty
+              ? NetworkImage(photoURL)
+              : const AssetImage('lib/assets/default_profile.png')
+                  as ImageProvider,
         ),
         title: Text(
           name,
