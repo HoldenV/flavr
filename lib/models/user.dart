@@ -140,3 +140,11 @@ class UserModel extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+// Send a friend request
+
+// Accept friend request
+
+// Reject friend request
+
+// Cancel a friend request
