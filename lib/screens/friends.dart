@@ -123,7 +123,10 @@ class FriendsScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.person_add, color: Colors.white),
             onPressed: () {
-              print('Person add icon pressed');
+              showDialog(
+                context: context,
+                builder: (context) => AddFriendPopup(authState: authState),
+              );
             },
           ),
         ],
@@ -137,7 +140,11 @@ class FriendsScreen extends StatelessWidget {
         ]),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
+            );
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
@@ -215,10 +222,20 @@ class FriendsScreen extends StatelessWidget {
                       username: friend['username']!,
                       actions: [
                         TextButton(
-                          onPressed: () => authState.user
-                              ?.cancelFriendRequest(friend['uid']),
-                          child: const Text('Cancel',
-                              style: TextStyle(color: Colors.orange)),
+                          onPressed: () async {
+                            final targetUid =
+                                friend['uid']; // Ensure this is not null
+                            if (targetUid != null) {
+                              await authState.user
+                                  ?.cancelFriendRequest(targetUid);
+                            } else {
+                              print('Error: targetUid is null');
+                            }
+                          },
+                          child: const Text(
+                            'Cancel',
+                            style: TextStyle(color: Colors.orange),
+                          ),
                         ),
                       ],
                     )),
@@ -288,3 +305,134 @@ class FriendTile extends StatelessWidget {
     );
   }
 }
+
+class AddFriendPopup extends StatefulWidget {
+  final AuthenticationState authState;
+
+  const AddFriendPopup({required this.authState, super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _AddFriendPopupState createState() => _AddFriendPopupState();
+}
+
+class _AddFriendPopupState extends State<AddFriendPopup> {
+  final TextEditingController _searchController = TextEditingController();
+  List<Map<String, dynamic>> _searchResults = [];
+  bool _isLoading = false;
+
+  Future<void> _searchUsers(String username) async {
+    // Remove the '@' symbol if it exists at the beginning of the username
+    if (username.startsWith('@')) {
+      username = username.substring(1);
+    }
+
+    if (username.isEmpty) {
+      setState(() {
+        _searchResults = [];
+      });
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    final firestore = FirebaseFirestore.instance;
+    final currentUserId = widget.authState.user?.uid;
+    final querySnapshot = await firestore
+        .collection('users')
+        .where('username', isGreaterThanOrEqualTo: username)
+        .where('username', isLessThanOrEqualTo: '$username\uf8ff')
+        .get();
+
+    setState(() {
+      _searchResults = querySnapshot.docs
+          .where((doc) => doc['uid'] != currentUserId)
+          .map((doc) => {
+                'uid': doc['uid'],
+                'profilePhotoURL': doc['profilePhotoURL'],
+                'firstName': doc['firstName'],
+                'lastName': doc['lastName'],
+                'username': doc['username'],
+              })
+          .toList();
+      _isLoading = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      backgroundColor: Colors.grey[900],
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: _searchController,
+              style: const TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                hintText: '@username',
+                hintStyle: const TextStyle(color: Colors.grey),
+                filled: true,
+                fillColor: Colors.grey[800],
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: BorderSide.none,
+                ),
+                prefixIcon: const Icon(Icons.search, color: Colors.white),
+              ),
+              onChanged: _searchUsers,
+            ),
+            const SizedBox(height: 8.0),
+            const Text(
+              '*case sensitive',
+              style: TextStyle(color: Colors.orange, fontSize: 12.0),
+            ),
+            const SizedBox(height: 16.0),
+            if (_isLoading)
+              const Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              )
+            else if (_searchResults.isEmpty)
+              const Text(
+                'No results found',
+                style: TextStyle(color: Colors.orange),
+              )
+            else
+              ..._searchResults.map((user) => ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(user['profilePhotoURL']),
+                    ),
+                    title: Text(
+                      '${user['firstName']} ${user['lastName']}',
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    subtitle: Text(
+                      '@${user['username']}',
+                      style: const TextStyle(color: Colors.grey),
+                    ),
+                    trailing: TextButton(
+                      onPressed: () {
+                        widget.authState.user?.sendFriendRequest(user['uid']);
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text(
+                        'Add Friend',
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                  )),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+// this is a good and working state...
