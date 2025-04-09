@@ -139,12 +139,82 @@ class UserModel extends ChangeNotifier {
     await saveToFirestore();
     notifyListeners();
   }
+
+  // Send a friend request
+  Future<void> sendFriendRequest(String targetUid) async {
+    final firestore = FirebaseFirestore.instance;
+
+    // Add the target user to the current user's sent friend requests
+    friendRequestsSent.add(targetUid);
+    await firestore.collection('users').doc(uid).update({
+      'friendRequestsSent': friendRequestsSent,
+    });
+
+    // Add the current user to the target user's received friend requests
+    await firestore.collection('users').doc(targetUid).update({
+      'friendRequestsReceived': FieldValue.arrayUnion([uid]),
+    });
+
+    notifyListeners();
+  }
+
+  // Accept friend request
+  Future<void> acceptFriendRequest(String requesterUid) async {
+    final firestore = FirebaseFirestore.instance;
+
+    // Remove the requester from the current user's received friend requests
+    friendRequestsReceived.remove(requesterUid);
+    await firestore.collection('users').doc(uid).update({
+      'friendRequestsReceived': friendRequestsReceived,
+    });
+
+    // Add the requester to the current user's friends list
+    friends.add(requesterUid);
+    await firestore.collection('users').doc(uid).update({
+      'friends': friends,
+    });
+
+    // Add the current user to the requester's friends list
+    await firestore.collection('users').doc(requesterUid).update({
+      'friends': FieldValue.arrayUnion([uid]),
+    });
+
+    notifyListeners();
+  }
+
+  // Reject friend request
+  Future<void> rejectFriendRequest(String requesterUid) async {
+    final firestore = FirebaseFirestore.instance;
+
+    // Remove the requester from the current user's received friend requests
+    friendRequestsReceived.remove(requesterUid);
+    await firestore.collection('users').doc(uid).update({
+      'friendRequestsReceived': friendRequestsReceived,
+    });
+
+    // Optionally, remove the current user from the requester's sent friend requests
+    await firestore.collection('users').doc(requesterUid).update({
+      'friendRequestsSent': FieldValue.arrayRemove([uid]),
+    });
+
+    notifyListeners();
+  }
+
+  // Cancel a friend request
+  Future<void> cancelFriendRequest(String targetUid) async {
+    final firestore = FirebaseFirestore.instance;
+
+    // Remove the target user from the current user's sent friend requests
+    friendRequestsSent.remove(targetUid);
+    await firestore.collection('users').doc(uid).update({
+      'friendRequestsSent': friendRequestsSent,
+    });
+
+    // Remove the current user from the target user's received friend requests
+    await firestore.collection('users').doc(targetUid).update({
+      'friendRequestsReceived': FieldValue.arrayRemove([uid]),
+    });
+
+    notifyListeners();
+  }
 }
-
-// Send a friend request
-
-// Accept friend request
-
-// Reject friend request
-
-// Cancel a friend request
