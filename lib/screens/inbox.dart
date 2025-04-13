@@ -59,17 +59,18 @@ class InboxScreenState extends State<InboxScreen> {
                     String notification =
                         notificationsProvider.notifications[index];
                     String firstLine = notification.split('\n').first;
-                    return Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade800),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
+                    return Card(
+                      color: Colors.grey[900],
                       margin: const EdgeInsets.symmetric(
-                          vertical: 4.0, horizontal: 8.0),
+                          vertical: 4.0, horizontal: 16.0),
                       child: ListTile(
                         title: Text(
                           firstLine,
                           style: const TextStyle(color: Colors.white),
+                        ),
+                        subtitle: const Text(
+                          'Tap to view details',
+                          style: TextStyle(color: Colors.grey),
                         ),
                         onTap: () => _showNotificationOverlay(notification),
                       ),
