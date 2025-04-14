@@ -1,56 +1,148 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flavr/widgets/app_state_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
+import '../models/user.dart';
 import '../providers/authentication_state.dart';
 
 class AccountCreationScreen extends StatefulWidget {
+  final UserCredential userCredential;
+
+  const AccountCreationScreen({super.key, required this.userCredential});
+
   @override
   AccountCreationState createState() => AccountCreationState();
 }
 
 class AccountCreationState extends State<AccountCreationScreen> {
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController bioController = TextEditingController();
 
-  void _createAccount() async {
-    String username = _usernameController.text;
-    final authState = Provider.of<AuthenticationState>(context, listen: false);
-    if (authState.userModel != null) {
-      await authState.userModel!.updateUsername(username);
-      if (mounted) {
-        authState.checkUsernameAndNavigate(context, authState);
-      }
+  // Function to create the user account
+  Future<void> createAccount() async {
+    final uid = widget.userCredential.user?.uid;
+    final email = widget.userCredential.user?.email;
+    final profilePhotoUrl = widget.userCredential.user?.photoURL;
+
+    if (uid == null || email == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Error: Missing user information')),
+      );
+      return;
     }
-    print('Username: $username');
+
+    if (usernameController.text.trim().isEmpty ||
+        firstNameController.text.trim().isEmpty ||
+        lastNameController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Error: All fields are required')),
+      );
+      return;
+    }
+
+    // Create the UserModel
+    final userModel = UserModel(
+      uid: uid,
+      email: email,
+      username: usernameController.text.trim(),
+      firstName: firstNameController.text.trim(),
+      lastName: lastNameController.text.trim(),
+      bio: bioController.text.trim(),
+      profilePhotoURL: profilePhotoUrl,
+    );
+
+    try {
+      // Save the UserModel to Firestore
+      await userModel.saveToFirestore();
+
+      // Reinitialize the AuthenticationState
+      if (!mounted) return;
+      final authState =
+          Provider.of<AuthenticationState>(context, listen: false);
+      await authState.initializeAuthState();
+
+      // Navigate to the AppStateWrapper
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const AppStateWrapper()),
+      );
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Account'),
+        title:
+            const Text('Create Account', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.black,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              TextField(
-                controller: _usernameController,
-                decoration: InputDecoration(
-                  labelText: 'Username',
-                  labelStyle: TextStyle(color: Colors.white),
-                ),
-                style: TextStyle(color: Colors.white),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Complete Your Profile',
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+            const SizedBox(height: 20),
+            TextField(
+              controller: usernameController,
+              decoration: const InputDecoration(
+                labelText: 'Username',
+                labelStyle: TextStyle(color: Colors.white),
               ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _createAccount,
-                child: Text('Create Account'),
+              style: const TextStyle(color: Colors.white),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: firstNameController,
+              decoration: const InputDecoration(
+                labelText: 'First Name',
+                labelStyle: TextStyle(color: Colors.white),
               ),
-            ],
-          ),
+              style: const TextStyle(color: Colors.white),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: lastNameController,
+              decoration: const InputDecoration(
+                labelText: 'Last Name',
+                labelStyle: TextStyle(color: Colors.white),
+              ),
+              style: const TextStyle(color: Colors.white),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: bioController,
+              decoration: const InputDecoration(
+                labelText: 'Bio',
+                labelStyle: TextStyle(color: Colors.white),
+              ),
+              style: const TextStyle(color: Colors.white),
+              maxLines: 3,
+            ),
+            const SizedBox(height: 20),
+            const SizedBox(height: 20),
+            Center(
+              child: ElevatedButton(
+                onPressed: createAccount,
+                child: const Text('Create Account'),
+              ),
+            ),
+          ],
         ),
       ),
+      backgroundColor: Colors.black,
     );
   }
 }

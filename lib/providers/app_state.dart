@@ -96,4 +96,16 @@ class AppState with ChangeNotifier {
     imagePaths.add(path);
     notifyListeners();
   }
+
+  String currentRecommendation = '';
+
+  void setRecommendation(String recommendation) {
+    currentRecommendation = recommendation;
+    notifyListeners();
+  }
+
+  String getRecommendation() {
+    notifyListeners();
+    return 'Recommendation';
+  }
 }
