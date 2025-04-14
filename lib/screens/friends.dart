@@ -349,9 +349,9 @@ class FriendTile extends StatelessWidget {
 
   const FriendTile({
     required this.uid,
-    this.photoURL = '', // Default to an empty string
-    this.name = 'Unknown', // Default to 'Unknown'
-    this.username = 'Unknown Username', // Default to 'Unknown Username'
+    this.photoURL = '',
+    this.name = 'Unknown',
+    this.username = 'Unknown Username',
     required this.actions,
     super.key,
   });

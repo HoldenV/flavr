@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 
 class AddFriendPopup extends StatefulWidget {
   final AuthenticationState authState;
-  final VoidCallback onFriendRequestSent; // Add this callback
+  final VoidCallback onFriendRequestSent;
 
   const AddFriendPopup({
     required this.authState,
-    required this.onFriendRequestSent, // Pass the callback
+    required this.onFriendRequestSent,
     super.key,
   });
 

@@ -14,7 +14,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool isVeganOnly = false;
   bool isGFOnly = false;
   bool isAllergenFree = false;
-  double restaurantDistance = 50; // Default slider value
+  double restaurantDistance = 50;
 
   @override
   Widget build(BuildContext context) {

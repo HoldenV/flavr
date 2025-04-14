@@ -242,7 +242,7 @@ class UserModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // remove a friend
+  // Remove a friend
   Future<void> removeFriend(String targetUid) async {
     final firestore = FirebaseFirestore.instance;
 
