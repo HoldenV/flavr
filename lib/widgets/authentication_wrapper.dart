@@ -13,17 +13,18 @@ import '../screens/login.dart';
 
 class AuthenticationWrapper extends StatelessWidget {
   const AuthenticationWrapper({super.key});
-
   @override
   Widget build(BuildContext context) {
     final authState = Provider.of<AuthenticationState>(context);
     final user = authState.user;
 
     if (user == null) {
-      // Direct to login screen if no user is signed in
       return const LoginScreen();
     } else {
-      // Direct to app if user is logged in
+      // Check username and navigate accordingly
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        authState.checkUsernameAndNavigate(context, authState);
+      });
       return const AppStateWrapper();
     }
   }

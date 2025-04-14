@@ -12,6 +12,10 @@ class LoginScreen extends StatelessWidget {
       body: Center(
         child: Consumer2<AuthenticationState, AppState>(
           builder: (context, authState, appState, child) {
+            if (authState.user != null) {
+              // Check if the username is 'null_username' and navigate accordingly
+              authState.checkUsernameAndNavigate(context, authState);
+            }
             return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -20,7 +24,7 @@ class LoginScreen extends StatelessWidget {
                   GestureDetector(
                       onTap: () {
                         Provider.of<AuthenticationState>(context, listen: false)
-                            .signInWithGoogle(context);
+                            .signInWithGoogle();
                       },
                       child: Image.asset(
                         'lib/assets/continue_with_google.png',

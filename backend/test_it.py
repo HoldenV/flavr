@@ -53,9 +53,5 @@ for i in range(0, num_weeks-1):
 DM = cre.DM_from_csv('data/dish_metadata.csv')
 UM = cre.UM_from_csv('data/survey_responses.csv')
 
-start_time = datetime.now()
 recommendations = cre.cre(DM, UM, history, num_recent=5)
-end_time = datetime.now()
-print("\n")
-print("Time taken to generate recommendations:", end_time - start_time)
 print(recommendations)
