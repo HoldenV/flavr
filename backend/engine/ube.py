@@ -15,7 +15,7 @@ def ube(users_matrix, user_taste_vector, user_id = 0):
 
     # Align the user_taste_vector with the columns of similar_users_matrix
     users_matrix.loc[user_id] = user_taste_vector.squeeze()
-    print(users_matrix)
+    # print(users_matrix)
 
     # Calculate User Similarity using cosine similarity
     user_similarity = users_matrix @ users_matrix.T
@@ -31,15 +31,10 @@ def ube(users_matrix, user_taste_vector, user_id = 0):
     similar_users = similarity_scores.index
     recommendations_df = pd.DataFrame()
 
-    # print out NaNs in users_matrix.loc[0]
-    for dish in users_matrix.loc[user_id].index:
-        if pd.isna(users_matrix.loc[user_id][dish]):
-            print(dish)
-
     # put those in a df
     for user in similar_users:
         user_ratings = users_matrix.loc[user].dropna()
-        recommendations_df = recommendations_df.concat(user_ratings)
+        recommendations_df = recommendations_df._append(user_ratings)
 
 
     # average similar user's tastes to get our guy's recommendations
@@ -50,6 +45,5 @@ def ube(users_matrix, user_taste_vector, user_id = 0):
     min_val = recommended_dishes.min()
     max_val = recommended_dishes.max()
     recommended_dishes = 2* ((recommended_dishes - min_val) / (max_val - min_val)) - 1
-
 
     return recommended_dishes

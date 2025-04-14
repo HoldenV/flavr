@@ -78,6 +78,8 @@ def cre(DM, UM, UTV, swipes):
     # Combine recommendations from CBE and UBE
     combined_recs = pd.concat([cbe_recs, ube_recs], axis=1)
     combined_recs.columns = ['CBE', 'UBE']
+    # put those in a csv
+    combined_recs.to_csv('combined_recs.csv', index=True)
     combined_recs = combined_recs.mean(axis=1)
     combined_recs = combined_recs.sort_values(ascending=False)
     
@@ -107,7 +109,6 @@ if __name__ == "__main__":
         recs.to_csv(args.output, index=True)
         print(f"Recommendations saved to {args.output}")
     else:
-        pass
-        # print("Recommendations:")
-        # print(recs)
+        print("Recommendations:")
+        print(recs)
 

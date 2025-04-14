@@ -91,8 +91,8 @@ df_final.drop(columns=list_columns + categorical_columns, inplace=True)
 #Really silly case for grilled cheese
 #also error in firebase i dont wanna fix rn
 df_final.drop(columns=['sandwich, soup/stew'], inplace=True)
-df_final.at['panini/grilled cheese w/ tomato soup', 'sandwich'] = weights['sub category']
-df_final.at['panini/grilled cheese w/ tomato soup', 'soup/stew'] = weights['sub category']
+df_final.at['tomato soup with grilled cheese', 'sandwich'] = weights['sub category']
+df_final.at['tomato soup with grilled cheese', 'soup/stew'] = weights['sub category']
 
 # df_final = df_final.astype(int)
 

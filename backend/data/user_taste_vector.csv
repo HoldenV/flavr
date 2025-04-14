@@ -19,7 +19,7 @@ bouillabaisse,0.0
 duck confit,0.0
 cassoulet,0.0
 quiche lorraine,0.0
-sole meunière,0.0
+sole meuniere,0.0
 tartiflette,0.0
 street tacos,0.0
 mole poblano,-1.0
@@ -47,7 +47,7 @@ mansaf,0.0
 kibbeh,0.0
 moussaka,0.3327151775441746
 souvlaki,-0.3327151775441746
-dolma (stuffed grapeleaves),-0.3327151775441746
+dolma,-0.3327151775441746
 spanakopita,0.6654303550883492
 gyros,0.0
 stifado,0.0
@@ -76,7 +76,7 @@ khao soi,-0.3327151775441746
 larb,0.0
 tom kha gai,0.0
 paella,0.0
-tortilla española,0.0
+tortilla espanola,0.0
 fabada,-0.3327151775441746
 cochinillo,0.0
 bacalao a la vizcaína,-0.3327151775441746
@@ -98,25 +98,25 @@ bbq ribs,0.3327151775441746
 buffalo wings,0.0
 pot roast,0.0
 jambalaya,0.0
-alaskan salmon,0.0
+salmon,0.0
 fried chicken,0.3327151775441746
 chicken pot pie,0.0
-chicken nuggets or tenders,0.3327151775441746
+chicken tenders,0.3327151775441746
 po boy,0.0
 cobb salad,0.0
 caesar salad,0.0
 italian salad,0.0
 taco salad,0.0
 greek salad,0.0
-fattoush,0.0
+fattoush salad,0.0
 wedge salad,0.0
 pasta salad,-0.3327151775441746
 reuben sandwich,0.0
 club sandwich,0.3327151775441746
-philly cheese steak,2.0
+philly cheesesteak,2.0
 fried chicken sandwich,0.0
 pulled pork sandwich,0.0
-panini/grilled cheese w/ tomato soup,0.49907276631626196
+tomato soup with grilled cheese,0.49907276631626196
 blt,0.0
 french dip,0.0
 italian sandwich,0.0
@@ -124,9 +124,9 @@ sloppy joe,0.0
 meatball sub,0.0
 chicken noodle soup,0.0
 pho,0.0
-minestrone,0.0
+minestrone soup,0.0
 french onion soup,0.0
-clam chowder,0.0
+clam chowder soup,0.0
 cream of mushroom soup,-0.3327151775441746
 lentil soup,0.0
 broccoli and cheddar soup,0.0
