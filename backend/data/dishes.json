@@ -33,6 +33,38 @@
         ]
     },
     {
+        "dish name": "cheeseburger",
+        "cuisine": "american",
+        "description": "sandwich with a ground beef patty, cheese, and various toppings",
+        "key ingredients": [
+            "cheese",
+            "beef",
+            "bread",
+            "lettuce",
+            "onion",
+            "tomato"
+        ],
+        "sub category": "sandwich",
+        "spiciness": 1,
+        "seasonality": "yearRound",
+        "temperature": "warm",
+        "texture": "chewy",
+        "crunchiness": 2,
+        "color dominance": [
+            "brown",
+            "yellow",
+            "tan"
+        ],
+        "ingredient visibility": 4,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
+        "eating method": "hands",
+        "allergens/diet stuff": [
+            "gluten free",
+            "nut free"
+        ]
+    },
+    {
         "dish name": "flatbread pizza",
         "cuisine": "italian",
         "description": "a thin, crispy  flatbread that's typically topped with cheese, tomato, and other ingredients, and then baked",

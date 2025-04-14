@@ -17,7 +17,7 @@ def cbe(dish_matrix, user_taste_vector):
     # Calculate dish similarity using cosine similarity
     tastes = dish_matrix.T.dot(user_taste_vector)
     recommended_dishes = dish_matrix.dot(tastes)
-    recommended_dishes.sort_values(ascending=False, inplace=True)
+    recommended_dishes.sort_values(ascending=False, inplace=True, by='taste')
 
     # min/max normalize the recommendations
     min_val = recommended_dishes.min()

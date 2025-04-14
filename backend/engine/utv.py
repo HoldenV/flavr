@@ -20,8 +20,8 @@ def update_UTV_swipes(UTV, swipes):
     UTV['taste'] = UTV['taste'] *.8
 
     #add in swipes
-    for swipe in swipes:
-        UTV.at[swipe['dish name'], 'taste'] += swipe['swiped']
+    for dish_name, swipe in swipes.items():
+        UTV.at[dish_name, 'taste'] += swipe
     
     #normalize the UTV
     np.arctan(UTV['taste'])

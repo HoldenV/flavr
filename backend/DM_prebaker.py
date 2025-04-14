@@ -7,7 +7,7 @@ from sklearn.preprocessing import MultiLabelBinarizer
 
 # Read JSON data into a pandas DataFrame
 try:
-    with open('dishes.json') as f:
+    with open('data/dishes.json') as f:
         json_data = json.load(f)
 except FileNotFoundError:
     print("dishes.json not found. Download it from Firebase and place it in the same directory as this script.")

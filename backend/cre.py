@@ -43,7 +43,7 @@ def UTV_from_csv(csv_name):
         csv_name += ".csv"
 
     df = pd.read_csv(csv_name)
-    df.set_index('dish name', inplace=True)
+    df.set_index('dish', inplace=True)
     return df # user taste vector for the current user
 
 def DM_from_csv(csv_path):
@@ -98,15 +98,16 @@ if __name__ == "__main__":
     # Load the dish matrix, user matrix, and swipe history
     DM = DM_from_csv(args.dish_metadata)
     UM = UM_from_csv(args.user_matrix)
-    UTV = UTV_from_csv(args.utv)
+    UTV = UTV_from_csv(args.user_taste_vector)
 
     # Run the collaborative recommendation engine
-    recs = cre(DM, UM, UTV, swipes)
+    recs = cre(DM, UM, UTV, {'pizza': -1, 'burrito': -1, 'steak': 1, 'lasagna': -1, 'ramen': -1, 'sushi': 1, 'chili': 1, 'mac and cheese': -1, 'fried chicken': 1, 'chicken tikka masala': -1})
 
     if args.output:
         recs.to_csv(args.output, index=True)
         print(f"Recommendations saved to {args.output}")
     else:
-        print("Recommendations:")
-        print(recs)
+        pass
+        # print("Recommendations:")
+        # print(recs)
 
