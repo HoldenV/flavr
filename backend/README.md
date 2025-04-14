@@ -12,9 +12,3 @@ Abbreviations used:
     UTV - User Taste Vector
     DM  - Dish Metadata
     UM  - User matrix (stacked UTVs)
-
-
-~~~ FRONTEND ~~~
-We need to discuss how we're storing USER TASTE HISTORIES and OTHER RELEVANT DATA
-Then we need to be passed the CURRENT USERS SWIPES into cre.py
-cre.py will spit out a list of ALL DISHES RANKED so long as it has ALL THE DATA
