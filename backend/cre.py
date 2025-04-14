@@ -78,8 +78,6 @@ def cre(DM, UM, UTV, swipes):
     # Combine recommendations from CBE and UBE
     combined_recs = pd.concat([cbe_recs, ube_recs], axis=1)
     combined_recs.columns = ['CBE', 'UBE']
-    # put those in a csv
-    combined_recs.to_csv('combined_recs.csv', index=True)
     combined_recs = combined_recs.mean(axis=1)
     combined_recs = combined_recs.sort_values(ascending=False)
     
@@ -102,8 +100,22 @@ if __name__ == "__main__":
     UM = UM_from_csv(args.user_matrix)
     UTV = UTV_from_csv(args.user_taste_vector)
 
+    swipes = {
+        'pizza':                -1,
+        'burrito':              -1,
+        'steak':                 1,
+        'lasagna':              -1,
+        'ramen':                -1,
+        'sushi':                 1,
+        'chili':                 1,
+        'mac and cheese':       -1,
+        'fried chicken':         1,
+        'chicken tikka masala': -1,
+        'huli huli':            -1
+    }
+
     # Run the collaborative recommendation engine
-    recs = cre(DM, UM, UTV, {'pizza': -1, 'burrito': -1, 'steak': 1, 'lasagna': -1, 'ramen': -1, 'sushi': 1, 'chili': 1, 'mac and cheese': -1, 'fried chicken': 1, 'chicken tikka masala': -1})
+    recs = cre(DM, UM, UTV, swipes)
 
     if args.output:
         recs.to_csv(args.output, index=True)
