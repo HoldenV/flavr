@@ -43,7 +43,7 @@ Tinder for finding food.
 
     **Katie**
     Account / Setting page design
-    Building API using Flask
+    Building API (in Firebase)
 
     **Michael**
     Get random food cards
