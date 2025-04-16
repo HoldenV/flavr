@@ -1,3 +1,4 @@
+import 'package:flavr/services/location_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
@@ -5,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flavr/widgets/recommendation_popup.dart';
 import 'package:provider/provider.dart';
 import 'package:flavr/providers/app_state.dart';
+import 'package:flavr/services/google_maps.dart';
+import 'package:flavr/services/path_service.dart';
 import 'dart:math';
 
 class HomeScreen extends StatefulWidget {
@@ -177,6 +180,21 @@ class _HomeScreenState extends State<HomeScreen> {
     print(appState.positiveSwipes);
     print(appState.negativeSwipes);
 
+    appState.setRecommendation(await appState.getRecommendation());
+
+    if (appState.swipeCount >= 7) {
+      List<double> longLat = await getLongLat();
+      List<dynamic> results = (await textSearchPlaces(
+        query: appState.currentRecommendation,
+        latitude: longLat[1],
+        longitude: longLat[0],
+        apiKey: await getApiKey(),
+        radius: 1000,
+      ));
+      print(results);
+      appState.updateRestaurants(results);
+    }
+
     String newPath = await generateFoodPath();
     appState.addCard(newPath);
 
@@ -187,38 +205,4 @@ class _HomeScreenState extends State<HomeScreen> {
 bool _onTap() {
   print('Card tapped');
   return true;
-}
-
-nameToPath(String foodName) {
-  String path = foodName.toLowerCase().replaceAll(' ', '-');
-  path = 'lib/assets/dish_images/$path.jpg';
-  return path;
-}
-
-pathToName(String path) {
-  String foodName = path
-      .substring(23, path.length - 4)
-      .replaceAll('lib/assets/dish_images/', '');
-  return foodName;
-}
-
-Future<String> numToFood(int number) async {
-  try {
-    String content = await rootBundle.loadString('lib/data/foods.csv');
-    List<String> lines = content.split('\n');
-    return lines[number].trim();
-  } catch (e) {
-    print('Error reading file: $e');
-    return ''; // Return an empty string or handle as appropriate
-  }
-}
-
-generateFoodPath() async {
-  var random = Random();
-  String foodName = await numToFood(random.nextInt(131));
-  return nameToPath(foodName);
-}
-
-Future<String> loadCsv() async {
-  return await rootBundle.loadString('lib/data/foods.csv');
 }

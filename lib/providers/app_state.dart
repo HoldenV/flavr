@@ -10,6 +10,7 @@ import 'package:flavr/screens/friends.dart';
 import 'package:flavr/screens/home.dart';
 import 'package:flavr/screens/profile.dart';
 import 'package:flavr/screens/inbox.dart';
+import 'package:flavr/services/path_service.dart';
 
 class AppState with ChangeNotifier {
   // Location Service Management
@@ -87,6 +88,8 @@ class AppState with ChangeNotifier {
     swipeCount = 0;
     positiveSwipes = [];
     negativeSwipes = [];
+    currentRecommendation = '';
+    currentRestaurants = [];
     notifyListeners();
   }
 
@@ -98,14 +101,21 @@ class AppState with ChangeNotifier {
   }
 
   String currentRecommendation = '';
+  List<dynamic> currentRestaurants = [];
 
   void setRecommendation(String recommendation) {
     currentRecommendation = recommendation;
     notifyListeners();
   }
 
-  String getRecommendation() {
+Future<String> getRecommendation() async {
+  notifyListeners();
+  final path = await generateFoodPath();
+  return pathToName(path);
+}
+
+  void updateRestaurants(List<dynamic> restaurantData) {
+    currentRestaurants = restaurantData;
     notifyListeners();
-    return 'Recommendation';
   }
 }

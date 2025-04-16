@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:flavr/providers/app_state.dart';
+import 'package:flavr/services/path_service.dart';
+import 'package:flavr/services/google_maps.dart';
 
 class RecommendationPopup extends StatefulWidget {
   @override
@@ -100,8 +102,9 @@ class _RecommendationPopupState extends State<RecommendationPopup>
                 ScaleTransition(
                   scale: _cardAnimation,
                   child: RecommendationCardDisplay(
-                    imagePath: 'lib/assets/dish_images/hot-pot.jpg',
-                    dishName: 'Hot Pot',
+                    imagePath: nameToPath(appState.currentRecommendation),
+                    dishName: appState.currentRecommendation[0].toUpperCase() +
+                        appState.currentRecommendation.substring(1),
                   ),
                 ),
               ],
@@ -121,6 +124,7 @@ class RecommendationCardDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appState = Provider.of<AppState>(context);
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Card(
@@ -177,33 +181,58 @@ class RecommendationCardDisplay extends StatelessWidget {
                       textAlign: TextAlign.left,
                     ),
                     SizedBox(height: screenHeight * 0.005),
-                    // Wrap the restaurant cards in a container with a defined height
+                    // Wrap the restaurantƒ cards in a container with a defined height
                     SizedBox(
-                      width: screenWidth *
-                          0.8, // Constrain the width to the card's width
-                      height: screenHeight * 0.20, // adjust as needed
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            RestaurantCard(
-                              image_path: 'lib/assets/res1.jpg',
-                              restaurant_name: 'KPOT',
+                      width: screenWidth * 0.8,
+                      height: screenHeight * 0.20,
+                      child: FutureBuilder<String>(
+                        future: getApiKey(), // Get the API key asynchronously.
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(child: CircularProgressIndicator());
+                          } else if (snapshot.hasError) {
+                            return Center(
+                                child: Text('Error: ${snapshot.error}'));
+                          }
+                          // Once the API key is available, build your row of RestaurantCards.
+                          final apiKey = snapshot.data!;
+                          return SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                RestaurantCard(
+                                  image: getPlacePhoto(
+                                      appState.currentRestaurants[0]['photos']
+                                          [0]['photo_reference'],
+                                      apiKey),
+                                  restaurant_name:
+                                      appState.currentRestaurants[0]['name'],
+                                ),
+                                SizedBox(width: 5),
+                                RestaurantCard(
+                                  image: getPlacePhoto(
+                                      appState.currentRestaurants[1]['photos']
+                                          [0]['photo_reference'],
+                                      apiKey),
+                                  restaurant_name:
+                                      appState.currentRestaurants[1]['name'],
+                                ),
+                                SizedBox(width: 5),
+                                RestaurantCard(
+                                  image: getPlacePhoto(
+                                      appState.currentRestaurants[2]['photos']
+                                          [0]['photo_reference'],
+                                      apiKey),
+                                  restaurant_name:
+                                      appState.currentRestaurants[2]['name'],
+                                ),
+                              ],
                             ),
-                            SizedBox(width: 5), // spacing between cards
-                            RestaurantCard(
-                              image_path: 'lib/assets/res2.jpg',
-                              restaurant_name: 'Three Bowl',
-                            ),
-                            SizedBox(width: 5),
-                            RestaurantCard(
-                              image_path: 'lib/assets/res3.jpg',
-                              restaurant_name: 'Lotus Hot Pot',
-                            ),
-                          ],
-                        ),
+                          );
+                        },
                       ),
-                    ),
+                    )
                   ],
                 ),
               )
@@ -216,10 +245,10 @@ class RecommendationCardDisplay extends StatelessWidget {
 }
 
 class RestaurantCard extends StatelessWidget {
-  final String image_path;
+  final Image image;
   final String restaurant_name;
 
-  RestaurantCard({required this.image_path, required this.restaurant_name});
+  RestaurantCard({required this.image, required this.restaurant_name});
 
   @override
   Widget build(BuildContext context) {
@@ -235,11 +264,13 @@ class RestaurantCard extends StatelessWidget {
           return ClipRRect(
             borderRadius: BorderRadius.circular(16.0),
             child: Stack(children: [
-              Image.asset(
-                image_path,
-                width: screenWidth * 0.6,
-                height: screenHeight * 0.2,
-                fit: BoxFit.cover,
+              SizedBox(
+                width: screenWidth * 0.65,
+                height: screenHeight * 0.65,
+                child: FittedBox(
+                  fit: BoxFit.cover,
+                  child: image,
+                ),
               ),
               Positioned.fill(
                 child: Container(
@@ -265,12 +296,20 @@ class RestaurantCard extends StatelessWidget {
               Positioned(
                 bottom: 8, // adjust as needed
                 left: 16, // adjust as needed
-                child: Text(
-                  restaurant_name,
-                  style: TextStyle(
-                    fontFamily: 'Arial Rounded MT Bold',
-                    fontSize: screenWidth * 0.05,
-                    color: Colors.white,
+                child: SizedBox(
+                  width:
+                      screenWidth * 0.6, // Constrain width to prevent overflow
+                  child: Text(
+                    restaurant_name,
+                    maxLines: 2, // Allows up to 2 lines
+                    overflow: TextOverflow
+                        .ellipsis, // Fade or cut off if still too long
+                    softWrap: true,
+                    style: TextStyle(
+                      fontFamily: 'Arial Rounded MT Bold',
+                      fontSize: screenWidth * 0.05,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

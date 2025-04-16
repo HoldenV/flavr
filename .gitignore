@@ -49,3 +49,6 @@ firebase_key.json
 
 #Fake Data stuff
 /backend/fake_data/data
+
+# Secret
+assets/secret.json
