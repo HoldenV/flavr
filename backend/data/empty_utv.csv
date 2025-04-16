@@ -1,5 +1,6 @@
 dish,taste
 pizza,0.0
+cheeseburger,0.0
 flatbread pizza,0.0
 burrito,0.0
 steak,0.0
@@ -35,7 +36,7 @@ tonkatsu,0.0
 yakitori,0.0
 udon,0.0
 okonomiyaki,0.0
-shabushabu,0.0
+shabu-shabu,0.0
 donburi,0.0
 shawarma,0.0
 kofta,0.0
