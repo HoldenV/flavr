@@ -14,7 +14,7 @@ except FileNotFoundError:
     exit()
 
 df = pd.DataFrame(json_data)
-df.set_index('dish name', inplace=True)
+df.set_index('dish', inplace=True)
 
 # define weights, these are arbitrary and can be added to or changed
 weights = {

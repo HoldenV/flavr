@@ -1,6 +1,6 @@
 [
     {
-        "dish name": "pizza",
+        "dish": "pizza",
         "cuisine": "american",
         "description": "a flatbread that's typically topped with cheese, tomato, and other ingredients, and then baked",
         "key ingredients": [
@@ -33,7 +33,7 @@
         ]
     },
     {
-        "dish name": "cheeseburger",
+        "dish": "cheeseburger",
         "cuisine": "american",
         "description": "sandwich with a ground beef patty, cheese, and various toppings",
         "key ingredients": [
@@ -65,7 +65,7 @@
         ]
     },
     {
-        "dish name": "flatbread pizza",
+        "dish": "flatbread pizza",
         "cuisine": "italian",
         "description": "a thin, crispy  flatbread that's typically topped with cheese, tomato, and other ingredients, and then baked",
         "key ingredients": [
@@ -100,7 +100,7 @@
         ]
     },
     {
-        "dish name": "burrito",
+        "dish": "burrito",
         "cuisine": "mexican",
         "description": "a mexican dish of a flour tortilla wrapped around a filling. typical fillings include meat, beans, rice, cheese, salsa, and vegetables.",
         "key ingredients": [
@@ -138,7 +138,7 @@
         ]
     },
     {
-        "dish name": "steak",
+        "dish": "steak",
         "cuisine": "american",
         "description": "a cut of beef that's made from muscle tissue. it can be seasoned with salt and pepper, or with herbs and spices. steaks can be cooked on the stove, grill, or in the oven",
         "key ingredients": [
@@ -164,7 +164,7 @@
         ]
     },
     {
-        "dish name": "mac and cheese",
+        "dish": "mac and cheese",
         "cuisine": "american",
         "description": "a dish made with cooked macaroni pasta covered in a creamy cheese sauce, typically using cheddar cheese, and usually baked with a breadcrumb topping",
         "key ingredients": [
@@ -191,7 +191,7 @@
         ]
     },
     {
-        "dish name": "chicken tikka masala",
+        "dish": "chicken tikka masala",
         "cuisine": "indian",
         "description": "an indian dish of spiced chicken in a creamy tomato sauce served over rice. the dish often includes garam masala, cumin, coriander, and other spices",
         "key ingredients": [
@@ -221,7 +221,7 @@
         ]
     },
     {
-        "dish name": "general tso's chicken",
+        "dish": "general tso's chicken",
         "cuisine": "chinese, american",
         "description": "a dish of crispy fried chicken in a sweet and sticky sauce. the dish is often served with steamed rice and vegetables",
         "key ingredients": [
@@ -252,7 +252,7 @@
         ]
     },
     {
-        "dish name": "chili",
+        "dish": "chili",
         "cuisine": "american, mexican",
         "description": "a hearty stew-like dish made with meat, chili peppers, tomatoes, and other ingredients. it can be spicy, medium, or mild.",
         "key ingredients": [
@@ -284,7 +284,7 @@
         ]
     },
     {
-        "dish name": "lasagna",
+        "dish": "lasagna",
         "cuisine": "italian",
         "description": "a baked pasta dish made of layers of flat pasta sheets, sauce, and other ingredients",
         "key ingredients": [
@@ -315,7 +315,7 @@
         ]
     },
     {
-        "dish name": "pasta carbonara",
+        "dish": "pasta carbonara",
         "cuisine": "italian",
         "description": "a pasta dish made with fatty cured pork, hard cheese, eggs, salt, and black pepper",
         "key ingredients": [
@@ -344,7 +344,7 @@
         ]
     },
     {
-        "dish name": "fettuccine alfredo",
+        "dish": "fettuccine alfredo",
         "cuisine": "italian",
         "description": "a pasta dish of fettuccine tossed in butter and parmesan cheese. the butter and cheese melt and emulsify to create a rich, creamy sauce",
         "key ingredients": [
@@ -375,7 +375,7 @@
         ]
     },
     {
-        "dish name": "calzone",
+        "dish": "calzone",
         "cuisine": "italian",
         "description": "an italian baked turnover made from pizza dough folded over a filling",
         "key ingredients": [
@@ -407,7 +407,7 @@
         ]
     },
     {
-        "dish name": "gnocchi",
+        "dish": "gnocchi",
         "cuisine": "italian",
         "description": "a type of pasta made from potato dumplings that are typically flavored with herbs and seasonings. the dumplings are often served in sauce, but can also be fried.",
         "key ingredients": [
@@ -435,7 +435,7 @@
         ]
     },
     {
-        "dish name": "saltimbocca",
+        "dish": "saltimbocca",
         "cuisine": "italian",
         "description": "an italian dish of thin-sliced meat wrapped around prosciutto and sage, then cooked in butter or wine. the name literally means \"it jumps in the mouth",
         "key ingredients": [
@@ -466,7 +466,7 @@
         ]
     },
     {
-        "dish name": "coq au vin",
+        "dish": "coq au vin",
         "cuisine": "french",
         "description": "a classic french dish featuring chicken pieces braised in a rich red wine sauce, typically alongside bacon, mushrooms, onions, carrots, and herbs like thyme and bay leaves, translating literally to \"rooster in wine\" in french; it's considered a hearty stew with tender chicken and a deeply flavorful sauce, often served with crusty bread or mashed potatoes",
         "key ingredients": [
@@ -499,7 +499,7 @@
         ]
     },
     {
-        "dish name": "bouillabaisse",
+        "dish": "bouillabaisse",
         "cuisine": "french",
         "description": "a traditional french fish stew known for its rich, flavorful broth made with a variety of fresh mediterranean fish, shellfish, vegetables like onions, tomatoes, fennel, and key spices like saffron, garlic, and orange zest, all simmered quickly in olive oil; the cooked fish is usually served separately from the broth, which is often enjoyed with toasted bread to soak up the flavors",
         "key ingredients": [
@@ -536,7 +536,7 @@
         ]
     },
     {
-        "dish name": "duck confit",
+        "dish": "duck confit",
         "cuisine": "french",
         "description": "a french dish of duck that's been cured and slow-cooked in duck fat. the result is tender, silky meat that's rich and savory",
         "key ingredients": [
@@ -563,7 +563,7 @@
         ]
     },
     {
-        "dish name": "cassoulet",
+        "dish": "cassoulet",
         "cuisine": "french",
         "description": "a hearty, slow-cooked french stew made with beans, meat, and herbs. the dish originated in the languedoc region of france and is often made with duck confit, sausage, and white beans",
         "key ingredients": [
@@ -599,7 +599,7 @@
         ]
     },
     {
-        "dish name": "quiche lorraine",
+        "dish": "quiche lorraine",
         "cuisine": "french",
         "description": "a classic french savory tart made with a pastry crust filled with a creamy custard mixture of eggs, cream, and bacon, originating from the lorraine region of france; it is typically served with grated cheese like gruy\u00e8re, and can be enjoyed warm or cold",
         "key ingredients": [
@@ -628,7 +628,7 @@
         ]
     },
     {
-        "dish name": "sole meuni\u00e8re",
+        "dish": "sole meuni\u00e8re",
         "cuisine": "french",
         "description": "a french dish of floured and pan-fried sole served with lemon, parsley, and melted butter. the name translates to \"miller's wife\" and refers to the flour used to coat the fish.",
         "key ingredients": [
@@ -654,7 +654,7 @@
         ]
     },
     {
-        "dish name": "tartiflette",
+        "dish": "tartiflette",
         "cuisine": "french",
         "description": "a gooey, creamy baked casserole of potatoes, cream, cheese, bacon, and onions",
         "key ingredients": [
@@ -683,7 +683,7 @@
         ]
     },
     {
-        "dish name": "street tacos",
+        "dish": "street tacos",
         "cuisine": "mexican",
         "description": "a small, typically soft corn tortilla filled with seasoned meat (like marinated beef, pork, or chicken), usually topped with only a few simple ingredients like chopped onions, cilantro, and a squeeze of lime, often served with a side of salsa; the key is the minimal toppings and focus on the fresh, flavorful meat and small tortilla size, making them perfect for grabbing on the go",
         "key ingredients": [
@@ -720,7 +720,7 @@
         ]
     },
     {
-        "dish name": "mole poblano",
+        "dish": "mole poblano",
         "cuisine": "mexican",
         "description": "a rich, complex, dark red-brown sauce commonly served over turkey or chicken",
         "key ingredients": [
@@ -752,7 +752,7 @@
         ]
     },
     {
-        "dish name": "enchiladas",
+        "dish": "enchiladas",
         "cuisine": "mexican",
         "description": "a mexican dish of rolled tortillas filled with various ingredients and covered in sauce. they are often baked.",
         "key ingredients": [
@@ -792,7 +792,7 @@
         ]
     },
     {
-        "dish name": "pozole",
+        "dish": "pozole",
         "cuisine": "mexican",
         "description": "a traditional mexican soup made with hominy, meat, and broth, seasoned with chiles and spices. it's often served with accompaniments like cabbage, radishes, and avocado",
         "key ingredients": [
@@ -826,7 +826,7 @@
         ]
     },
     {
-        "dish name": "tamales",
+        "dish": "tamales",
         "cuisine": "mexican",
         "description": "a traditional mexican dish of corn dough wrapped around fillings and steamed",
         "key ingredients": [
@@ -858,7 +858,7 @@
         ]
     },
     {
-        "dish name": "cochinita pibil",
+        "dish": "cochinita pibil",
         "cuisine": "mexican",
         "description": "a traditional mexican dish of slow-roasted pork. the name means \"little pig cooked underground\".",
         "key ingredients": [
@@ -887,7 +887,7 @@
         ]
     },
     {
-        "dish name": "birria",
+        "dish": "birria",
         "cuisine": "mexican",
         "description": "a flavorful mexican stew or soup made with meat marinated in chilies, spices, and herbs, and then braised in broth. it's often served with tortillas, onions, cilantro, and lime.",
         "key ingredients": [
@@ -919,7 +919,7 @@
         ]
     },
     {
-        "dish name": "carne asada",
+        "dish": "carne asada",
         "cuisine": "mexican",
         "description": "a mexican dish of grilled beef that's marinated and thinly sliced. the term translates to \"grilled meat\" in spanish",
         "key ingredients": [
@@ -945,7 +945,7 @@
         ]
     },
     {
-        "dish name": "sushi",
+        "dish": "sushi",
         "cuisine": "japanese",
         "description": "a japanese dish of vinegared rice and other ingredients, such as seafood, vegetables, or eggs. the word \"sushi\" translates to \"sour rice\" in japanese.",
         "key ingredients": [
@@ -986,7 +986,7 @@
         ]
     },
     {
-        "dish name": "ramen",
+        "dish": "ramen",
         "cuisine": "japanese",
         "description": "a japanese noodle soup made with wheat noodles, broth, and various toppings. the broth is often flavored with soy sauce or miso.",
         "key ingredients": [
@@ -1022,7 +1022,7 @@
         ]
     },
     {
-        "dish name": "shrimp tempura",
+        "dish": "shrimp tempura",
         "cuisine": "japanese",
         "description": "a japanese dish of lightly battered shrimp that's deep-fried until crispy. it's often served with a dipping sauce.",
         "key ingredients": [
@@ -1049,7 +1049,7 @@
         ]
     },
     {
-        "dish name": "tonkatsu",
+        "dish": "tonkatsu",
         "cuisine": "japanese",
         "description": "a japanese dish of deep-fried pork cutlets. the name comes from the japanese words ton (pork) and katsu (cutlet). tonkatsu is similar to the german dish schnitzel.",
         "key ingredients": [
@@ -1076,7 +1076,7 @@
         ]
     },
     {
-        "dish name": "yakitori",
+        "dish": "yakitori",
         "cuisine": "japanese",
         "description": "a japanese dish of bite-sized pieces of chicken that are skewered and grilled. the word \"yakitori\" literally translates to \"grilled chicken\".",
         "key ingredients": [
@@ -1103,7 +1103,7 @@
         ]
     },
     {
-        "dish name": "udon",
+        "dish": "udon",
         "cuisine": "japanese",
         "description": "a thick, chewy, japanese noodle made from wheat flour. it can be served in soups, stir-fried, or boiled, and is often accompanied by vegetables and tempura.",
         "key ingredients": [
@@ -1137,7 +1137,7 @@
         ]
     },
     {
-        "dish name": "okonomiyaki",
+        "dish": "okonomiyaki",
         "cuisine": "japanese",
         "description": "a savory japanese pancake made from flour, cabbage, egg, and other ingredients, cooked on a griddle and topped with sauce and garnishes. the name translates to \"what you want grilled\".",
         "key ingredients": [
@@ -1172,7 +1172,7 @@
         ]
     },
     {
-        "dish name": "shabu-shabu",
+        "dish": "shabu-shabu",
         "cuisine": "japanese",
         "description": "a japanese hot pot dish of thinly sliced meat and vegetables cooked in broth. the name comes from the sound \"swish swish\" that the meat makes when stirred in the pot.",
         "key ingredients": [
@@ -1210,7 +1210,7 @@
         ]
     },
     {
-        "dish name": "donburi",
+        "dish": "donburi",
         "cuisine": "japanese",
         "description": "a japanese dish of rice served in a bowl with meat, vegetables, or seafood on top. the word donburi literally means \"bowl\".  donburi is made by simmering ingredients together and serving them over rice.",
         "key ingredients": [
@@ -1251,7 +1251,7 @@
         ]
     },
     {
-        "dish name": "shawarma",
+        "dish": "shawarma",
         "cuisine": "middle eastern",
         "description": "a popular middle eastern dish of marinated meat that's cooked on a vertical rotisserie and served in a wrap or sandwich. the word \"shawarma\" is arabic for \"turning\".",
         "key ingredients": [
@@ -1284,7 +1284,7 @@
         ]
     },
     {
-        "dish name": "kofta",
+        "dish": "kofta",
         "cuisine": "middle eastern",
         "description": "a meatball or meatloaf-like dish typically made from ground meat (like beef, lamb, or chicken), mixed with spices, onions, garlic, and sometimes other herbs,",
         "key ingredients": [
@@ -1314,7 +1314,7 @@
         ]
     },
     {
-        "dish name": "tabbouleh",
+        "dish": "tabbouleh",
         "cuisine": "middle eastern",
         "description": "a levantine salad of finely chopped parsley, soaked bulgur, tomatoes, mint, and onion, seasoned with olive oil, lemon juice, salt and sweet pepper. some variations add lettuce, or use semolina instead of bulgur.",
         "key ingredients": [
@@ -1344,7 +1344,7 @@
         ]
     },
     {
-        "dish name": "shakshuka",
+        "dish": "shakshuka",
         "cuisine": "middle eastern",
         "description": "a dish of eggs poached in a spicy tomato sauce with vegetables",
         "key ingredients": [
@@ -1376,7 +1376,7 @@
         ]
     },
     {
-        "dish name": "falafel",
+        "dish": "falafel",
         "cuisine": "middle eastern",
         "description": "deep-fried balls or patties made from chickpeas or fava beans, sometimes both, plus fresh herbs and spices.",
         "key ingredients": [
@@ -1406,7 +1406,7 @@
         ]
     },
     {
-        "dish name": "mansaf",
+        "dish": "mansaf",
         "cuisine": "middle eastern",
         "description": "a traditional jordanian dish made with lamb, rice, jameed, and other ingredients.",
         "key ingredients": [
@@ -1435,7 +1435,7 @@
         ]
     },
     {
-        "dish name": "kibbeh",
+        "dish": "kibbeh",
         "cuisine": "middle eastern",
         "description": "a middle eastern dish of seasoned ground meat and bulgur wheat that's formed into balls or patties. it can be baked, fried, grilled, or eaten raw. kibbeh is similar to falafel, but richer because it contains meat.",
         "key ingredients": [
@@ -1465,7 +1465,7 @@
         ]
     },
     {
-        "dish name": "moussaka",
+        "dish": "moussaka",
         "cuisine": "greek",
         "description": "a baked dish of eggplant, ground meat, and a creamy sauce. it's a classic mediterranean dish that's most commonly associated with greece and turkey.",
         "key ingredients": [
@@ -1500,7 +1500,7 @@
         ]
     },
     {
-        "dish name": "souvlaki",
+        "dish": "souvlaki",
         "cuisine": "greek",
         "description": "a greek dish of meat or vegetables on a skewer that's grilled and often eaten in a pita. the word souvlaki roughly translates to \"skewer\".",
         "key ingredients": [
@@ -1534,7 +1534,7 @@
         ]
     },
     {
-        "dish name": "dolma",
+        "dish": "dolma",
         "cuisine": "greek",
         "description": "a mediterranean dish of seasoned vegetables, meat, or seafood stuffed into leaves or hollowed-out fruits. the word \"dolma\" comes from the turkish word dolmak, which means \"stuffed\".",
         "key ingredients": [
@@ -1568,7 +1568,7 @@
         ]
     },
     {
-        "dish name": "spanakopita",
+        "dish": "spanakopita",
         "cuisine": "greek",
         "description": "a greek savory pie made with spinach, feta cheese, and flaky phyllo dough",
         "key ingredients": [
@@ -1599,7 +1599,7 @@
         ]
     },
     {
-        "dish name": "gyros",
+        "dish": "gyros",
         "cuisine": "greek",
         "description": "a greek dish of meat cooked on a vertical rotisserie, then sliced and served in a pita with vegetables and tzatziki sauce.",
         "key ingredients": [
@@ -1635,7 +1635,7 @@
         ]
     },
     {
-        "dish name": "stifado",
+        "dish": "stifado",
         "cuisine": "greek",
         "description": "a greek beef stew that's seasoned with red wine, warming spices, and lots of onions.",
         "key ingredients": [
@@ -1668,7 +1668,7 @@
         ]
     },
     {
-        "dish name": "fasolada",
+        "dish": "fasolada",
         "cuisine": "greek",
         "description": "a greek bean soup made with white beans, vegetables, olive oil, and herbs. it's a hearty, nourishing soup that's often eaten in the winter.",
         "key ingredients": [
@@ -1702,7 +1702,7 @@
         ]
     },
     {
-        "dish name": "kleftiko",
+        "dish": "kleftiko",
         "cuisine": "greek",
         "description": "a traditional greek dish of slow-cooked lamb. the greek word kleftiko translates to \"stolen meat\".",
         "key ingredients": [
@@ -1733,7 +1733,7 @@
         ]
     },
     {
-        "dish name": "peking duck",
+        "dish": "peking duck",
         "cuisine": "chinese",
         "description": "a famous chinese dish of roasted duck with crispy skin and tender meat. it's often served with pancakes, scallions, and hoisin sauce.",
         "key ingredients": [
@@ -1762,7 +1762,7 @@
         ]
     },
     {
-        "dish name": "kung pao chicken",
+        "dish": "kung pao chicken",
         "cuisine": "chinese",
         "description": "a spicy, stir-fried chinese dish originating from sichuan cuisine, featuring cubed chicken, peanuts, vegetables, dried chili peppers, and often sichuan peppercorns, all tossed in a savory sauce with a balance of sweet and spicy flavors; it's known for its bold taste and is typically quite hot due to the chili peppers and sichuan peppercorns.",
         "key ingredients": [
@@ -1793,7 +1793,7 @@
         ]
     },
     {
-        "dish name": "mapo tofu",
+        "dish": "mapo tofu",
         "cuisine": "chinese",
         "description": "a spicy chinese dish of tofu in a chili-bean sauce with minced meat and sichuan peppercorns. the name roughly translates to \"pockmarked grandma's tofu\".",
         "key ingredients": [
@@ -1824,7 +1824,7 @@
         ]
     },
     {
-        "dish name": "sweet and sour pork",
+        "dish": "sweet and sour pork",
         "cuisine": "chinese",
         "description": "a traditional cantonese dish made with bite-sized pieces of pork in a sweet and tangy sauce. the dish often includes vegetables like onions, bell peppers, and carrots.",
         "key ingredients": [
@@ -1859,7 +1859,7 @@
         ]
     },
     {
-        "dish name": "hot pot",
+        "dish": "hot pot",
         "cuisine": "chinese",
         "description": "a communal dining experience where diners cook a variety of raw ingredients like thinly sliced meat, seafood, vegetables, tofu, and noodles by dipping them into a simmering pot of flavored broth placed on a tabletop burner, allowing for quick cooking right at the table",
         "key ingredients": [
@@ -1896,7 +1896,7 @@
         ]
     },
     {
-        "dish name": "chow mein",
+        "dish": "chow mein",
         "cuisine": "chinese",
         "description": "a chinese dish of stir-fried noodles, vegetables, and sometimes meat. the word \"chow mein\" comes from the taishan dialect of chinese, where \"chau\" means stir-fried and \"meing\" means noodles.",
         "key ingredients": [
@@ -1932,7 +1932,7 @@
         ]
     },
     {
-        "dish name": "zongzi",
+        "dish": "zongzi",
         "cuisine": "chinese",
         "description": "a traditional chinese sticky rice dumpling wrapped in bamboo or reed leaves and filled with sweet or savory ingredients. the dumplings are often pyramid-shaped and can be boiled or steamed.",
         "key ingredients": [
@@ -1964,7 +1964,7 @@
         ]
     },
     {
-        "dish name": "beef and broccoli",
+        "dish": "beef and broccoli",
         "cuisine": "chinese",
         "description": "a popular chinese dish consisting of stir-fried sliced beef and broccoli florets, typically cooked in a savory sauce made with soy sauce, oyster sauce, garlic, ginger, and sometimes a touch of sugar, creating a rich and flavorful combination; it's often served over rice and is considered a staple at many chinese restaurants in the west.",
         "key ingredients": [
@@ -1995,7 +1995,7 @@
         ]
     },
     {
-        "dish name": "char siu",
+        "dish": "char siu",
         "cuisine": "chinese",
         "description": "a cantonese-style barbecue pork that's sweet, salty, and smoky. it's made by marinating pork in a sauce and then roasting it.",
         "key ingredients": [
@@ -2024,7 +2024,7 @@
         ]
     },
     {
-        "dish name": "butter chicken",
+        "dish": "butter chicken",
         "cuisine": "indian",
         "description": "a rich and flavorful indian dish of chicken in a creamy, spiced tomato sauce.",
         "key ingredients": [
@@ -2054,7 +2054,7 @@
         ]
     },
     {
-        "dish name": "biryani",
+        "dish": "biryani",
         "cuisine": "indian",
         "description": "a flavorful, layered rice dish that typically includes meat or seafood, spices, herbs, and fried onions. the word biryani comes from the farsi phrase birinj biriyan, which means \"fried rice\".",
         "key ingredients": [
@@ -2089,7 +2089,7 @@
         ]
     },
     {
-        "dish name": "rogan josh",
+        "dish": "rogan josh",
         "cuisine": "indian",
         "description": "a flavorful, medium-heat curry made by braising lamb or mutton in a spiced gravy. the dish is known for its thick, red sauce.",
         "key ingredients": [
@@ -2121,7 +2121,7 @@
         ]
     },
     {
-        "dish name": "paneer tikka",
+        "dish": "paneer tikka",
         "cuisine": "indian",
         "description": "a popular indian vegetarian dish where chunks of paneer (indian cottage cheese) are marinated in a blend of spices and yogurt, then skewered with vegetables like bell peppers, onions, and tomatoes, and grilled in a tandoor until slightly charred, typically served with lemon juice and chaat masala",
         "key ingredients": [
@@ -2154,7 +2154,7 @@
         ]
     },
     {
-        "dish name": "chana masala",
+        "dish": "chana masala",
         "cuisine": "indian",
         "description": "a popular north indian vegetarian dish consisting of chickpeas simmered in a spiced onion-tomato gravy, where \"chana\" means chickpeas and \"masala\" refers to a blend of spices",
         "key ingredients": [
@@ -2188,7 +2188,7 @@
         ]
     },
     {
-        "dish name": "tandoori chicken",
+        "dish": "tandoori chicken",
         "cuisine": "indian",
         "description": "a dish where chicken is marinated in a blend of yogurt, spices like garam masala, cumin, turmeric, ginger, garlic, and chili powder, then cooked in a tandoor (a cylindrical clay oven), resulting in a smoky, tender, and flavorful grilled chicken with a vibrant red color",
         "key ingredients": [
@@ -2216,7 +2216,7 @@
         ]
     },
     {
-        "dish name": "vindaloo",
+        "dish": "vindaloo",
         "cuisine": "indian",
         "description": "a spicy, flavorful, and aromatic indian curry dish. it's typically made with vinegar, chilies, and a variety of spices.",
         "key ingredients": [
@@ -2255,7 +2255,7 @@
         ]
     },
     {
-        "dish name": "pad thai",
+        "dish": "pad thai",
         "cuisine": "thai",
         "description": "a thai dish of stir-fried rice noodles, eggs, and other ingredients. it's sweet, sour, salty, and umami, and is often served with peanuts and lime wedges.",
         "key ingredients": [
@@ -2289,7 +2289,7 @@
         ]
     },
     {
-        "dish name": "green curry",
+        "dish": "green curry",
         "cuisine": "thai",
         "description": "a fragrant thai dish featuring a creamy coconut milk-based sauce flavored with a vibrant green curry paste, typically made with green chilies, shallots, garlic, lemongrass, shrimp paste, kaffir lime leaves, and sometimes cumin seeds",
         "key ingredients": [
@@ -2323,7 +2323,7 @@
         ]
     },
     {
-        "dish name": "massaman curry",
+        "dish": "massaman curry",
         "cuisine": "thai",
         "description": "a rich, mildly spiced thai curry that combines ingredients from multiple cultures. it's made with a red curry paste, coconut milk, peanuts, and a variety of spices",
         "key ingredients": [
@@ -2364,7 +2364,7 @@
         ]
     },
     {
-        "dish name": "khao soi",
+        "dish": "khao soi",
         "cuisine": "thai",
         "description": "a coconut-based thai curry soup with egg noodles, meat, and spices",
         "key ingredients": [
@@ -2399,7 +2399,7 @@
         ]
     },
     {
-        "dish name": "larb",
+        "dish": "larb",
         "cuisine": "thai",
         "description": "minced meat (often pork, chicken, or beef) mixed with a vibrant dressing of lime juice, fish sauce, toasted rice powder, fresh herbs like mint and cilantro, and chili peppers for spice, creating a flavorful \"meat salad\" typically served with sticky rice",
         "key ingredients": [
@@ -2432,7 +2432,7 @@
         ]
     },
     {
-        "dish name": "tom kha gai",
+        "dish": "tom kha gai",
         "cuisine": "thai",
         "description": "a classic thai coconut chicken soup featuring a rich broth made with coconut milk, lemongrass, galangal, kaffir lime leaves, and seasoned with fish sauce, lime juice, and often a touch of sugar",
         "key ingredients": [
@@ -2463,7 +2463,7 @@
         ]
     },
     {
-        "dish name": "paella",
+        "dish": "paella",
         "cuisine": "spanish",
         "description": "a spanish dish of rice, vegetables, meat or seafood, and saffron. the ingredients vary depending on the type of paella and the region where it's made",
         "key ingredients": [
@@ -2504,7 +2504,7 @@
         ]
     },
     {
-        "dish name": "tortilla espa\u00f1ola",
+        "dish": "tortilla espa\u00f1ola",
         "cuisine": "spanish",
         "description": "a spanish dish of eggs, potatoes, and onions. it's a classic tapas dish that's often served at room temperature.",
         "key ingredients": [
@@ -2536,7 +2536,7 @@
         ]
     },
     {
-        "dish name": "fabada",
+        "dish": "fabada",
         "cuisine": "spanish",
         "description": "a hearty spanish bean stew made with white beans, pork, sausage, and paprika. the beans are soaked overnight and the stew is often served with slices of chorizo and blood sausage on top.",
         "key ingredients": [
@@ -2566,7 +2566,7 @@
         ]
     },
     {
-        "dish name": "cochinillo",
+        "dish": "cochinillo",
         "cuisine": "spanish",
         "description": "a traditional spanish dish featuring a roasted suckling pig, known for its incredibly tender meat and crispy skin, typically made with a very young piglet that is only fed on its mother's milk, resulting in a rich, delicate flavor",
         "key ingredients": [
@@ -2595,7 +2595,7 @@
         ]
     },
     {
-        "dish name": "bacalao a la vizca\u00edna",
+        "dish": "bacalao a la vizca\u00edna",
         "cuisine": "spanish",
         "description": "a traditional spanish dish featuring salted cod (bacalao) cooked in a rich, flavorful sauce made primarily with roasted red peppers, onions, garlic, olive oil, and sometimes tomatoes, creating a vibrant red color and a savory, slightly spicy flavor",
         "key ingredients": [
@@ -2626,7 +2626,7 @@
         ]
     },
     {
-        "dish name": "bibimbap",
+        "dish": "bibimbap",
         "cuisine": "korean",
         "description": "a korean dish of warm rice, vegetables, meat or seafood, and egg, all topped with gochujang (a spicy red pepper paste). the name comes from the korean words bibim which means \"mixing\" and bap which means \"rice",
         "key ingredients": [
@@ -2666,7 +2666,7 @@
         ]
     },
     {
-        "dish name": "kimchi jjigae",
+        "dish": "kimchi jjigae",
         "cuisine": "korean",
         "description": "a classic korean dish featuring a spicy, rich stew made primarily with kimchi, pork belly (or other meat), tofu, scallions, garlic, and often seasoned with gochugaru (korean red pepper flakes) and gochujang (korean chili paste)",
         "key ingredients": [
@@ -2700,7 +2700,7 @@
         ]
     },
     {
-        "dish name": "bulgogi",
+        "dish": "bulgogi",
         "cuisine": "korean",
         "description": "a korean dish of thinly sliced beef that's marinated and then grilled or stir-fried. the beef is usually ribeye, sirloin, tenderloin, or brisket",
         "key ingredients": [
@@ -2728,7 +2728,7 @@
         ]
     },
     {
-        "dish name": "samgyeopsal",
+        "dish": "samgyeopsal",
         "cuisine": "korean",
         "description": "a popular korean dish featuring thinly sliced pork belly, often grilled on a tabletop grill, and literally translates to \"three-layer meat\" in korean, referring to the visible layers of fat and lean meat within the cut",
         "key ingredients": [
@@ -2758,7 +2758,7 @@
         ]
     },
     {
-        "dish name": "sundubu jjigae",
+        "dish": "sundubu jjigae",
         "cuisine": "korean",
         "description": "a korean stew made with soft tofu, gochugaru (korean red pepper flakes), and other ingredients in broth. the name translates to \"soft tofu stew",
         "key ingredients": [
@@ -2795,7 +2795,7 @@
         ]
     },
     {
-        "dish name": "galbi",
+        "dish": "galbi",
         "cuisine": "korean",
         "description": "a korean dish of grilled beef short ribs that's often marinated in a sweet and savory sauce. the word \"galbi\" means \"rib\" in korean",
         "key ingredients": [
@@ -2822,7 +2822,7 @@
         ]
     },
     {
-        "dish name": "naengmyeon",
+        "dish": "naengmyeon",
         "cuisine": "korean",
         "description": "a korean dish of chewy, cold noodles in broth. the noodles are commonly made from buckwheat flour and starch, but can also include sweet potato, potato, arrowroot, or kudzu. the broth is often made with beef stock and dongchimi, a brine from fermented radish kimchi",
         "key ingredients": [
@@ -2856,7 +2856,7 @@
         ]
     },
     {
-        "dish name": "dakgalbi",
+        "dish": "dakgalbi",
         "cuisine": "korean",
         "description": "a popular korean dish consisting of spicy stir-fried chicken, typically marinated in a gochujang-based sauce, along with vegetables like cabbage, sweet potato, and often rice cakes (tteok), all cooked together in a pan",
         "key ingredients": [
@@ -2888,7 +2888,7 @@
         ]
     },
     {
-        "dish name": "shepard's pie",
+        "dish": "shepard's pie",
         "cuisine": "british",
         "description": "a savory dish of minced meat topped with mashed potatoes and baked. it's often made with ground lamb, but beef can also be used. the dish is also known as cottage pie or hachis parmentier.",
         "key ingredients": [
@@ -2923,7 +2923,7 @@
         ]
     },
     {
-        "dish name": "fish and chips",
+        "dish": "fish and chips",
         "cuisine": "british",
         "description": "a classic british dish consisting of battered and deep-fried fish, usually cod or haddock, served alongside thick-cut fried potatoes (chips), often accompanied by a squeeze of lemon and a side of tartar sauce",
         "key ingredients": [
@@ -2953,7 +2953,7 @@
         ]
     },
     {
-        "dish name": "poke",
+        "dish": "poke",
         "cuisine": "pacific islander",
         "description": "a hawaiian dish of raw fish that's marinated and served with rice, vegetables, and other ingredients. the word \"poke\" means \"chunk\" or \"something cut away\" in the polynesian language.",
         "key ingredients": [
@@ -2994,7 +2994,7 @@
         ]
     },
     {
-        "dish name": "huli huli",
+        "dish": "huli huli",
         "cuisine": "pacific islander",
         "description": "a hawaiian dish featuring grilled chicken that's marinated and basted in a sweet and savory sauce, often made with a blend of soy sauce, brown sugar, pineapple juice, ketchup, ginger, and sometimes garlic",
         "key ingredients": [
@@ -3024,7 +3024,7 @@
         ]
     },
     {
-        "dish name": "fajita",
+        "dish": "fajita",
         "cuisine": "mexican, american",
         "description": "a tex-mex dish of grilled meat, onions, and peppers served in tortillas with toppings. the meat is usually beef or chicken, but you can also use shrimp.",
         "key ingredients": [
@@ -3061,7 +3061,7 @@
         ]
     },
     {
-        "dish name": "quesadilla",
+        "dish": "quesadilla",
         "cuisine": "mexican, american",
         "description": "a mexican dish made by filling a tortilla with cheese, sometimes accompanied by other ingredients like meat, vegetables, or beans, then folding it in half and cooking until the cheese melts and the tortilla crisps up",
         "key ingredients": [
@@ -3090,7 +3090,7 @@
         ]
     },
     {
-        "dish name": "bbq ribs",
+        "dish": "bbq ribs",
         "cuisine": "american",
         "description": "a cut of meat from the ribcage of a pig or cow that's been seasoned, cooked, and served with barbecue sauce.",
         "key ingredients": [
@@ -3119,7 +3119,7 @@
         ]
     },
     {
-        "dish name": "buffalo wings",
+        "dish": "buffalo wings",
         "cuisine": "american",
         "description": "chicken wings coated in a cayenne pepper hot sauce and butter, and then deep-fried. they are often served with celery and blue cheese dressing.",
         "key ingredients": [
@@ -3148,7 +3148,7 @@
         ]
     },
     {
-        "dish name": "pot roast",
+        "dish": "pot roast",
         "cuisine": "american",
         "description": "a hearty american dish of beef that's braised with vegetables in liquid until tender. common ingredients include chuck roast, onions, carrots, potatoes, and seasonings",
         "key ingredients": [
@@ -3179,7 +3179,7 @@
         ]
     },
     {
-        "dish name": "jambalaya",
+        "dish": "jambalaya",
         "cuisine": "american",
         "description": "a savory dish that typically includes meat, seafood, vegetables, stock, rice, and seasonings. it's often associated with louisiana and is made with a base of onions, bell peppers, and celery called the \"holy trinity",
         "key ingredients": [
@@ -3217,7 +3217,7 @@
         ]
     },
     {
-        "dish name": "salmon",
+        "dish": "salmon",
         "cuisine": "american",
         "description": "a flavorful fish that comes in a variety of species, including sockeye, king, coho, keta, and pink",
         "key ingredients": [
@@ -3243,7 +3243,7 @@
         ]
     },
     {
-        "dish name": "fried chicken",
+        "dish": "fried chicken",
         "cuisine": "american",
         "description": "a dish where pieces of chicken are coated with seasoned flour or batter and then cooked by frying, typically resulting in a crispy exterior and juicy interior, often served with the bones still in the meat",
         "key ingredients": [
@@ -3271,7 +3271,7 @@
         ]
     },
     {
-        "dish name": "chicken pot pie",
+        "dish": "chicken pot pie",
         "cuisine": "american",
         "description": "a savory dish made with chicken, vegetables, and a pastry crust",
         "key ingredients": [
@@ -3303,7 +3303,7 @@
         ]
     },
     {
-        "dish name": "chicken tenders",
+        "dish": "chicken tenders",
         "cuisine": "american",
         "description": "bite-sized pieces of chicken that are coated with breading or batter and then fried or baked. they are a popular fast food item a",
         "key ingredients": [
@@ -3331,7 +3331,7 @@
         ]
     },
     {
-        "dish name": "po boy",
+        "dish": "po boy",
         "cuisine": "american",
         "description": "a sandwich made with a long french bread roll, meat, and various toppings. the meat is typically fried seafood, roast beef, or ham. po' boys are often dressed with lettuce, tomato, pickles, and hot sauce",
         "key ingredients": [
@@ -3363,7 +3363,7 @@
         ]
     },
     {
-        "dish name": "cobb salad",
+        "dish": "cobb salad",
         "cuisine": "american",
         "description": "a classic american dish of chopped lettuce, chicken, bacon, hard-boiled eggs, tomatoes, and other ingredients. the ingredients are arranged in rows on a platter.",
         "key ingredients": [
@@ -3399,7 +3399,7 @@
         ]
     },
     {
-        "dish name": "caesar salad",
+        "dish": "caesar salad",
         "cuisine": "american",
         "description": "a classic green salad made with romaine lettuce, croutons, grated parmesan cheese, and a distinctive caesar dressing that typically includes ingredients like lemon juice, olive oil, dijon mustard, garlic, worcestershire sauce, and anchovies, creating a rich and savory flavor profile",
         "key ingredients": [
@@ -3430,7 +3430,7 @@
         ]
     },
     {
-        "dish name": "italian salad",
+        "dish": "italian salad",
         "cuisine": "italian",
         "description": "salad typically includes romaine lettuce, tomatoes, olives, pepperoncinis, and parmesan cheese. other common ingredients include red onion, radicchio, and croutons. italian dressing is made with olive oil, red wine vinegar, salt, and pepper.",
         "key ingredients": [
@@ -3465,7 +3465,7 @@
         ]
     },
     {
-        "dish name": "taco salad",
+        "dish": "taco salad",
         "cuisine": "american",
         "description": "a salad that typically includes lettuce, tomatoes, cheese, beans, and taco meat, and is often served in a tortilla shell",
         "key ingredients": [
@@ -3502,7 +3502,7 @@
         ]
     },
     {
-        "dish name": "greek salad",
+        "dish": "greek salad",
         "cuisine": "greek",
         "description": "a salad made with vegetables, olives, feta cheese, and seasoned with oregano. a traditional greek salad recipe is called horiatiki salata",
         "key ingredients": [
@@ -3536,7 +3536,7 @@
         ]
     },
     {
-        "dish name": "fattoush salad",
+        "dish": "fattoush salad",
         "cuisine": "middle eastern",
         "description": "a middle eastern salad made with vegetables, herbs, and toasted or fried pita bread. the salad is often dressed with a tangy vinaigrette made with lemon juice, olive oil, and sumac",
         "key ingredients": [
@@ -3570,7 +3570,7 @@
         ]
     },
     {
-        "dish name": "wedge salad",
+        "dish": "wedge salad",
         "cuisine": "american",
         "description": "a salad made with iceberg lettuce wedges and a variety of toppings, including bacon, tomatoes, onions, and blue cheese dressing",
         "key ingredients": [
@@ -3603,7 +3603,7 @@
         ]
     },
     {
-        "dish name": "pasta salad",
+        "dish": "pasta salad",
         "cuisine": "american",
         "description": "a cold dish typically made with cooked pasta, chopped vegetables like tomatoes, cucumbers, bell peppers, onions, and sometimes cheese, all tossed together with a vinaigrette dressing, often italian-style, and usually served chilled",
         "key ingredients": [
@@ -3637,7 +3637,7 @@
         ]
     },
     {
-        "dish name": "reuben sandwich",
+        "dish": "reuben sandwich",
         "cuisine": "american",
         "description": "a grilled sandwich made with corned beef, swiss cheese, sauerkraut, and dressing on rye bread",
         "key ingredients": [
@@ -3666,7 +3666,7 @@
         ]
     },
     {
-        "dish name": "club sandwich",
+        "dish": "club sandwich",
         "cuisine": "american",
         "description": "a classic american sandwich typically made with three slices of toasted bread layered with cooked poultry (like turkey or chicken), bacon, lettuce, tomato, and mayonnaise",
         "key ingredients": [
@@ -3699,7 +3699,7 @@
         ]
     },
     {
-        "dish name": "philly cheesesteak",
+        "dish": "philly cheesesteak",
         "cuisine": "american",
         "description": "a sandwich made with thin-sliced meat, cheese, onions, and a hoagie roll. the meat is typically cooked on a griddle",
         "key ingredients": [
@@ -3730,7 +3730,7 @@
         ]
     },
     {
-        "dish name": "fried chicken sandwich",
+        "dish": "fried chicken sandwich",
         "cuisine": "american",
         "description": "a classic american fast food staple, featuring a piece of crispy, fried chicken between two slices of bread, often accompanied by toppings like lettuce, tomato, pickles, mayonnaise, and sometimes a spicy sauce",
         "key ingredients": [
@@ -3764,7 +3764,7 @@
         ]
     },
     {
-        "dish name": "pulled pork sandwich",
+        "dish": "pulled pork sandwich",
         "cuisine": "american",
         "description": "a pulled pork sandwich is a classic american barbecue dish, featuring shredded, slow-smoked pork shoulder piled on a bun and typically topped with barbecue sauce, often accompanied by coleslaw or other sides",
         "key ingredients": [
@@ -3793,7 +3793,7 @@
         ]
     },
     {
-        "dish name": "tomato soup with grilled cheese",
+        "dish": "tomato soup with grilled cheese",
         "cuisine": "american",
         "description": "a classic american dish featuring a toasted sandwich made with bread and melted cheese, typically cheddar, served alongside a bowl of tomato soup; the combination of the crispy bread, gooey cheese, and warm, flavorful soup is a comforting meal",
         "key ingredients": [
@@ -3824,7 +3824,7 @@
         ]
     },
     {
-        "dish name": "blt",
+        "dish": "blt",
         "cuisine": "american",
         "description": "a sandwich made with bacon, lettuce, and tomato. the name comes from the initials of the three main ingredients.",
         "key ingredients": [
@@ -3855,7 +3855,7 @@
         ]
     },
     {
-        "dish name": "french dip",
+        "dish": "french dip",
         "cuisine": "american, french",
         "description": "a hot sandwich of thinly sliced meat on a french roll or baguette, served with au jus for dipping",
         "key ingredients": [
@@ -3887,7 +3887,7 @@
         ]
     },
     {
-        "dish name": "italian sandwich",
+        "dish": "italian sandwich",
         "cuisine": "american, italian",
         "description": "a sandwich made with cured meats, cheese, and vegetables. it can also be called an italian sub, hoagie, or grinder",
         "key ingredients": [
@@ -3921,7 +3921,7 @@
         ]
     },
     {
-        "dish name": "sloppy joe",
+        "dish": "sloppy joe",
         "cuisine": "american",
         "description": "a sandwich made of ground beef, onions, tomatoes, and other seasonings, served on a bun. the name comes from how messy it is to eat",
         "key ingredients": [
@@ -3951,7 +3951,7 @@
         ]
     },
     {
-        "dish name": "meatball sub",
+        "dish": "meatball sub",
         "cuisine": "american",
         "description": "the sandwich primarily consists of meatballs, a tomato sauce or marinara sauce, and bread, such as italian bread, baguette and bread rolls",
         "key ingredients": [
@@ -3982,7 +3982,7 @@
         ]
     },
     {
-        "dish name": "chicken noodle soup",
+        "dish": "chicken noodle soup",
         "cuisine": "american",
         "description": "a comforting dish made with chicken, vegetables, noodles, and broth.",
         "key ingredients": [
@@ -4014,7 +4014,7 @@
         ]
     },
     {
-        "dish name": "pho",
+        "dish": "pho",
         "cuisine": "vietnamese",
         "description": "a vietnamese soup made with broth, rice noodles, meat, and various garnishes. the broth is typically made by slowly simmering beef bones",
         "key ingredients": [
@@ -4047,7 +4047,7 @@
         ]
     },
     {
-        "dish name": "minestrone soup",
+        "dish": "minestrone soup",
         "cuisine": "italian",
         "description": "a hearty italian vegetable soup made with tomato-y broth and pasta or rice",
         "key ingredients": [
@@ -4084,7 +4084,7 @@
         ]
     },
     {
-        "dish name": "french onion soup",
+        "dish": "french onion soup",
         "cuisine": "french",
         "description": "a classic french dish made with caramelized onions, beef broth, and cheese, and topped with bread.",
         "key ingredients": [
@@ -4112,7 +4112,7 @@
         ]
     },
     {
-        "dish name": "clam chowder soup",
+        "dish": "clam chowder soup",
         "cuisine": "american",
         "description": "a rich, creamy soup primarily made with clams, diced potatoes, onions, celery, and often thickened with a roux in a broth made with clam juice, milk, or heavy cream, resulting in a hearty and flavorful dish",
         "key ingredients": [
@@ -4140,7 +4140,7 @@
         ]
     },
     {
-        "dish name": "cream of mushroom soup",
+        "dish": "cream of mushroom soup",
         "cuisine": "american",
         "description": "a creamy, rich soup made with a base of mushrooms, often pureed, thickened with a roux (butter and flour), and then blended with cream or milk, typically featuring additional flavors like onion, garlic, and herbs",
         "key ingredients": [
@@ -4167,7 +4167,7 @@
         ]
     },
     {
-        "dish name": "lentil soup",
+        "dish": "lentil soup",
         "cuisine": "american",
         "description": "a hearty soup made primarily with lentils, typically cooked with vegetables like carrots, celery, onions, and often seasoned with spices like cumin, coriander, garlic, and sometimes tomato, resulting in a filling and flavorful broth that can be served with a squeeze of lemon juice",
         "key ingredients": [
@@ -4202,7 +4202,7 @@
         ]
     },
     {
-        "dish name": "broccoli and cheddar soup",
+        "dish": "broccoli and cheddar soup",
         "cuisine": "american",
         "description": "a creamy soup made with pureed broccoli, broth, and cheddar cheese. the broccoli adds texture and a subtle sweetness that complements the cheese",
         "key ingredients": [
@@ -4231,7 +4231,7 @@
         ]
     },
     {
-        "dish name": "tortilla soup",
+        "dish": "tortilla soup",
         "cuisine": "american",
         "description": "a soup made with chicken broth combined with roasted tomatoes, onion, garlic, chiles and tortillas, cut into strips and fried",
         "key ingredients": [

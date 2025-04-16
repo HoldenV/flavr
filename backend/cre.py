@@ -1,30 +1,7 @@
 from engine import cbe, ube, utv
 import argparse
 import pandas as pd
-
-# def history_from_csv(file_path):
-    # """Load the swipe history from a CSV file."""
-    # history = pd.read_csv(file_path)
-    # history = history.sort_values(by='timestamp', ascending=False)
-    # return history.to_dict(orient='records')
-
-# def UM_from_json(json_name, download=False):
-    # support "file_name" and "file_name.json"
-    # if json_name[-5:] != ".json":
-    #     json_name += ".json"
-
-    # # load data, survey_responses.json could be loaded dynamically from firestore
-    # with open(json_name) as f:
-    #     json_data = json.load(f)
-        
-    # df = pd.DataFrame(json_data)
-    # df.set_index('user_number', inplace=True)
-
-    # # do some pandas magic, convert "Looks good" to 1, "" to 0, and "Doesn't look good" to -1
-    # df.replace({"Looks good": 1, "": 0, "Doesn't look good": -1}, inplace=True)
-    # df.drop(columns=['timestamp'], inplace=True) # might need timestamp later
-
-    # return df
+import random
 
 def UM_from_csv(csv_name):
     # support "file_name" and "file_name.csv"
@@ -51,11 +28,11 @@ def DM_from_csv(csv_path):
         csv_path += ".csv"
 
     dish_matrix = pd.read_csv(csv_path)    
-    dish_matrix.set_index('dish name', inplace=True)
+    dish_matrix.set_index('dish', inplace=True)
     
     return dish_matrix
 
-def cre(DM, UM, UTV, swipes):
+def cre(DM, UM, UTV, swipes, scale = .8):
     """Run the combined content recommendation engine.
 
     Args:
@@ -67,9 +44,8 @@ def cre(DM, UM, UTV, swipes):
     Returns:
         pd.Series: Recommended dishes and their scores, normalized to [-1, 1].
     """
-
     # Get the user taste vector
-    UTV = utv.update_UTV_swipes(UTV, swipes)
+    UTV = utv.update_UTV_swipes(UTV, swipes, scale)
 
     # Get recommendations
     cbe_recs = cbe.cbe(DM, UTV)
@@ -82,45 +58,82 @@ def cre(DM, UM, UTV, swipes):
     combined_recs = combined_recs.sort_values(ascending=False)
     
     # Save to output file if specified
-    return combined_recs
+    return combined_recs, UTV
     
+
+def init_UTV():
+    """Initialize the user taste vector for the current user."""
+    # Load dish metadata
+    DM = DM_from_csv("data/dish_metadata.csv")
+
+    # Initialize UTV with zeros
+    UTV = pd.DataFrame(0, index=DM.index, columns=['taste'])
+
+    #Randomly select 25 dishes to ask the user to swipe left(l) or right(r) on
+    for i in range(25):
+        dish = DM.sample(1)
+        print(f"Do you like {dish.index[0]}? (l/r)")
+        response = input()
+        if response == 'r':
+            UTV.at[dish.index[0], 'taste'] += 1
+        elif response == 'l':
+            UTV.at[dish.index[0], 'taste'] += -1
+        else:
+            print("Invalid response, please enter l or r")
+            i -= 1
+
+    for scale in [.5, .65, .8]:
+        # Save the initial user taste vector
+        UTV.to_csv(f"data/UTV_{scale}.csv")
+
+
+def get_swipes():
+    DM = DM_from_csv("data/dish_metadata.csv")
+    swipes = {}
+
+    num_dishes = random.randint(5, 8)
+    for i in range(num_dishes):
+        dish = DM.sample(1)
+        print(f"Do you like {dish.index[0]}? (l/r)")
+        response = input()
+        if response == 'r':
+            swipes[dish.index[0]] = 1
+        elif response == 'l':
+            swipes[dish.index[0]] = -1
+        else:
+            print("Invalid response, please enter l or r")
+            i -= 1
+
+    return swipes
+
 
 if __name__ == "__main__":
     # parse args if run from cmdline
     parser = argparse.ArgumentParser(description="Run the collaborative recommendation engine.")
-    parser.add_argument("dish_metadata", help="Path to dish metadata CSV file")
-    parser.add_argument("user_matrix", help="Path to user matrix CSV file")
-    parser.add_argument("user_taste_vector", help="Path to current utv CSV file")
-    parser.add_argument("-o", "--output", help="Output CSV file")
+    parser.add_argument("--start", action="store_true", help="Optional flag to initialize the user taste vector")
 
     args = parser.parse_args()
 
-    # Load the dish matrix, user matrix, and swipe history
-    DM = DM_from_csv(args.dish_metadata)
-    UM = UM_from_csv(args.user_matrix)
-    UTV = UTV_from_csv(args.user_taste_vector)
+    if args.start:
+        init_UTV()
 
-    swipes = {
-        'pizza':                -1,
-        'burrito':              -1,
-        'steak':                 1,
-        'lasagna':              -1,
-        'ramen':                -1,
-        'sushi':                 1,
-        'chili':                 1,
-        'mac and cheese':       -1,
-        'fried chicken':         1,
-        'chicken tikka masala': -1,
-        'huli huli':            -1
-    }
-
-    # Run the collaborative recommendation engine
-    recs = cre(DM, UM, UTV, swipes)
-
-    if args.output:
-        recs.to_csv(args.output, index=True)
-        print(f"Recommendations saved to {args.output}")
     else:
-        print("Recommendations:")
+        swipes = get_swipes()
+
+
+    # Load the dish matrix, user matrix, and swipe history
+    DM = DM_from_csv("data/dish_metadata.csv")
+    UM = UM_from_csv("data/survey_responses.csv")
+
+    for scale in [.5, .65, .8]:
+        UTV = UTV_from_csv(f"data/UTV_{scale}.csv")
+
+        recs, UTV =cre(DM, UM, UTV, swipes, scale)
+
+        # Save the updated user taste vector
+        UTV.to_csv(f"data/UTV_{scale}.csv")
+
+
+        print(f"\n========== {scale} Recommendations==========\n")
         print(recs)
 
