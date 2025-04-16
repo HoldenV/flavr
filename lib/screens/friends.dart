@@ -168,155 +168,164 @@ class _FriendsScreenState extends State<FriendsScreen> {
         ],
       ),
       backgroundColor: Colors.black,
-      body: FutureBuilder<List<List<Map<String, dynamic>>>>(
-        future: _friendsData,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-              ),
-            );
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else {
-            final friendRequests = snapshot.data?[0] ?? [];
-            final friends = snapshot.data?[1] ?? [];
-            final sentRequests = snapshot.data?[2] ?? [];
-
-            return ListView(
-              children: [
-                const SectionHeader(title: 'Friend Requests'),
-                if (friendRequests.isEmpty)
-                  const Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                    child: Text(
-                      'No friend requests',
-                      style: TextStyle(color: Colors.orange),
-                    ),
-                  ),
-                ...friendRequests.map((friend) => FriendTile(
-                      uid: friend['uid'],
-                      photoURL: friend['profilePhotoURL']!,
-                      name: '${friend['firstName']} ${friend['lastName']}',
-                      username: friend['username']!,
-                      actions: [
-                        TextButton(
-                          onPressed: () async {
-                            final requesterUid = friend['uid'];
-                            if (requesterUid != null) {
-                              // Call the acceptFriendRequest function
-                              await authState.user
-                                  ?.acceptFriendRequest(requesterUid);
-
-                              // Update the local state immediately
-                              setState(() {
-                                // Remove the friend request from the friendRequests list
-                                friendRequests.removeWhere((request) =>
-                                    request['uid'] == requesterUid);
-
-                                // Add the friend to the friends list
-                                friends.add(friend);
-                              });
-                            } else {
-                              print('Error: requesterUid is null');
-                            }
-                          },
-                          child: const Text('Accept',
-                              style: TextStyle(color: Colors.green)),
-                        ),
-                        TextButton(
-                          onPressed: () => authState.user
-                              ?.rejectFriendRequest(friend['uid']),
-                          child: const Text('Reject',
-                              style: TextStyle(color: Colors.red)),
-                        ),
-                      ],
-                    )),
-                const SectionHeader(title: 'Friends'),
-                if (friends.isEmpty)
-                  const Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                    child: Text(
-                      'No friends',
-                      style: TextStyle(color: Colors.orange),
-                    ),
-                  ),
-                ...friends.map((friend) => FriendTile(
-                      uid: friend['uid'],
-                      photoURL: friend['profilePhotoURL']!,
-                      name: '${friend['firstName']} ${friend['lastName']}',
-                      username: friend['username']!,
-                      actions: [
-                        TextButton(
-                          onPressed: () =>
-                              print('Message ${friend['username']}'),
-                          child: const Text('Invite',
-                              style: TextStyle(color: Colors.blue)),
-                        ),
-                        TextButton(
-                          onPressed: () async {
-                            final targetUid = friend['uid'];
-                            if (targetUid != null) {
-                              await authState.user?.removeFriend(targetUid);
-                              setState(() {
-                                _fetchFriendsData();
-                              });
-                            } else {
-                              print('Error: targetUid is null');
-                            }
-                          },
-                          child: const Text(
-                            'Remove',
-                            style: TextStyle(color: Colors.red),
-                          ),
-                        ),
-                      ],
-                    )),
-                const SectionHeader(title: 'Sent Friend Requests'),
-                if (sentRequests.isEmpty)
-                  const Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                    child: Text(
-                      'No sent friend requests',
-                      style: TextStyle(color: Colors.orange),
-                    ),
-                  ),
-                ...sentRequests.map((friend) => FriendTile(
-                      uid: friend['uid'],
-                      photoURL: friend['profilePhotoURL']!,
-                      name: '${friend['firstName']} ${friend['lastName']}',
-                      username: friend['username']!,
-                      actions: [
-                        TextButton(
-                          onPressed: () async {
-                            final targetUid = friend['uid'];
-                            print(
-                                'Canceling friend request for UID: $targetUid');
-                            if (targetUid != null) {
-                              await authState.user
-                                  ?.cancelFriendRequest(targetUid);
-                              setState(() {
-                                _fetchFriendsData();
-                              });
-                            } else {
-                              print('Error: targetUid is null');
-                            }
-                          },
-                          child: const Text(
-                            'Cancel',
-                            style: TextStyle(color: Colors.orange),
-                          ),
-                        ),
-                      ],
-                    )),
-              ],
-            );
-          }
+      body: RefreshIndicator(
+        onRefresh: () async {
+          // Re-fetch the friends data when the user pulls down to refresh
+          setState(() {
+            _fetchFriendsData();
+          });
+          await _friendsData;
         },
+        child: FutureBuilder<List<List<Map<String, dynamic>>>>(
+          future: _friendsData,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else {
+              final friendRequests = snapshot.data?[0] ?? [];
+              final friends = snapshot.data?[1] ?? [];
+              final sentRequests = snapshot.data?[2] ?? [];
+
+              return ListView(
+                children: [
+                  const SectionHeader(title: 'Friend Requests'),
+                  if (friendRequests.isEmpty)
+                    const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                      child: Text(
+                        'No friend requests',
+                        style: TextStyle(color: Colors.orange),
+                      ),
+                    ),
+                  ...friendRequests.map((friend) => FriendTile(
+                        uid: friend['uid'],
+                        photoURL: friend['profilePhotoURL']!,
+                        name: '${friend['firstName']} ${friend['lastName']}',
+                        username: friend['username']!,
+                        actions: [
+                          TextButton(
+                            onPressed: () async {
+                              final requesterUid = friend['uid'];
+                              if (requesterUid != null) {
+                                // Call the acceptFriendRequest function
+                                await authState.user
+                                    ?.acceptFriendRequest(requesterUid);
+
+                                // Update the local state immediately
+                                setState(() {
+                                  // Remove the friend request from the friendRequests list
+                                  friendRequests.removeWhere((request) =>
+                                      request['uid'] == requesterUid);
+
+                                  // Add the friend to the friends list
+                                  friends.add(friend);
+                                });
+                              } else {
+                                print('Error: requesterUid is null');
+                              }
+                            },
+                            child: const Text('Accept',
+                                style: TextStyle(color: Colors.green)),
+                          ),
+                          TextButton(
+                            onPressed: () => authState.user
+                                ?.rejectFriendRequest(friend['uid']),
+                            child: const Text('Reject',
+                                style: TextStyle(color: Colors.red)),
+                          ),
+                        ],
+                      )),
+                  const SectionHeader(title: 'Friends'),
+                  if (friends.isEmpty)
+                    const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                      child: Text(
+                        'No friends',
+                        style: TextStyle(color: Colors.orange),
+                      ),
+                    ),
+                  ...friends.map((friend) => FriendTile(
+                        uid: friend['uid'],
+                        photoURL: friend['profilePhotoURL']!,
+                        name: '${friend['firstName']} ${friend['lastName']}',
+                        username: friend['username']!,
+                        actions: [
+                          TextButton(
+                            onPressed: () =>
+                                print('Message ${friend['username']}'),
+                            child: const Text('Invite',
+                                style: TextStyle(color: Colors.blue)),
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              final targetUid = friend['uid'];
+                              if (targetUid != null) {
+                                await authState.user?.removeFriend(targetUid);
+                                setState(() {
+                                  _fetchFriendsData();
+                                });
+                              } else {
+                                print('Error: targetUid is null');
+                              }
+                            },
+                            child: const Text(
+                              'Remove',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
+                        ],
+                      )),
+                  const SectionHeader(title: 'Sent Friend Requests'),
+                  if (sentRequests.isEmpty)
+                    const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                      child: Text(
+                        'No sent friend requests',
+                        style: TextStyle(color: Colors.orange),
+                      ),
+                    ),
+                  ...sentRequests.map((friend) => FriendTile(
+                        uid: friend['uid'],
+                        photoURL: friend['profilePhotoURL']!,
+                        name: '${friend['firstName']} ${friend['lastName']}',
+                        username: friend['username']!,
+                        actions: [
+                          TextButton(
+                            onPressed: () async {
+                              final targetUid = friend['uid'];
+                              print(
+                                  'Canceling friend request for UID: $targetUid');
+                              if (targetUid != null) {
+                                await authState.user
+                                    ?.cancelFriendRequest(targetUid);
+                                setState(() {
+                                  _fetchFriendsData();
+                                });
+                              } else {
+                                print('Error: targetUid is null');
+                              }
+                            },
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(color: Colors.orange),
+                            ),
+                          ),
+                        ],
+                      )),
+                ],
+              );
+            }
+          },
+        ),
       ),
     );
   }

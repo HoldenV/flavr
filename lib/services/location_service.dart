@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:geolocator/geolocator.dart';
 
 class LocationService {
@@ -46,6 +44,6 @@ Future<List<double>> getLongLat() async {
     return [longitude, latitude];
   } catch (e) {
     print('Error getting location: $e');
-    return [-1,-1];
+    return [-1, -1];
   }
 }

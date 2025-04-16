@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:flavr/providers/app_state.dart';
 import 'package:flavr/services/google_maps.dart';
 import 'package:flavr/services/path_service.dart';
-import 'dart:math';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
