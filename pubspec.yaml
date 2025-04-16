@@ -77,7 +77,6 @@ flutter:
     - lib/assets/
     - lib/assets/dish_images/
     - lib/data/
-    - lib/assets/user_images/
     - lib/assets/secret.json
 
   # An image asset can refer to one or more resolution-specific "variants", see

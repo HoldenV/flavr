@@ -33,6 +33,38 @@
         ]
     },
     {
+        "dish name": "cheeseburger",
+        "cuisine": "american",
+        "description": "sandwich with a ground beef patty, cheese, and various toppings",
+        "key ingredients": [
+            "cheese",
+            "beef",
+            "bread",
+            "lettuce",
+            "onion",
+            "tomato"
+        ],
+        "sub category": "sandwich",
+        "spiciness": 1,
+        "seasonality": "yearRound",
+        "temperature": "warm",
+        "texture": "chewy",
+        "crunchiness": 2,
+        "color dominance": [
+            "brown",
+            "yellow",
+            "tan"
+        ],
+        "ingredient visibility": 4,
+        "perceived heaviness": 4,
+        "perceived healthiness": 2,
+        "eating method": "hands",
+        "allergens/diet stuff": [
+            "gluten free",
+            "nut free"
+        ]
+    },
+    {
         "dish name": "flatbread pizza",
         "cuisine": "italian",
         "description": "a thin, crispy  flatbread that's typically topped with cheese, tomato, and other ingredients, and then baked",
@@ -1502,7 +1534,7 @@
         ]
     },
     {
-        "dish name": "dolma (stuffed grapeleaves)",
+        "dish name": "dolma",
         "cuisine": "greek",
         "description": "a mediterranean dish of seasoned vegetables, meat, or seafood stuffed into leaves or hollowed-out fruits. the word \"dolma\" comes from the turkish word dolmak, which means \"stuffed\".",
         "key ingredients": [
@@ -3185,7 +3217,7 @@
         ]
     },
     {
-        "dish name": "alaskan salmon",
+        "dish name": "salmon",
         "cuisine": "american",
         "description": "a flavorful fish that comes in a variety of species, including sockeye, king, coho, keta, and pink",
         "key ingredients": [
@@ -3271,7 +3303,7 @@
         ]
     },
     {
-        "dish name": "chicken nuggets or tenders",
+        "dish name": "chicken tenders",
         "cuisine": "american",
         "description": "bite-sized pieces of chicken that are coated with breading or batter and then fried or baked. they are a popular fast food item a",
         "key ingredients": [
@@ -3504,7 +3536,7 @@
         ]
     },
     {
-        "dish name": "fattoush",
+        "dish name": "fattoush salad",
         "cuisine": "middle eastern",
         "description": "a middle eastern salad made with vegetables, herbs, and toasted or fried pita bread. the salad is often dressed with a tangy vinaigrette made with lemon juice, olive oil, and sumac",
         "key ingredients": [
@@ -3667,7 +3699,7 @@
         ]
     },
     {
-        "dish name": "philly cheese steak",
+        "dish name": "philly cheesesteak",
         "cuisine": "american",
         "description": "a sandwich made with thin-sliced meat, cheese, onions, and a hoagie roll. the meat is typically cooked on a griddle",
         "key ingredients": [
@@ -3761,7 +3793,7 @@
         ]
     },
     {
-        "dish name": "panini/grilled cheese w/ tomato soup",
+        "dish name": "tomato soup with grilled cheese",
         "cuisine": "american",
         "description": "a classic american dish featuring a toasted sandwich made with bread and melted cheese, typically cheddar, served alongside a bowl of tomato soup; the combination of the crispy bread, gooey cheese, and warm, flavorful soup is a comforting meal",
         "key ingredients": [
@@ -4015,7 +4047,7 @@
         ]
     },
     {
-        "dish name": "minestrone",
+        "dish name": "minestrone soup",
         "cuisine": "italian",
         "description": "a hearty italian vegetable soup made with tomato-y broth and pasta or rice",
         "key ingredients": [
@@ -4080,7 +4112,7 @@
         ]
     },
     {
-        "dish name": "clam chowder",
+        "dish name": "clam chowder soup",
         "cuisine": "american",
         "description": "a rich, creamy soup primarily made with clams, diced potatoes, onions, celery, and often thickened with a roux in a broth made with clam juice, milk, or heavy cream, resulting in a hearty and flavorful dish",
         "key ingredients": [

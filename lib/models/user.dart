@@ -26,10 +26,13 @@ class UserModel extends ChangeNotifier {
     this.lastName,
     this.bio,
     this.profilePhotoURL,
-    this.friends = const [],
-    this.friendRequestsSent = const [],
-    this.friendRequestsReceived = const [],
-  });
+    List<String>? friends,
+    List<String>? friendRequestsSent,
+    List<String>? friendRequestsReceived,
+  })  : friends = friends ?? List.empty(growable: true),
+        friendRequestsSent = friendRequestsSent ?? List.empty(growable: true),
+        friendRequestsReceived =
+            friendRequestsReceived ?? List.empty(growable: true);
 
   // Define the copyWith method
   UserModel copyWith({
@@ -71,14 +74,11 @@ class UserModel extends ChangeNotifier {
   // Save user to Firestore and local storage
   Future<void> saveToFirestore() async {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
-    final data = toMap();
 
-    await firestore.collection('users').doc(uid).set(data);
-
-    // Log the data being sent to Firestore
-    print('Saved user to Firestore');
-
-    await saveToLocalStorage();
+    await firestore
+        .collection('users')
+        .doc(uid)
+        .set(toMap(), SetOptions(merge: true));
   }
 
   // Save user to local storage
@@ -92,8 +92,11 @@ class UserModel extends ChangeNotifier {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
     final DocumentSnapshot doc =
         await firestore.collection('users').doc(uid).get();
+
     if (doc.exists) {
       final data = doc.data() as Map<String, dynamic>;
+
+      // Create the UserModel instance
       return UserModel(
         uid: data['uid'],
         email: data['email'],
@@ -101,11 +104,12 @@ class UserModel extends ChangeNotifier {
         firstName: data['firstName'] ?? '',
         lastName: data['lastName'] ?? '',
         bio: data['bio'] ?? '',
-        profilePhotoURL: data['profilePhotoURL'] ?? '', // Ensure this is loaded
-        friends: List<String>.from(data['friends'] ?? []),
-        friendRequestsSent: List<String>.from(data['friendRequestsSent'] ?? []),
-        friendRequestsReceived:
-            List<String>.from(data['friendRequestsReceived'] ?? []),
+        profilePhotoURL: data['profilePhotoURL'] ?? '',
+        friends: List<String>.from(data['friends'] ?? []), // Ensure mutable
+        friendRequestsSent: List<String>.from(
+            data['friendRequestsSent'] ?? []), // Ensure mutable
+        friendRequestsReceived: List<String>.from(
+            data['friendRequestsReceived'] ?? []), // Ensure mutable
       );
     }
     return null;
@@ -123,11 +127,12 @@ class UserModel extends ChangeNotifier {
         firstName: data['firstName'] ?? '',
         lastName: data['lastName'] ?? '',
         bio: data['bio'] ?? '',
-        profilePhotoURL: data['profilePhotoURL'] ?? '', // Ensure this is loaded
-        friends: List<String>.from(data['friends'] ?? []),
-        friendRequestsSent: List<String>.from(data['friendRequestsSent'] ?? []),
-        friendRequestsReceived:
-            List<String>.from(data['friendRequestsReceived'] ?? []),
+        profilePhotoURL: data['profilePhotoURL'] ?? '',
+        friends: List<String>.from(data['friends'] ?? []), // Ensure mutable
+        friendRequestsSent: List<String>.from(
+            data['friendRequestsSent'] ?? []), // Ensure mutable
+        friendRequestsReceived: List<String>.from(
+            data['friendRequestsReceived'] ?? []), // Ensure mutable
       );
     }
     return null;
@@ -139,12 +144,121 @@ class UserModel extends ChangeNotifier {
     await saveToFirestore();
     notifyListeners();
   }
+
+  // Send a friend request
+  Future<void> sendFriendRequest(String targetUid) async {
+    final firestore = FirebaseFirestore.instance;
+
+    // Add the target user to the current user's sent friend requests
+    if (!friendRequestsSent.contains(targetUid)) {
+      friendRequestsSent.add(targetUid);
+    }
+
+    await firestore.collection('users').doc(uid).update({
+      'friendRequestsSent': friendRequestsSent,
+    });
+
+    // Add the current user to the target user's received friend requests
+    await firestore.collection('users').doc(targetUid).update({
+      'friendRequestsReceived': FieldValue.arrayUnion([uid]),
+    });
+
+    notifyListeners();
+  }
+
+  // Accept friend request
+  Future<void> acceptFriendRequest(String requesterUid) async {
+    final firestore = FirebaseFirestore.instance;
+
+    // Remove the requester from the current user's received friend requests
+    friendRequestsReceived.remove(requesterUid);
+
+    // Update Firestore: delete the field if the list is empty, otherwise update it
+    await firestore.collection('users').doc(uid).update({
+      'friendRequestsReceived': friendRequestsReceived.isEmpty
+          ? FieldValue.delete()
+          : friendRequestsReceived,
+    });
+
+    // Add the requester to the current user's friends list
+    friends.add(requesterUid);
+    await firestore.collection('users').doc(uid).update({
+      'friends': friends,
+    });
+
+    // Add the current user to the requester's friends list
+    await firestore.collection('users').doc(requesterUid).update({
+      'friends': FieldValue.arrayUnion([uid]),
+    });
+
+    // Remove the current user from the requester's sent friend requests
+    await firestore.collection('users').doc(requesterUid).update({
+      'friendRequestsSent': FieldValue.arrayRemove([uid]),
+    });
+
+    notifyListeners();
+  }
+
+  // Reject friend request
+  Future<void> rejectFriendRequest(String requesterUid) async {
+    final firestore = FirebaseFirestore.instance;
+
+    // Remove the requester from the current user's received friend requests
+    friendRequestsReceived.remove(requesterUid);
+
+    // Update Firestore: delete the field if the list is empty, otherwise update it
+    await firestore.collection('users').doc(uid).update({
+      'friendRequestsReceived': friendRequestsReceived.isEmpty
+          ? FieldValue.delete()
+          : friendRequestsReceived,
+    });
+
+    // Optionally, remove the current user from the requester's sent friend requests
+    await firestore.collection('users').doc(requesterUid).update({
+      'friendRequestsSent': FieldValue.arrayRemove([uid]),
+    });
+
+    notifyListeners();
+  }
+
+  // Cancel a friend request
+  Future<void> cancelFriendRequest(String targetUid) async {
+    final firestore = FirebaseFirestore.instance;
+
+    // Remove the target user from the current user's sent friend requests
+    friendRequestsSent.remove(targetUid);
+
+    // Update Firestore: delete the field if the list is empty, otherwise update it
+    await firestore.collection('users').doc(uid).update({
+      'friendRequestsSent':
+          friendRequestsSent.isEmpty ? FieldValue.delete() : friendRequestsSent,
+    });
+
+    // Remove the current user from the target user's received friend requests
+    await firestore.collection('users').doc(targetUid).update({
+      'friendRequestsReceived': FieldValue.arrayRemove([uid]),
+    });
+
+    notifyListeners();
+  }
+
+  // Remove a friend
+  Future<void> removeFriend(String targetUid) async {
+    final firestore = FirebaseFirestore.instance;
+
+    // Remove the target user from the current user's sent friend requests
+    friends.remove(targetUid);
+
+    // Update Firestore: delete the field if the list is empty, otherwise update it
+    await firestore.collection('users').doc(uid).update({
+      'friends': friends.isEmpty ? FieldValue.delete() : friends,
+    });
+
+    // Remove the current user from the target user's friends
+    await firestore.collection('users').doc(targetUid).update({
+      'friends': FieldValue.arrayRemove([uid]),
+    });
+
+    notifyListeners();
+  }
 }
-
-// Send a friend request
-
-// Accept friend request
-
-// Reject friend request
-
-// Cancel a friend request

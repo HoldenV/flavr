@@ -1,43 +1,140 @@
+import 'package:flavr/providers/authentication_state.dart';
+import 'package:flavr/widgets/add_friend_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
-class FriendsScreen extends StatelessWidget {
+class FriendsScreen extends StatefulWidget {
   const FriendsScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
+  _FriendsScreenState createState() => _FriendsScreenState();
+}
+
+class _FriendsScreenState extends State<FriendsScreen> {
+  late Future<List<List<Map<String, dynamic>>>> _friendsData;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchFriendsData();
+  }
+
+  void _fetchFriendsData() {
+    final authState = Provider.of<AuthenticationState>(context, listen: false);
+    final currentUserId = authState.user?.uid;
+    _friendsData = Future.wait([
+      getFriendRequests(currentUserId!),
+      getFriends(currentUserId),
+      getSentFriendRequests(currentUserId),
+    ]);
+  }
+
+  Future<List<Map<String, dynamic>>> getFriendRequests(
+      String currentUserId) async {
+    final firestore = FirebaseFirestore.instance;
+
+    final userDoc =
+        await firestore.collection('users').doc(currentUserId).get();
+    final friendRequestsReceived =
+        userDoc.data()?['friendRequestsReceived'] as List<dynamic>? ?? [];
+
+    final List<Map<String, dynamic>> friendRequestDetails = [];
+    for (var requestingUid in friendRequestsReceived) {
+      final querySnapshot = await firestore
+          .collection('users')
+          .where('uid', isEqualTo: requestingUid)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        final userData = querySnapshot.docs.first.data();
+        friendRequestDetails.add({
+          'uid': requestingUid ?? 'Unknown UID',
+          'profilePhotoURL': userData['profilePhotoURL'] ?? '',
+          'firstName': userData['firstName'] ?? 'Unknown',
+          'lastName': userData['lastName'] ?? '',
+          'username': userData['username'] ?? 'Unknown Username',
+        });
+      }
+    }
+
+    return friendRequestDetails;
+  }
+
+  Future<List<Map<String, dynamic>>> getFriends(String currentUserId) async {
+    final firestore = FirebaseFirestore.instance;
+
+    final userDoc =
+        await firestore.collection('users').doc(currentUserId).get();
+    final friends = userDoc.data()?['friends'] as List<dynamic>? ?? [];
+
+    final List<Map<String, dynamic>> friendDetails = [];
+    for (var friendUid in friends) {
+      final querySnapshot = await firestore
+          .collection('users')
+          .where('uid', isEqualTo: friendUid)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        final userData = querySnapshot.docs.first.data();
+        friendDetails.add({
+          'uid': friendUid ?? 'Unknown UID',
+          'profilePhotoURL': userData['profilePhotoURL'] ?? '',
+          'firstName': userData['firstName'] ?? 'Unknown',
+          'lastName': userData['lastName'] ?? '',
+          'username': userData['username'] ?? 'Unknown Username',
+        });
+      } else {
+        // Handle case where the friend's document is missing
+        friendDetails.add({
+          'uid': friendUid ?? 'Unknown UID',
+          'profilePhotoURL': '',
+          'firstName': 'Unknown',
+          'lastName': '',
+          'username': 'Unknown Username',
+        });
+      }
+    }
+
+    return friendDetails;
+  }
+
+  Future<List<Map<String, dynamic>>> getSentFriendRequests(
+      String currentUserId) async {
+    final firestore = FirebaseFirestore.instance;
+
+    final userDoc =
+        await firestore.collection('users').doc(currentUserId).get();
+    final sentRequests =
+        userDoc.data()?['friendRequestsSent'] as List<dynamic>? ?? [];
+
+    final List<Map<String, dynamic>> sentRequestDetails = [];
+    for (var sentUid in sentRequests) {
+      final querySnapshot = await firestore
+          .collection('users')
+          .where('uid', isEqualTo: sentUid)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        final userData = querySnapshot.docs.first.data();
+        sentRequestDetails.add({
+          'uid': sentUid ?? 'Unknown UID',
+          'profilePhotoURL': userData['profilePhotoURL'] ?? '',
+          'firstName': userData['firstName'] ?? 'Unknown',
+          'lastName': userData['lastName'] ?? '',
+          'username': userData['username'] ?? 'Unknown Username',
+        });
+      }
+    }
+
+    return sentRequestDetails;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // Mock data for demonstration
-    final friendRequests = [
-      {
-        'photo': 'lib/assets/user_images/user1.png',
-        'name': 'John Doe',
-        'username': '@johndoe'
-      },
-      {
-        'photo': 'lib/assets/user_images/user2.png',
-        'name': 'Jane Smith',
-        'username': '@janesmith'
-      },
-    ];
-    final currentFriends = [
-      {
-        'photo': 'lib/assets/user_images/user3.png',
-        'name': 'Alice Johnson',
-        'username': '@alicej'
-      },
-      {
-        'photo': 'lib/assets/user_images/user4.png',
-        'name': 'Bob Brown',
-        'username': '@bobb'
-      },
-    ];
-    final sentRequests = [
-      {
-        'photo': 'lib/assets/user_images/user5.png',
-        'name': 'Charlie Davis',
-        'username': '@charlied'
-      },
-    ];
+    final authState = Provider.of<AuthenticationState>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -55,71 +152,171 @@ class FriendsScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.person_add, color: Colors.white),
             onPressed: () {
-              print('Person add icon pressed');
+              showDialog(
+                context: context,
+                builder: (context) => AddFriendPopup(
+                  authState: authState,
+                  onFriendRequestSent: () {
+                    setState(() {
+                      _fetchFriendsData();
+                    });
+                  },
+                ),
+              );
             },
           ),
         ],
       ),
       backgroundColor: Colors.black,
-      body: ListView(
-        children: [
-          // Friend Requests Section
-          if (friendRequests.isNotEmpty) ...[
-            const SectionHeader(title: 'Friend Requests'),
-            ...friendRequests.map((friend) => FriendTile(
-                  photo: friend['photo']!,
-                  name: friend['name']!,
-                  username: friend['username']!,
-                  actions: [
-                    TextButton(
-                      onPressed: () => print('Accepted ${friend['username']}'),
-                      child: const Text('Accept',
-                          style: TextStyle(color: Colors.green)),
-                    ),
-                    TextButton(
-                      onPressed: () => print('Rejected ${friend['username']}'),
-                      child: const Text('Reject',
-                          style: TextStyle(color: Colors.red)),
-                    ),
-                  ],
-                )),
-          ],
+      body: FutureBuilder<List<List<Map<String, dynamic>>>>(
+        future: _friendsData,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
+            );
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            final friendRequests = snapshot.data?[0] ?? [];
+            final friends = snapshot.data?[1] ?? [];
+            final sentRequests = snapshot.data?[2] ?? [];
 
-          // Current Friends Section
-          if (currentFriends.isNotEmpty) ...[
-            const SectionHeader(title: 'Current Friends'),
-            ...currentFriends.map((friend) => FriendTile(
-                  photo: friend['photo']!,
-                  name: friend['name']!,
-                  username: friend['username']!,
-                  actions: [
-                    TextButton(
-                      onPressed: () => print('Invited ${friend['username']}'),
-                      child: const Text('Invite',
-                          style: TextStyle(color: Colors.blue)),
+            return ListView(
+              children: [
+                const SectionHeader(title: 'Friend Requests'),
+                if (friendRequests.isEmpty)
+                  const Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                    child: Text(
+                      'No friend requests',
+                      style: TextStyle(color: Colors.orange),
                     ),
-                  ],
-                )),
-          ],
+                  ),
+                ...friendRequests.map((friend) => FriendTile(
+                      uid: friend['uid'],
+                      photoURL: friend['profilePhotoURL']!,
+                      name: '${friend['firstName']} ${friend['lastName']}',
+                      username: friend['username']!,
+                      actions: [
+                        TextButton(
+                          onPressed: () async {
+                            final requesterUid = friend['uid'];
+                            if (requesterUid != null) {
+                              // Call the acceptFriendRequest function
+                              await authState.user
+                                  ?.acceptFriendRequest(requesterUid);
 
-          // Sent Requests Section
-          if (sentRequests.isNotEmpty) ...[
-            const SectionHeader(title: 'Sent Requests'),
-            ...sentRequests.map((friend) => FriendTile(
-                  photo: friend['photo']!,
-                  name: friend['name']!,
-                  username: friend['username']!,
-                  actions: [
-                    TextButton(
-                      onPressed: () =>
-                          print('Cancelled request to ${friend['username']}'),
-                      child: const Text('Cancel',
-                          style: TextStyle(color: Colors.orange)),
+                              // Update the local state immediately
+                              setState(() {
+                                // Remove the friend request from the friendRequests list
+                                friendRequests.removeWhere((request) =>
+                                    request['uid'] == requesterUid);
+
+                                // Add the friend to the friends list
+                                friends.add(friend);
+                              });
+                            } else {
+                              print('Error: requesterUid is null');
+                            }
+                          },
+                          child: const Text('Accept',
+                              style: TextStyle(color: Colors.green)),
+                        ),
+                        TextButton(
+                          onPressed: () => authState.user
+                              ?.rejectFriendRequest(friend['uid']),
+                          child: const Text('Reject',
+                              style: TextStyle(color: Colors.red)),
+                        ),
+                      ],
+                    )),
+                const SectionHeader(title: 'Friends'),
+                if (friends.isEmpty)
+                  const Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                    child: Text(
+                      'No friends',
+                      style: TextStyle(color: Colors.orange),
                     ),
-                  ],
-                )),
-          ],
-        ],
+                  ),
+                ...friends.map((friend) => FriendTile(
+                      uid: friend['uid'],
+                      photoURL: friend['profilePhotoURL']!,
+                      name: '${friend['firstName']} ${friend['lastName']}',
+                      username: friend['username']!,
+                      actions: [
+                        TextButton(
+                          onPressed: () =>
+                              print('Message ${friend['username']}'),
+                          child: const Text('Invite',
+                              style: TextStyle(color: Colors.blue)),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            final targetUid = friend['uid'];
+                            if (targetUid != null) {
+                              await authState.user?.removeFriend(targetUid);
+                              setState(() {
+                                _fetchFriendsData();
+                              });
+                            } else {
+                              print('Error: targetUid is null');
+                            }
+                          },
+                          child: const Text(
+                            'Remove',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      ],
+                    )),
+                const SectionHeader(title: 'Sent Friend Requests'),
+                if (sentRequests.isEmpty)
+                  const Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                    child: Text(
+                      'No sent friend requests',
+                      style: TextStyle(color: Colors.orange),
+                    ),
+                  ),
+                ...sentRequests.map((friend) => FriendTile(
+                      uid: friend['uid'],
+                      photoURL: friend['profilePhotoURL']!,
+                      name: '${friend['firstName']} ${friend['lastName']}',
+                      username: friend['username']!,
+                      actions: [
+                        TextButton(
+                          onPressed: () async {
+                            final targetUid = friend['uid'];
+                            print(
+                                'Canceling friend request for UID: $targetUid');
+                            if (targetUid != null) {
+                              await authState.user
+                                  ?.cancelFriendRequest(targetUid);
+                              setState(() {
+                                _fetchFriendsData();
+                              });
+                            } else {
+                              print('Error: targetUid is null');
+                            }
+                          },
+                          child: const Text(
+                            'Cancel',
+                            style: TextStyle(color: Colors.orange),
+                          ),
+                        ),
+                      ],
+                    )),
+              ],
+            );
+          }
+        },
       ),
     );
   }
@@ -144,15 +341,17 @@ class SectionHeader extends StatelessWidget {
 }
 
 class FriendTile extends StatelessWidget {
-  final String photo;
+  final String uid;
+  final String photoURL;
   final String name;
   final String username;
   final List<Widget> actions;
 
   const FriendTile({
-    required this.photo,
-    required this.name,
-    required this.username,
+    required this.uid,
+    this.photoURL = '',
+    this.name = 'Unknown',
+    this.username = 'Unknown Username',
     required this.actions,
     super.key,
   });
@@ -164,7 +363,10 @@ class FriendTile extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundImage: AssetImage(photo),
+          backgroundImage: photoURL.isNotEmpty
+              ? NetworkImage(photoURL)
+              : const AssetImage('lib/assets/default_profile.png')
+                  as ImageProvider,
         ),
         title: Text(
           name,
