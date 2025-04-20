@@ -5,7 +5,6 @@ Tinder for finding food.
 # TODO
     Develop style guide (exact colors, fonts, font sizes, haptics)
     Card tapping sequence
-    Splash Screen
     Allowing multiple cards to be manipulated at once?
     Licensing our idea / code
     Developing terms and conditions & adding page to display them. accessed via button at bottom of profile page?

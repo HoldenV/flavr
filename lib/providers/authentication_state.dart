@@ -16,8 +16,10 @@ class AuthenticationState extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
   final firestore = FirebaseFirestore.instance;
 
+  bool _loading = true;
   UserModel? _user;
 
+  bool get loading => _loading;
   UserModel? get user => _user;
 
   set user(UserModel? newUser) {
@@ -44,6 +46,9 @@ class AuthenticationState extends ChangeNotifier {
       // Notify listeners to rebuild dependent widgets
       notifyListeners();
     }
+
+    _loading = false; // Set loading to false once data is fetched
+    notifyListeners();
   }
 
   Future<void> signInWithGoogle(BuildContext context) async {

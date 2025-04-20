@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 
 // Screen imports
 import '../screens/login.dart';
+import '../screens/splash.dart'; // Import the splash screen
 
 class AuthenticationWrapper extends StatelessWidget {
   const AuthenticationWrapper({super.key});
@@ -18,6 +19,11 @@ class AuthenticationWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final authState = Provider.of<AuthenticationState>(context);
     final user = authState.user;
+
+    if (authState.loading) {
+      // Show splash screen while loading
+      return SplashScreen();
+    }
 
     if (user == null) {
       // Direct to login screen if no user is signed in
