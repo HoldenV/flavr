@@ -13,6 +13,8 @@ Tinder for finding food.
     **Holden**
     I'm currently working on:
 
+    -- fixing navigation where signing out directly after account creation screen causes app to break.
+
     -- Location selection popup
 
     -- Add on account creation screen
@@ -22,12 +24,9 @@ Tinder for finding food.
 
     -- Add to user model / firebase
         notifications (update),
-        account created time,
-        last login time,
         preferred location & radius,
 
     **Katie**
-    Account / Setting page design
     Building API (in Firebase)
 
     **Michael**

@@ -28,18 +28,14 @@ class AccountCreationState extends State<AccountCreationScreen> {
     final profilePhotoUrl = widget.userCredential.user?.photoURL;
 
     if (uid == null || email == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Error: Missing user information')),
-      );
+      _showSnackBar('Error: Missing user information');
       return;
     }
 
     if (usernameController.text.trim().isEmpty ||
         firstNameController.text.trim().isEmpty ||
         lastNameController.text.trim().isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Error: All fields are required')),
-      );
+      _showSnackBar('Error: All fields are required');
       return;
     }
 
@@ -52,26 +48,40 @@ class AccountCreationState extends State<AccountCreationScreen> {
       lastName: lastNameController.text.trim(),
       bio: bioController.text.trim(),
       profilePhotoURL: profilePhotoUrl,
+      accountCreationDatetime: DateTime.now(),
     );
 
     try {
       // Save the UserModel to Firestore
       await userModel.saveToFirestore();
 
-      // Reinitialize the AuthenticationState
+      // Notify the AuthenticationState of the successful account creation
       if (!mounted) return;
       final authState =
           Provider.of<AuthenticationState>(context, listen: false);
       await authState.initializeAuthState();
 
-      // Navigate to the AppStateWrapper
-      // ignore: use_build_context_synchronously
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const AppStateWrapper()),
-      );
+      // Navigate to the main app screen
+      if (!mounted) return;
+      _navigateToMainScreen();
     } catch (e) {
       print('Error: $e');
+      _showSnackBar('Error: $e');
     }
+  }
+
+  void _showSnackBar(String message) {
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message)),
+      );
+    }
+  }
+
+  void _navigateToMainScreen() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => const AppStateWrapper()),
+    );
   }
 
   @override

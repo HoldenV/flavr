@@ -14,6 +14,8 @@ class UserModel extends ChangeNotifier {
   List<String> friends;
   List<String> friendRequestsSent;
   List<String> friendRequestsReceived;
+  final DateTime? accountCreationDatetime;
+  final DateTime? lastLoginDatetime;
 
   static const localStorage = FlutterSecureStorage();
   static const localStorageKey = 'user_model';
@@ -29,29 +31,37 @@ class UserModel extends ChangeNotifier {
     List<String>? friends,
     List<String>? friendRequestsSent,
     List<String>? friendRequestsReceived,
+    this.accountCreationDatetime,
+    this.lastLoginDatetime,
   })  : friends = friends ?? List.empty(growable: true),
         friendRequestsSent = friendRequestsSent ?? List.empty(growable: true),
         friendRequestsReceived =
             friendRequestsReceived ?? List.empty(growable: true);
 
-  // Define the copyWith method
-  UserModel copyWith({
-    String? uid,
-    String? email,
-    String? username,
-    String? firstName,
-    String? lastName,
-    String? bio,
-    String? profilePhotoURL,
-  }) {
+  factory UserModel.fromMap(Map<String, dynamic> data) {
+    DateTime? parseDate(dynamic value) {
+      if (value is Timestamp) {
+        return value.toDate();
+      } else if (value is String) {
+        return DateTime.tryParse(value);
+      }
+      return null;
+    }
+
     return UserModel(
-      uid: uid ?? this.uid,
-      email: email ?? this.email,
-      username: username ?? this.username,
-      firstName: firstName ?? this.firstName,
-      lastName: lastName ?? this.lastName,
-      bio: bio ?? this.bio,
-      profilePhotoURL: profilePhotoURL ?? this.profilePhotoURL,
+      uid: data['uid'],
+      email: data['email'],
+      username: data['username'],
+      firstName: data['firstName'] ?? '',
+      lastName: data['lastName'] ?? '',
+      bio: data['bio'] ?? '',
+      profilePhotoURL: data['profilePhotoURL'] ?? '',
+      friends: List<String>.from(data['friends'] ?? []),
+      friendRequestsSent: List<String>.from(data['friendRequestsSent'] ?? []),
+      friendRequestsReceived:
+          List<String>.from(data['friendRequestsReceived'] ?? []),
+      accountCreationDatetime: parseDate(data['accountCreationDatetime']),
+      lastLoginDatetime: parseDate(data['lastLoginTimestamp']),
     );
   }
 
@@ -68,6 +78,8 @@ class UserModel extends ChangeNotifier {
       'friends': friends,
       'friendRequestsSent': friendRequestsSent,
       'friendRequestsReceived': friendRequestsReceived,
+      'accountCreationTimestamp': accountCreationDatetime?.toIso8601String(),
+      'lastLoginTimestamp': lastLoginDatetime?.toIso8601String(),
     };
   }
 
@@ -96,21 +108,12 @@ class UserModel extends ChangeNotifier {
     if (doc.exists) {
       final data = doc.data() as Map<String, dynamic>;
 
-      // Create the UserModel instance
-      return UserModel(
-        uid: data['uid'],
-        email: data['email'],
-        username: data['username'],
-        firstName: data['firstName'] ?? '',
-        lastName: data['lastName'] ?? '',
-        bio: data['bio'] ?? '',
-        profilePhotoURL: data['profilePhotoURL'] ?? '',
-        friends: List<String>.from(data['friends'] ?? []), // Ensure mutable
-        friendRequestsSent: List<String>.from(
-            data['friendRequestsSent'] ?? []), // Ensure mutable
-        friendRequestsReceived: List<String>.from(
-            data['friendRequestsReceived'] ?? []), // Ensure mutable
-      );
+      // Update the lastLoginDatetime to the current time
+      await firestore.collection('users').doc(uid).update({
+        'lastLoginTimestamp': FieldValue.serverTimestamp(),
+      });
+
+      return UserModel.fromMap(data);
     }
     return null;
   }
@@ -128,11 +131,12 @@ class UserModel extends ChangeNotifier {
         lastName: data['lastName'] ?? '',
         bio: data['bio'] ?? '',
         profilePhotoURL: data['profilePhotoURL'] ?? '',
-        friends: List<String>.from(data['friends'] ?? []), // Ensure mutable
-        friendRequestsSent: List<String>.from(
-            data['friendRequestsSent'] ?? []), // Ensure mutable
-        friendRequestsReceived: List<String>.from(
-            data['friendRequestsReceived'] ?? []), // Ensure mutable
+        friends: List<String>.from(data['friends'] ?? []),
+        friendRequestsSent: List<String>.from(data['friendRequestsSent'] ?? []),
+        friendRequestsReceived:
+            List<String>.from(data['friendRequestsReceived'] ?? []),
+        accountCreationDatetime: data['accountCreationTimestamp'],
+        lastLoginDatetime: data['lastLoginTimestamp'],
       );
     }
     return null;

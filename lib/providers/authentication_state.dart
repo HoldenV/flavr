@@ -88,7 +88,9 @@ class AuthenticationState extends ChangeNotifier {
         } else {
           // Update only the profile photo URL if necessary
           if (user!.profilePhotoURL != profilePhotoUrl) {
-            user = user!.copyWith(profilePhotoURL: profilePhotoUrl);
+            final updatedUserMap = user!.toMap();
+            updatedUserMap['profilePhotoURL'] = profilePhotoUrl;
+            user = UserModel.fromMap(updatedUserMap);
             await firestore.collection('users').doc(user!.uid).update({
               'profilePhotoURL': profilePhotoUrl,
             });
