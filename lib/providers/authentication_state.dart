@@ -5,6 +5,7 @@ accessed by this state provider
  */
 
 import 'package:flavr/screens/account_creation.dart';
+import 'package:flavr/widgets/authentication_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -106,12 +107,15 @@ class AuthenticationState extends ChangeNotifier {
     }
   }
 
-  Future<void> signOut() async {
+  Future<void> signOut(context) async {
     await auth.signOut();
     await googleSignIn.signOut();
     user = null;
     await UserModel.localStorage.delete(key: UserModel.localStorageKey);
     await UserModel.localStorage.deleteAll();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => const AuthenticationWrapper()),
+    );
     notifyListeners();
   }
 }

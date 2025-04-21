@@ -151,7 +151,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onPressed: () {
                   final authState =
                       Provider.of<AuthenticationState>(context, listen: false);
-                  authState.signOut();
+                  authState.signOut(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
