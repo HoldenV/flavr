@@ -62,7 +62,7 @@ class _RecommendationPopupState extends State<RecommendationPopup>
     final appState = Provider.of<AppState>(context);
     double screenWidth = MediaQuery.of(context).size.width;
     // Show spinner while recommendation or restaurants are loading or during unload
-    if (appState.currentRecommendation.isEmpty || appState.currentRestaurants.length < 3) {
+    if ((appState.currentRecommendation.isEmpty || appState.currentRestaurants.length < 3) && appState.swipeCount >= 7) {
       return Center(child: CircularProgressIndicator());
     }
     return Center(
@@ -175,14 +175,20 @@ class RecommendationCardDisplay extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      dishName,
-                      style: TextStyle(
-                        fontFamily: 'Arial Rounded MT Bold',
-                        fontSize: screenWidth * 0.1,
-                        color: Colors.white,
+                    SizedBox(
+                      width: screenWidth * 0.8, // keeps text within card bounds
+                      child: Text(
+                        dishName,
+                        maxLines: 2,               // wrap to a second line if needed
+                        overflow: TextOverflow.ellipsis, // add "…" if it still can’t fit
+                        softWrap: true,
+                        style: TextStyle(
+                          fontFamily: 'Arial Rounded MT Bold',
+                          fontSize: screenWidth * 0.1,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.left,
                       ),
-                      textAlign: TextAlign.left,
                     ),
                     SizedBox(height: screenHeight * 0.005),
                     // Wrap the restaurantƒ cards in a container with a defined height
