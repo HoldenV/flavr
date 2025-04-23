@@ -11,7 +11,6 @@ import 'package:flavr/screens/friends.dart';
 import 'package:flavr/screens/home.dart';
 import 'package:flavr/screens/profile.dart';
 import 'package:flavr/screens/inbox.dart';
-import 'package:flavr/services/path_service.dart';
 import 'package:flavr/providers/authentication_state.dart';
 
 class AppState with ChangeNotifier {
@@ -118,7 +117,8 @@ class AppState with ChangeNotifier {
 
   Future<String> getRecommendation() async {
     notifyListeners();
-    String assembledString = '{"user-id": "${authState.user?.uid}", "swipes": {';
+    String assembledString =
+        '{"user-id": "${authState.user?.uid}", "swipes": {';
     for (String dish in positiveSwipes) {
       assembledString += '"$dish": 1,';
     }
@@ -126,7 +126,8 @@ class AppState with ChangeNotifier {
       assembledString += '"$dish": -1,';
     }
     if (assembledString.endsWith(',')) {
-      assembledString = '${assembledString.substring(0, assembledString.length - 1)}}}';
+      assembledString =
+          '${assembledString.substring(0, assembledString.length - 1)}}}';
     }
     print(assembledString);
     final recFood = await swipesToRec(data: assembledString);

@@ -20,7 +20,7 @@ class SplashScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'lib/assets/app_icon.png',
+                'lib/assets/flavr-pizza-transparent.png',
                 width: 150,
                 height: 150,
               ),
