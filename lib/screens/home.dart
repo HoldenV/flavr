@@ -177,11 +177,10 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     print(appState.positiveSwipes);
-    print(appState.negativeSwipes);
-
-    appState.setRecommendation(await appState.getRecommendation());
+    print(appState.negativeSwipes);    
 
     if (appState.swipeCount >= 7) {
+      appState.setRecommendation(await appState.getRecommendation());
       List<double> longLat = await getLongLat();
       List<dynamic> results = (await textSearchPlaces(
         query: appState.currentRecommendation,

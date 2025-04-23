@@ -30,7 +30,7 @@ Future<String> numToFood(int number) async {
 
 generateFoodPath() async {
   var random = Random();
-  String foodName = await numToFood(random.nextInt(131));
+  String foodName = await numToFood(random.nextInt(132));
   return nameToPath(foodName);
 }
 

@@ -34,8 +34,10 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => AppState()),
         ChangeNotifierProvider(create: (context) => AuthenticationState()),
+        ChangeNotifierProvider(
+          create: (context) => AppState(authState: context.read<AuthenticationState>()),
+        ),
         ChangeNotifierProvider(
             create: (_) => NotificationsProvider()..addDefaultNotifications()),
       ],
