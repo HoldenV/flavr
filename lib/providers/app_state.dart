@@ -135,7 +135,20 @@ class AppState with ChangeNotifier {
 
   void updateRestaurants(List<dynamic> restaurantData) {
     if (restaurantData.length >= 3) {
+      restaurantData.sort((a, b) {
+        final aRatings = a['user_ratings_total'] ?? 0;
+        final bRatings = b['user_ratings_total'] ?? 0;
+        final aScore = a['rating'] ?? 0;
+        final bScore = b['rating'] ?? 0;
+
+        // Prioritize by rating count > 10, then by rating
+        if ((bRatings > 10 ? 1 : 0) != (aRatings > 10 ? 1 : 0)) {
+          return (bRatings > 10 ? 1 : 0) - (aRatings > 10 ? 1 : 0);
+        }
+        return bScore.compareTo(aScore);
+      });
       currentRestaurants = restaurantData;
+      print(currentRestaurants);
       notifyListeners();
     }
   }
