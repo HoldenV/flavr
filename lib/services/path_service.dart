@@ -12,7 +12,8 @@ nameToPath(String foodName) {
 pathToName(String path) {
   String foodName = path
       .substring(23, path.length - 4)
-      .replaceAll('lib/assets/dish_images/', '');
+      .replaceAll('lib/assets/dish_images/', '')
+      .replaceAll('-', ' ');
   return foodName;
 }
 

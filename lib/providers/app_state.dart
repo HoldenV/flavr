@@ -108,14 +108,22 @@ class AppState with ChangeNotifier {
     notifyListeners();
   }
 
-Future<String> getRecommendation() async {
-  notifyListeners();
-  final path = await generateFoodPath();
-  return pathToName(path);
-}
+  Future<String> getRecommendation() async {
+    notifyListeners();
+    final path = await generateFoodPath();
+    return pathToName(path);
+  }
 
   void updateRestaurants(List<dynamic> restaurantData) {
-    currentRestaurants = restaurantData;
-    notifyListeners();
+    if (restaurantData.length >= 3) {
+      restaurantData.sort((a, b) {
+        double ratingA = a['rating'] ?? 0.0;
+        double ratingB = b['rating'] ?? 0.0;
+        return ratingB
+            .compareTo(ratingA); // Sort descending (highest-rated first)
+      });
+      currentRestaurants = restaurantData;
+      notifyListeners();
+    }
   }
 }

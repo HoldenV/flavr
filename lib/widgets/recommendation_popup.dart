@@ -61,6 +61,10 @@ class _RecommendationPopupState extends State<RecommendationPopup>
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context);
     double screenWidth = MediaQuery.of(context).size.width;
+    // Show spinner while recommendation or restaurants are loading or during unload
+    if (appState.currentRecommendation.isEmpty || appState.currentRestaurants.length < 3) {
+      return Center(child: CircularProgressIndicator());
+    }
     return Center(
       child: Stack(
         children: [
