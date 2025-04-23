@@ -7,12 +7,9 @@ Tinder for finding food.
     Card tapping sequence
     Licensing our idea / code
     Developing terms and conditions & adding page to display them. accessed via button at bottom of profile page?
-    Adding Restaurant Details
-    Adding Food Details
     Recommendation History
     Group Sessions
     Potential Algorithm for Picking Top 3 Restaurants
-    Continue Swiping
     Recommendation Feedback
 
 # CLAIMED
@@ -41,4 +38,7 @@ Tinder for finding food.
     Implementing restaurant range into Google Maps call
     Improve swiping cards shown
 
-
+    **Pierce**
+    Adding Restaurant Details
+    Adding Food Details
+    Continue Swiping
