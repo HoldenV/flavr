@@ -78,6 +78,7 @@ flutter:
     - lib/assets/dish_images/
     - lib/data/
     - lib/assets/secret.json
+    - lib/assets/flavr-pizza-transparent.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
