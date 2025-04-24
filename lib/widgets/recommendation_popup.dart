@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:flavr/providers/app_state.dart';
 import 'package:flavr/services/path_service.dart';
 import 'package:flavr/services/google_maps.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RecommendationPopup extends StatefulWidget {
   @override
@@ -280,57 +281,67 @@ class RestaurantCard extends StatelessWidget {
         builder: (context, constraints) {
           return ClipRRect(
             borderRadius: BorderRadius.circular(16.0),
-            child: Stack(children: [
-              SizedBox(
-                width: screenWidth * 0.65,
-                height: screenHeight * 0.65,
-                child: FittedBox(
-                  fit: BoxFit.cover,
-                  child: image,
+            child: GestureDetector(
+              onTap: () async {
+                final uri = Uri.parse(url);
+                if (await canLaunchUrl(uri)) {
+                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
+              child: Stack(children: [
+                SizedBox(
+                  width: screenWidth * 0.65,
+                  height: screenHeight * 0.65,
+                  child: FittedBox(
+                    fit: BoxFit.cover,
+                    child: image,
+                  ),
                 ),
-              ),
-              Positioned.fill(
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      stops: [
-                        0.0,
-                        0.2,
-                        0.5
-                      ], // Fades out by half the image's height
-                      colors: [
-                        Colors.black
-                            .withOpacity(0.7), // Adjust opacity as needed
-                        Colors.black.withOpacity(0.5),
-                        Colors.transparent,
-                      ],
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        stops: [
+                          0.0,
+                          0.2,
+                          0.5
+                        ], // Fades out by half the image's height
+                        colors: [
+                          Colors.black
+                              .withOpacity(0.7), // Adjust opacity as needed
+                          Colors.black.withOpacity(0.5),
+                          Colors.transparent,
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Positioned(
-                bottom: 8, // adjust as needed
-                left: 16, // adjust as needed
-                child: SizedBox(
-                  width:
-                      screenWidth * 0.6, // Constrain width to prevent overflow
-                  child: Text(
-                    restaurant_name,
-                    maxLines: 2, // Allows up to 2 lines
-                    overflow: TextOverflow
-                        .ellipsis, // Fade or cut off if still too long
-                    softWrap: true,
-                    style: TextStyle(
-                      fontFamily: 'Arial Rounded MT Bold',
-                      fontSize: screenWidth * 0.05,
-                      color: Colors.white,
+                Positioned(
+                  bottom: 8, // adjust as needed
+                  left: 16, // adjust as needed
+                  child: SizedBox(
+                    width:
+                        screenWidth * 0.6, // Constrain width to prevent overflow
+                    child: Text(
+                      restaurant_name,
+                      maxLines: 2, // Allows up to 2 lines
+                      overflow: TextOverflow
+                          .ellipsis, // Fade or cut off if still too long
+                      softWrap: true,
+                      style: TextStyle(
+                        fontFamily: 'Arial Rounded MT Bold',
+                        fontSize: screenWidth * 0.05,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ]),
+              ]),
+            )
           );
         },
       ),

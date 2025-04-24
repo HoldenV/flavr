@@ -27,12 +27,30 @@ Future<List<dynamic>> textSearchPlaces({
     // Add googleMapsUri to each result using place_id
     for (final result in results) {
       final placeId = result['place_id'];
-      result['googleMapsUri'] = 'https://www.google.com/maps/place/?q=place_id=$placeId';
+      result['googleMapsUri'] = await getGoogleMapsUrl(placeId, apiKey);
     }
 
     return results;
   } else {
     throw Exception('Failed to load places with text search');
+  }
+}
+
+Future<String> getGoogleMapsUrl(String placeId, String apiKey) async {
+  final url = Uri.parse(
+    'https://maps.googleapis.com/maps/api/place/details/json'
+    '?place_id=$placeId'
+    '&fields=url'
+    '&key=$apiKey',
+  );
+
+  final response = await http.get(url);
+
+  if (response.statusCode == 200) {
+    final data = json.decode(response.body);
+    return data['result']['url'];
+  } else {
+    throw Exception('Failed to load place details from place ID');
   }
 }
 
