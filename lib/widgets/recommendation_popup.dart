@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, deprecated_member_use
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -220,7 +222,10 @@ class RecommendationCardDisplay extends StatelessWidget {
                                   restaurant_name:
                                       appState.currentRestaurants[0]['name'],
                                   url: 
-                                      appState.currentRestaurants[0]['googleMapsUri'],
+                                      appState.currentRestaurants[0]
+                                        ['googleMapsUri'],
+                                  rating:
+                                      appState.currentRestaurants[0]['rating'],
                                 ),
                                 SizedBox(width: 5),
                                 RestaurantCard(
@@ -232,6 +237,8 @@ class RecommendationCardDisplay extends StatelessWidget {
                                       appState.currentRestaurants[1]['name'],
                                   url: 
                                       appState.currentRestaurants[1]['googleMapsUri'],
+                                  rating:
+                                      appState.currentRestaurants[1]['rating'],
                                 ),
                                 SizedBox(width: 5),
                                 RestaurantCard(
@@ -242,7 +249,10 @@ class RecommendationCardDisplay extends StatelessWidget {
                                   restaurant_name:
                                       appState.currentRestaurants[2]['name'],
                                   url: 
-                                      appState.currentRestaurants[2]['googleMapsUri'],
+                                      appState.currentRestaurants[2]
+                                        ['googleMapsUri'],
+                                  rating:
+                                      appState.currentRestaurants[2]['rating'],
                                 ),
                               ],
                             ),
@@ -265,8 +275,9 @@ class RestaurantCard extends StatelessWidget {
   final Image image;
   final String restaurant_name;
   final String url;
+  final num rating;
 
-  RestaurantCard({required this.image, required this.restaurant_name, required this.url});
+  RestaurantCard({required this.image, required this.restaurant_name, required this.url, required this.rating});
 
   @override
   Widget build(BuildContext context) {
@@ -307,8 +318,8 @@ class RestaurantCard extends StatelessWidget {
                         end: Alignment.topCenter,
                         stops: [
                           0.0,
-                          0.2,
-                          0.5
+                          0.3,
+                          0.6
                         ], // Fades out by half the image's height
                         colors: [
                           Colors.black
@@ -327,7 +338,7 @@ class RestaurantCard extends StatelessWidget {
                     width:
                         screenWidth * 0.6, // Constrain width to prevent overflow
                     child: Text(
-                      restaurant_name,
+                      '${rating.toStringAsFixed(1)}/5.0\n$restaurant_name', // (⭐, ★,  ☆,  ⚝) ?
                       maxLines: 2, // Allows up to 2 lines
                       overflow: TextOverflow
                           .ellipsis, // Fade or cut off if still too long
@@ -340,6 +351,26 @@ class RestaurantCard extends StatelessWidget {
                     ),
                   ),
                 ),
+                // Positioned(
+                //   top: 8, // adjust as needed
+                //   right: 16, // adjust as needed
+                //   child: SizedBox(
+                //     width:
+                //         screenWidth * 0.6, // Constrain width to prevent overflow
+                //     child: Text(
+                //       '${rating.toStringAsFixed(1)}⭐', // Display rating with one decimal
+                //       maxLines: 2, // Allows up to 2 lines
+                //       overflow: TextOverflow
+                //           .ellipsis, // Fade or cut off if still too long
+                //       softWrap: true,
+                //       style: TextStyle(
+                //         fontFamily: 'Arial Rounded MT Bold',
+                //         fontSize: screenWidth * 0.05,
+                //         color: Colors.white,
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ]),
             )
           );
