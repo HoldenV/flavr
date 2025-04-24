@@ -218,6 +218,8 @@ class RecommendationCardDisplay extends StatelessWidget {
                                       apiKey),
                                   restaurant_name:
                                       appState.currentRestaurants[0]['name'],
+                                  url: 
+                                      appState.currentRestaurants[0]['googleMapsUri'],
                                 ),
                                 SizedBox(width: 5),
                                 RestaurantCard(
@@ -227,6 +229,8 @@ class RecommendationCardDisplay extends StatelessWidget {
                                       apiKey),
                                   restaurant_name:
                                       appState.currentRestaurants[1]['name'],
+                                  url: 
+                                      appState.currentRestaurants[1]['googleMapsUri'],
                                 ),
                                 SizedBox(width: 5),
                                 RestaurantCard(
@@ -236,6 +240,8 @@ class RecommendationCardDisplay extends StatelessWidget {
                                       apiKey),
                                   restaurant_name:
                                       appState.currentRestaurants[2]['name'],
+                                  url: 
+                                      appState.currentRestaurants[2]['googleMapsUri'],
                                 ),
                               ],
                             ),
@@ -257,8 +263,9 @@ class RecommendationCardDisplay extends StatelessWidget {
 class RestaurantCard extends StatelessWidget {
   final Image image;
   final String restaurant_name;
+  final String url;
 
-  RestaurantCard({required this.image, required this.restaurant_name});
+  RestaurantCard({required this.image, required this.restaurant_name, required this.url});
 
   @override
   Widget build(BuildContext context) {

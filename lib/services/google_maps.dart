@@ -22,7 +22,15 @@ Future<List<dynamic>> textSearchPlaces({
 
   if (response.statusCode == 200) {
     final data = json.decode(response.body);
-    return data['results'];
+    final results = data['results'];
+
+    // Add googleMapsUri to each result using place_id
+    for (final result in results) {
+      final placeId = result['place_id'];
+      result['googleMapsUri'] = 'https://www.google.com/maps/place/?q=place_id=$placeId';
+    }
+
+    return results;
   } else {
     throw Exception('Failed to load places with text search');
   }
