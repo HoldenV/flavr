@@ -14,6 +14,9 @@ pathToName(String path) {
       .substring(23, path.length - 4)
       .replaceAll('lib/assets/dish_images/', '')
       .replaceAll('-', ' ');
+  if (foodName == 'shabu shabu') {
+    foodName = 'shabu-shabu';
+  }
   return foodName;
 }
 
