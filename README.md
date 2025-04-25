@@ -5,11 +5,8 @@ Tinder for finding food.
 # TODO
     Develop style guide (exact colors, fonts, font sizes, haptics)
     Card tapping sequence
-    Licensing our idea / code
-    Developing terms and conditions & adding page to display them. accessed via button at bottom of profile page?
     Recommendation History
     Group Sessions
-    Potential Algorithm for Picking Top 3 Restaurants
     Recommendation Feedback
 
 # CLAIMED
@@ -30,7 +27,9 @@ Tinder for finding food.
         preferred location & radius,
 
     **Katie**
-    Building API (in Firebase)
+    Licensing our idea / code
+    Developing terms and conditions & adding page to display them. accessed via button at bottom of profile page?
+    Potential Algorithm for Picking Top 3 Restaurants
 
     **Michael**
     Create asset for better splash screen
