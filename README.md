@@ -6,9 +6,6 @@ Tinder for finding food.
     Card tapping sequence
     Recommendation History
     Group Sessions
-    Fix bug when not enough restaurants are recommended, app doesn't load recommendation popup
-        - Italian salad recommendation works to trigger this in debug mode
-        - Look for "this needs to be changed to verify that there are 3 restaurants"
 
 # CLAIMED
     **Holden**
@@ -33,3 +30,6 @@ Tinder for finding food.
     Adding Food Details
     Continue Swiping
     Recommendation Feedback
+    Fix bug when not enough restaurants are recommended, app doesn't load recommendation popup
+        - Italian salad recommendation works to trigger this in debug mode
+        - Look for "this needs to be changed to verify that there are 3 restaurants"
