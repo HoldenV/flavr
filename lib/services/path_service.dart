@@ -50,9 +50,13 @@ Future<String> numToFood(int number) async {
   }
 }
 
-generateFoodPath() async {
+generateFoodPath(String badRecommendation) async {
   var random = Random();
   String foodName = await numToFood(random.nextInt(132));
+  // reroll if the new path is the same as the bad recommendation
+  while (foodName == badRecommendation) {
+    foodName = await numToFood(random.nextInt(132));
+  }
   return nameToPath(foodName);
 }
 

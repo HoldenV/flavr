@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _initializeFoods() async {
     final appState = Provider.of<AppState>(context, listen: false);
     for (int i = 0; i < 3; i++) {
-      String newPath = await generateFoodPath();
+      String newPath = await generateFoodPath(appState.badRecommendation);
       appState.addCard(newPath);
     }
   }
@@ -252,7 +252,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appState.updateRestaurants(results);
     }
 
-    String newPath = await generateFoodPath();
+    String newPath = await generateFoodPath(appState.badRecommendation);
     appState.addCard(newPath);
 
     return true;

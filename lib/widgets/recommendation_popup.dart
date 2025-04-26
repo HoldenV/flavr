@@ -133,6 +133,8 @@ class RecommendationCardDisplay extends StatelessWidget {
     final appState = Provider.of<AppState>(context);
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+    final buttonSize = 60.0; // Size of the circular button
+    final buttonPadding = 16.0; // Padding from the top and right edges
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
@@ -172,27 +174,45 @@ class RecommendationCardDisplay extends StatelessWidget {
               ),
               // Inside your RecommendationCardDisplay widget's Positioned widget:
               Positioned(
-                top: 16,
-                right: 16,
+                top: buttonPadding,
+                right: buttonPadding,
                 child: GestureDetector(
                   onTap: () {
-                    print("Button pressed");
+                    // This was a BAD recommendation, so put this in as a BAD recommendation
+                    appState.setBadRecommendation(appState.currentRecommendation);
+                    appState.resetSession();
+                    appState.resetImagePaths();
+                    // start taking swipes again
+                    appState.goHome();
                   },
-                  child: Container(
-                    width: 60, // Size of the circular button
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Colors.orange, // Orange fill
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: ClipOval(
-                        child: Image.asset(
-                          'lib/assets/flavr-pizza-transparent.png',
-                          fit: BoxFit.cover,
+                  child: Column(
+                    children: [
+                      Container(
+                        width: buttonSize,
+                        height: buttonSize,
+                        decoration: BoxDecoration(
+                          color: Colors.orange, // Orange fill
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: ClipOval(
+                            child: Image.asset(
+                              'lib/assets/flavr-pizza-transparent.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      SizedBox(height: 4), // Space between the button and the "Retry" text
+                      Text(
+                        'Retry?',
+                        style: TextStyle(
+                          fontSize: screenWidth * 0.05,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -235,6 +255,9 @@ class RecommendationCardDisplay extends StatelessWidget {
                           }
                           // Once the API key is available, build your row of RestaurantCards.
                           final apiKey = snapshot.data!;
+                          // this needs to be changed to verify that there are 3 restaurants
+                            // if not, only show the ones that are available
+                            // if there are 0, go to 2nd best recommendation
                           return SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
