@@ -67,6 +67,12 @@ class AppState with ChangeNotifier {
     notifyListeners();
   }
 
+  void goHome() {
+    _currentScreen = HomeScreen();
+    _currentIndex = 0;
+    notifyListeners();
+  }
+
   void setCurrentIndex(int index) {
     _currentIndex = index;
     _currentScreen = screens[index];
@@ -109,6 +115,11 @@ class AppState with ChangeNotifier {
 
   List<String> imagePaths = [];
 
+  void resetImagePaths() {
+    imagePaths = [];
+    notifyListeners();
+  }
+
   void addCard(String path) {
     imagePaths.add(path);
     notifyListeners();
@@ -117,12 +128,18 @@ class AppState with ChangeNotifier {
   String currentRecommendation = '';
   String currentRecommendationCaps = '';
   List<dynamic> currentRestaurants = [];
+  String badRecommendation = ''; // should be '' if no bad rec
 
   dynamic currentUserId;
 
   void setRecommendation(String recommendation) {
     currentRecommendation = recommendation;
     currentRecommendationCaps = currentRecommendation.split(' ').map((word) => word.capitalize()).join(' ');
+    notifyListeners();
+  }
+
+  void setBadRecommendation(String recommendation) {
+    badRecommendation = recommendation;
     notifyListeners();
   }
 
@@ -136,6 +153,10 @@ class AppState with ChangeNotifier {
     for (String dish in negativeSwipes) {
       assembledString += '"$dish": -1,';
     }
+    if (badRecommendation != '') {
+      assembledString += '"$badRecommendation": -2,'; // need to verify that this works on the backend
+    }
+
     if (assembledString.endsWith(',')) {
       assembledString =
           '${assembledString.substring(0, assembledString.length - 1)}}}';
