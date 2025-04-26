@@ -94,6 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: constraints.maxWidth,
                         height: constraints.maxHeight,
                         decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16.0),
                           gradient: LinearGradient(
                             begin: Alignment.bottomCenter,
                             end: Alignment.topCenter,
