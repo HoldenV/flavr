@@ -114,12 +114,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       Positioned(
                         bottom: 8,
                         left: 16,
-                        child: Text(
-                          pathToNameCaps(path),
-                          style: TextStyle(
-                            fontFamily: 'Arial Rounded MT Bold',
-                            fontSize: screenWidth * 0.08,
-                            color: Colors.white,
+                        child: SizedBox(
+                          width: screenWidth * 0.8,
+                          child: Text(
+                            pathToNameCaps(path),
+                            maxLines: 2, // wrap to a second line if needed
+                            overflow: TextOverflow
+                                .ellipsis, // add "…" if it still can’t fit
+                            softWrap: true,
+                            style: TextStyle(
+                              fontFamily: 'Arial Rounded MT Bold',
+                              fontSize: screenWidth * 0.08,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
