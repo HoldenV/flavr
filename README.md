@@ -6,7 +6,6 @@ Tinder for finding food.
     Card tapping sequence
     Recommendation History
     Group Sessions
-    Recommendation Feedback
 
 # CLAIMED
     **Holden**
@@ -28,6 +27,6 @@ Tinder for finding food.
     Improve swiping cards shown
 
     **Pierce**
-    Adding Restaurant Details
     Adding Food Details
     Continue Swiping
+    Recommendation Feedback
