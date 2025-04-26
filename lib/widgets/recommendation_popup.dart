@@ -203,7 +203,6 @@ class RecommendationCardDisplay extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 4), // Space between the button and the "Retry" text
                       Text(
                         'Retry?',
                         style: TextStyle(
