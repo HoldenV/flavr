@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-// not in use. not tested. should be same gradient as home screen but
-// with icon and progress indicator
-
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,5 @@
 // ignore_for_file: non_constant_identifier_names, deprecated_member_use
 
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -65,7 +63,9 @@ class _RecommendationPopupState extends State<RecommendationPopup>
     final appState = Provider.of<AppState>(context);
     double screenWidth = MediaQuery.of(context).size.width;
     // Show spinner while recommendation or restaurants are loading or during unload
-    if ((appState.currentRecommendation.isEmpty || appState.currentRestaurants.length < 3) && appState.swipeCount >= 7) {
+    if ((appState.currentRecommendation.isEmpty ||
+            appState.currentRestaurants.length < 3) &&
+        appState.swipeCount >= 7) {
       return Center(child: CircularProgressIndicator());
     }
     return Center(
@@ -182,8 +182,9 @@ class RecommendationCardDisplay extends StatelessWidget {
                       width: screenWidth * 0.8, // keeps text within card bounds
                       child: Text(
                         dishName,
-                        maxLines: 2,               // wrap to a second line if needed
-                        overflow: TextOverflow.ellipsis, // add "…" if it still can’t fit
+                        maxLines: 2, // wrap to a second line if needed
+                        overflow: TextOverflow
+                            .ellipsis, // add "…" if it still can’t fit
                         softWrap: true,
                         style: TextStyle(
                           fontFamily: 'Arial Rounded MT Bold',
@@ -221,11 +222,10 @@ class RecommendationCardDisplay extends StatelessWidget {
                                       apiKey),
                                   restaurant_name:
                                       appState.currentRestaurants[0]['name'],
-                                  url: 
-                                      appState.currentRestaurants[0]
-                                        ['googleMapsUri'],
-                                  rating:
-                                      appState.currentRestaurants[0]['rating'],
+                                  url: appState.currentRestaurants[0]
+                                      ['googleMapsUri'],
+                                  rating: appState.currentRestaurants[0]
+                                      ['rating'],
                                 ),
                                 SizedBox(width: 5),
                                 RestaurantCard(
@@ -235,10 +235,10 @@ class RecommendationCardDisplay extends StatelessWidget {
                                       apiKey),
                                   restaurant_name:
                                       appState.currentRestaurants[1]['name'],
-                                  url: 
-                                      appState.currentRestaurants[1]['googleMapsUri'],
-                                  rating:
-                                      appState.currentRestaurants[1]['rating'],
+                                  url: appState.currentRestaurants[1]
+                                      ['googleMapsUri'],
+                                  rating: appState.currentRestaurants[1]
+                                      ['rating'],
                                 ),
                                 SizedBox(width: 5),
                                 RestaurantCard(
@@ -248,11 +248,10 @@ class RecommendationCardDisplay extends StatelessWidget {
                                       apiKey),
                                   restaurant_name:
                                       appState.currentRestaurants[2]['name'],
-                                  url: 
-                                      appState.currentRestaurants[2]
-                                        ['googleMapsUri'],
-                                  rating:
-                                      appState.currentRestaurants[2]['rating'],
+                                  url: appState.currentRestaurants[2]
+                                      ['googleMapsUri'],
+                                  rating: appState.currentRestaurants[2]
+                                      ['rating'],
                                 ),
                               ],
                             ),
@@ -277,7 +276,11 @@ class RestaurantCard extends StatelessWidget {
   final String url;
   final num rating;
 
-  RestaurantCard({required this.image, required this.restaurant_name, required this.url, required this.rating});
+  RestaurantCard(
+      {required this.image,
+      required this.restaurant_name,
+      required this.url,
+      required this.rating});
 
   @override
   Widget build(BuildContext context) {
@@ -291,89 +294,88 @@ class RestaurantCard extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           return ClipRRect(
-            borderRadius: BorderRadius.circular(16.0),
-            child: GestureDetector(
-              onTap: () async {
-                final uri = Uri.parse(url);
-                if (await canLaunchUrl(uri)) {
-                  await launchUrl(uri, mode: LaunchMode.externalApplication);
-                } else {
-                  throw 'Could not launch $url';
-                }
-              },
-              child: Stack(children: [
-                SizedBox(
-                  width: screenWidth * 0.65,
-                  height: screenHeight * 0.65,
-                  child: FittedBox(
-                    fit: BoxFit.cover,
-                    child: image,
+              borderRadius: BorderRadius.circular(16.0),
+              child: GestureDetector(
+                onTap: () async {
+                  final uri = Uri.parse(url);
+                  if (await canLaunchUrl(uri)) {
+                    await launchUrl(uri, mode: LaunchMode.externalApplication);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
+                child: Stack(children: [
+                  SizedBox(
+                    width: screenWidth * 0.65,
+                    height: screenHeight * 0.65,
+                    child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: image,
+                    ),
                   ),
-                ),
-                Positioned.fill(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                        stops: [
-                          0.0,
-                          0.3,
-                          0.6
-                        ], // Fades out by half the image's height
-                        colors: [
-                          Colors.black
-                              .withOpacity(0.7), // Adjust opacity as needed
-                          Colors.black.withOpacity(0.5),
-                          Colors.transparent,
-                        ],
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          stops: [
+                            0.0,
+                            0.3,
+                            0.6
+                          ], // Fades out by half the image's height
+                          colors: [
+                            Colors.black
+                                .withOpacity(0.7), // Adjust opacity as needed
+                            Colors.black.withOpacity(0.5),
+                            Colors.transparent,
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Positioned(
-                  bottom: 8, // adjust as needed
-                  left: 16, // adjust as needed
-                  child: SizedBox(
-                    width:
-                        screenWidth * 0.6, // Constrain width to prevent overflow
-                    child: Text(
-                      '${rating.toStringAsFixed(1)}/5.0\n$restaurant_name', // (⭐, ★,  ☆,  ⚝) ?
-                      maxLines: 2, // Allows up to 2 lines
-                      overflow: TextOverflow
-                          .ellipsis, // Fade or cut off if still too long
-                      softWrap: true,
-                      style: TextStyle(
-                        fontFamily: 'Arial Rounded MT Bold',
-                        fontSize: screenWidth * 0.05,
-                        color: Colors.white,
+                  Positioned(
+                    bottom: 8, // adjust as needed
+                    left: 16, // adjust as needed
+                    child: SizedBox(
+                      width: screenWidth *
+                          0.6, // Constrain width to prevent overflow
+                      child: Text(
+                        '${rating.toStringAsFixed(1)}/5.0\n$restaurant_name', // (⭐, ★,  ☆,  ⚝) ?
+                        maxLines: 2, // Allows up to 2 lines
+                        overflow: TextOverflow
+                            .ellipsis, // Fade or cut off if still too long
+                        softWrap: true,
+                        style: TextStyle(
+                          fontFamily: 'Arial Rounded MT Bold',
+                          fontSize: screenWidth * 0.05,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                // Positioned(
-                //   top: 8, // adjust as needed
-                //   right: 16, // adjust as needed
-                //   child: SizedBox(
-                //     width:
-                //         screenWidth * 0.6, // Constrain width to prevent overflow
-                //     child: Text(
-                //       '${rating.toStringAsFixed(1)}⭐', // Display rating with one decimal
-                //       maxLines: 2, // Allows up to 2 lines
-                //       overflow: TextOverflow
-                //           .ellipsis, // Fade or cut off if still too long
-                //       softWrap: true,
-                //       style: TextStyle(
-                //         fontFamily: 'Arial Rounded MT Bold',
-                //         fontSize: screenWidth * 0.05,
-                //         color: Colors.white,
-                //       ),
-                //     ),
-                //   ),
-                // ),
-              ]),
-            )
-          );
+                  // Positioned(
+                  //   top: 8, // adjust as needed
+                  //   right: 16, // adjust as needed
+                  //   child: SizedBox(
+                  //     width:
+                  //         screenWidth * 0.6, // Constrain width to prevent overflow
+                  //     child: Text(
+                  //       '${rating.toStringAsFixed(1)}⭐', // Display rating with one decimal
+                  //       maxLines: 2, // Allows up to 2 lines
+                  //       overflow: TextOverflow
+                  //           .ellipsis, // Fade or cut off if still too long
+                  //       softWrap: true,
+                  //       style: TextStyle(
+                  //         fontFamily: 'Arial Rounded MT Bold',
+                  //         fontSize: screenWidth * 0.05,
+                  //         color: Colors.white,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                ]),
+              ));
         },
       ),
     );
