@@ -19,6 +19,25 @@ pathToName(String path) {
   }
   return foodName;
 }
+// Helper method to capitalize the first char of a string
+  // Redefined here because I don't want to find where global functions are defined LOL
+  // If you know, place this and the one in app_state.dart there
+extension StringExtensions on String { 
+  String capitalize() { 
+    return '${this[0].toUpperCase()}${substring(1)}'; 
+  } 
+}
+
+pathToNameCaps(String path) {
+  String foodName = path
+      .substring(23, path.length - 4)
+      .replaceAll('lib/assets/dish_images/', '')
+      .replaceAll('-', ' ');
+  if (foodName == 'shabu shabu') {
+    foodName = 'Shabu-Shabu';
+  }
+  return foodName.split(' ').map((word) => word.capitalize()).join(' ');
+}
 
 Future<String> numToFood(int number) async {
   try {
