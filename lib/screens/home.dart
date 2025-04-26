@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flavr/services/location_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +10,8 @@ import 'package:provider/provider.dart';
 import 'package:flavr/providers/app_state.dart';
 import 'package:flavr/services/google_maps.dart';
 import 'package:flavr/services/path_service.dart';
+
+
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -67,13 +71,61 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 4,
         child: LayoutBuilder(
           builder: (context, constraints) {
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(16.0),
-              child: Image.asset(
-                path,
-                width: constraints.maxWidth,
-                height: constraints.maxHeight,
-                fit: BoxFit.cover,
+            return Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              elevation: 4,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final screenWidth = MediaQuery.of(context).size.width;
+                  return Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(16.0),
+                        child: Image.asset(
+                          path,
+                          width: constraints.maxWidth,
+                          height: constraints.maxHeight,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Container(
+                        width: constraints.maxWidth,
+                        height: constraints.maxHeight,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            stops: [
+                              0.0,
+                              0.1,
+                              0.2
+                            ], // Back to transparent at 20% up the image
+                            colors: [
+                              Colors.black
+                                  .withOpacity(0.7), // Adjust opacity as needed
+                              Colors.black.withOpacity(0.5),
+                              Colors.transparent,
+                            ],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 8,
+                        left: 16,
+                        child: Text(
+                          pathToNameCaps(path),
+                          style: TextStyle(
+                            fontFamily: 'Arial Rounded MT Bold',
+                            fontSize: screenWidth * 0.08,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
             );
           },

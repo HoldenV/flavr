@@ -110,8 +110,7 @@ class _RecommendationPopupState extends State<RecommendationPopup>
                   scale: _cardAnimation,
                   child: RecommendationCardDisplay(
                     imagePath: nameToPath(appState.currentRecommendation),
-                    dishName: appState.currentRecommendation[0].toUpperCase() +
-                        appState.currentRecommendation.substring(1),
+                    dishName: appState.currentRecommendationCaps,
                   ),
                 ),
               ],
@@ -341,7 +340,7 @@ class RestaurantCard extends StatelessWidget {
                       width: screenWidth *
                           0.6, // Constrain width to prevent overflow
                       child: Text(
-                        '${rating.toStringAsFixed(1)}/5.0\n$restaurant_name', // (⭐, ★,  ☆,  ⚝) ?
+                        '${rating.toStringAsFixed(1)} ⭐\n📍$restaurant_name', // (⭐, ★,  ☆,  ⚝) ?
                         maxLines: 2, // Allows up to 2 lines
                         overflow: TextOverflow
                             .ellipsis, // Fade or cut off if still too long
@@ -354,26 +353,6 @@ class RestaurantCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Positioned(
-                  //   top: 8, // adjust as needed
-                  //   right: 16, // adjust as needed
-                  //   child: SizedBox(
-                  //     width:
-                  //         screenWidth * 0.6, // Constrain width to prevent overflow
-                  //     child: Text(
-                  //       '${rating.toStringAsFixed(1)}⭐', // Display rating with one decimal
-                  //       maxLines: 2, // Allows up to 2 lines
-                  //       overflow: TextOverflow
-                  //           .ellipsis, // Fade or cut off if still too long
-                  //       softWrap: true,
-                  //       style: TextStyle(
-                  //         fontFamily: 'Arial Rounded MT Bold',
-                  //         fontSize: screenWidth * 0.05,
-                  //         color: Colors.white,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                 ]),
               ));
         },

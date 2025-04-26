@@ -13,6 +13,15 @@ import 'package:flavr/screens/profile.dart';
 import 'package:flavr/screens/inbox.dart';
 import 'package:flavr/providers/authentication_state.dart';
 
+// Helper method to capitalize the first char of a string
+  // Redefined here because I don't want to find where global functions are defined LOL
+  // If you know, place this and the one in path_service.dart there
+extension StringExtensions on String { 
+  String capitalize() { 
+    return '${this[0].toUpperCase()}${substring(1)}'; 
+  } 
+}
+
 class AppState with ChangeNotifier {
   final AuthenticationState authState;
 
@@ -106,12 +115,14 @@ class AppState with ChangeNotifier {
   }
 
   String currentRecommendation = '';
+  String currentRecommendationCaps = '';
   List<dynamic> currentRestaurants = [];
 
   dynamic currentUserId;
 
   void setRecommendation(String recommendation) {
     currentRecommendation = recommendation;
+    currentRecommendationCaps = currentRecommendation.split(' ').map((word) => word.capitalize()).join(' ');
     notifyListeners();
   }
 
