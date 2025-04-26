@@ -172,6 +172,31 @@ class RecommendationCardDisplay extends StatelessWidget {
               ),
               // Inside your RecommendationCardDisplay widget's Positioned widget:
               Positioned(
+                top: 16,
+                right: 16,
+                child: GestureDetector(
+                  onTap: () {
+                    print("Button pressed");
+                  },
+                  child: Container(
+                    width: 60, // Size of the circular button
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.orange, // Orange fill
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: ClipOval(
+                        child: Image.asset(
+                          'lib/assets/flavr-pizza-transparent.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
                 bottom: 16, // adjust as needed
                 left: 16, // adjust as needed
                 child: Column(
