@@ -143,7 +143,7 @@ class AppState with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<String> getRecommendation() async {
+  Future<Map<String, dynamic>> getRecommendations() async {
     notifyListeners();
     String assembledString =
         '{"user-id": "${authState.user?.uid}", "swipes": {';
@@ -154,7 +154,7 @@ class AppState with ChangeNotifier {
       assembledString += '"$dish": -1,';
     }
     if (badRecommendation != '') {
-      assembledString += '"$badRecommendation": -2,'; // need to verify that this works on the backend
+      assembledString += '"$badRecommendation": -2,';
     }
 
     if (assembledString.endsWith(',')) {
@@ -162,8 +162,8 @@ class AppState with ChangeNotifier {
           '${assembledString.substring(0, assembledString.length - 1)}}}';
     }
     print(assembledString);
-    final recFood = await swipesToRec(data: assembledString);
-    return recFood;
+    final recs = await swipesToRecs(data: assembledString);
+    return recs;
   }
 
   void updateRestaurants(List<dynamic> restaurantData) {

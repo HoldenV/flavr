@@ -256,7 +256,7 @@ class RecommendationCardDisplay extends StatelessWidget {
                           final apiKey = snapshot.data!;
                           // this needs to be changed to verify that there are 3 restaurants
                             // if not, only show the ones that are available
-                            // if there are 0, go to 2nd best recommendation
+                            // if there are 0, go to 2nd best recommendation                            
                           return SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(

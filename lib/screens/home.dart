@@ -240,16 +240,33 @@ class _HomeScreenState extends State<HomeScreen> {
     print(appState.negativeSwipes);    
 
     if (appState.swipeCount >= 7) {
-      appState.setRecommendation(await appState.getRecommendation());
+      Map<String, dynamic> recs = await appState.getRecommendations();
       List<double> longLat = await getLongLat();
-      List<dynamic> results = (await textSearchPlaces(
-        query: appState.currentRecommendation,
-        latitude: longLat[1],
-        longitude: longLat[0],
-        apiKey: await getApiKey(),
-        radius: 1000,
-      ));
-      print(results);
+      List<dynamic> results = [];
+      for (int i = 0; i < recs.length; i++) {
+        // Get results from Google Maps API
+        results = (await textSearchPlaces(
+          query: recs.entries.elementAt(i).key,
+          latitude: longLat[1],
+          longitude: longLat[0],
+          apiKey: await getApiKey(),
+          radius: 1000,
+        ));
+
+        // Set the recommendation in appState
+        appState.setRecommendation(recs.entries.elementAt(i).key);
+
+        // Go until we have at least 3 results
+        if (results.length >= 3) {
+          break;
+        } else {
+          print('Not enough results for ${recs.entries.elementAt(i).key}, trying again...');
+        }
+      }
+
+      // Assume we got some results
+        // should probably add in a check for this
+      print('Results of TextSearch: $results');
       appState.updateRestaurants(results);
     }
 

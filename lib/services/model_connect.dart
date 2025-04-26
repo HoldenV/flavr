@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-Future<dynamic> swipesToRec({
+Future<Map<String, dynamic>> swipesToRecs({
   required String data,
 }) async {
 
@@ -18,8 +18,8 @@ Future<dynamic> swipesToRec({
     final recommendations = json.decode(response.body);
     final firstEntry = (recommendations as Map<String, dynamic>).entries.first;
     print('Top dish: ${firstEntry.key} with score ${firstEntry.value}');
-    return firstEntry.key;
+    return recommendations;
   } else {
-    throw Exception('Failed to load places with text search');
+    throw Exception('Failed to load recommendations with status code: ${response.statusCode}');
   }
 }
