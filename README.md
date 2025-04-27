@@ -5,7 +5,6 @@ Tinder for finding food.
 # TODO
     Card tapping sequence
     Recommendation History
-    Group Sessions
 
 # CLAIMED
     **Holden**
@@ -28,3 +27,6 @@ Tinder for finding food.
 
     **Pierce**
     Add more food details
+
+    **Chase**
+    Group Sessions (backend at least)
