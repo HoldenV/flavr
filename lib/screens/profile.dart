@@ -133,9 +133,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             Slider(
               value: restaurantDistance,
-              min: 0,
-              max: 100,
-              divisions: 10,
+              min: 2,
+              max: 30,
+              divisions: 28,
               label: '${restaurantDistance.toInt()} miles',
               onChanged: (value) {
                 setState(() {

@@ -179,6 +179,7 @@ class RecommendationCardDisplay extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     // This was a BAD recommendation, so put this in as a BAD recommendation
+                    print('Retry button clicked, setting old rec as bad...');
                     appState.setBadRecommendation(appState.currentRecommendation);
                     appState.resetSession();
                     appState.resetImagePaths();

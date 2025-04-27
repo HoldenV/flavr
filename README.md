@@ -5,6 +5,7 @@ Tinder for finding food.
 # TODO
     Card tapping sequence
     Recommendation History
+    Clear user taste vector button
 
 # CLAIMED
     **Holden**
@@ -26,7 +27,6 @@ Tinder for finding food.
     Improve swiping cards shown
 
     **Pierce**
-    Add more food details
 
     **Chase**
     Group Sessions (backend at least)
