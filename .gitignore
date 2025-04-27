@@ -44,12 +44,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-#Secret firebase key
-firebase_key.json
-
-#Fake Data stuff
-/backend/fake_data/data
-
 # Secret
 secret.json
 
