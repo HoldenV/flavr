@@ -58,8 +58,7 @@ def cre(DM, UM, UTV, swipes, scale = .8):
     combined_recs = combined_recs.sort_values(ascending=False)
     
     # Save to output file if specified
-    return combined_recs, UTV
-    
+    return combined_recs, UTV  
 
 def init_UTV():
     """Initialize the user taste vector for the current user."""
@@ -86,7 +85,6 @@ def init_UTV():
         # Save the initial user taste vector
         UTV.to_csv(f"data/UTV_{scale}.csv")
 
-
 def get_swipes():
     DM = DM_from_csv("data/dish_metadata.csv")
     swipes = {}
@@ -105,7 +103,6 @@ def get_swipes():
             i -= 1
 
     return swipes
-
 
 if __name__ == "__main__":
     # parse args if run from cmdline
@@ -137,3 +134,25 @@ if __name__ == "__main__":
         print(f"\n========== {scale} Recommendations==========\n")
         print(recs)
 
+def cre_multi_user(DM, UM, user_dict, scale = .8):
+    """Run the combined content recommendation engine for multiple users.
+    Args:
+        DM (pd.DataFrame): Dish metadata (pre-baked by DM_prebaker.py).
+        UM (pd.DataFrame): User matrix (stacked user taste vectors from Firestore).
+        user_dict (dict): Dictionary of (UTV, swipes) tuples for each user."""
+    
+    
+    combined_UTV = utv.update_UTV_multi_user(combined_UTV, swipes, scale)
+
+    # Get recommendations
+    cbe_recs = cbe.cbe_multi_user(DM, combined_UTV)
+    ube_recs = ube.ube_multi_user(UM, combined_UTV)
+
+    # Combine recommendations from CBE and UBE
+    combined_recs = pd.concat([cbe_recs, ube_recs], axis=1)
+    combined_recs.columns = ['CBE', 'UBE']
+    combined_recs = combined_recs.mean(axis=1)
+    combined_recs = combined_recs.sort_values(ascending=False)
+
+    # Save to output file if specified
+    return combined_recs

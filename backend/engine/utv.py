@@ -25,21 +25,33 @@ def update_UTV_swipes(UTV, swipes, scale):
 
     return UTV
 
-def update_UTV_recs(UTV, recs):
-    """Updates the user taste vector based on reactions to recommendations.
-    Args:
-        UTV (pd.DataFrame): User Taste Vector for the current user
-        rec (list of dictionaries): Reactions to recommendations
+def update_UTV_multi_user(UTV_dict, swipes, scale):
+    combined_UTV = None
     
-    Returns:
-        a pandas dataframe with dishs as index and a single column 'taste' with the taste vector
-    """
+    for user, (UTV, swipes) in UTV_dict.items():
 
-    #update current UTV based on reactions
-    for rec in recs:
-        UTV.at[rec['dish'], 'taste'] += rec['swiped']
-    
-    #normalize the UTV
-    np.arctan(UTV['taste'])
+        #scale down current UTV
+        UTV['taste'] = UTV['taste'] * scale
 
-    return UTV
+        for dish_name, swipe in swipes.items():
+            UTV.at[dish_name, 'taste'] += swipe
+
+        #firebase update current user's UTV
+        # utv_dict = UTV.to_dict()["taste"]
+        # batch = db.batch()
+        # for key, value in utv_dict.items():
+        #     doc_ref = utv_ref.document(key)
+        #     batch.set(doc_ref, {"value": value})
+        # batch.commit()
+
+
+        if combined_UTV is None:
+            combined_UTV = UTV.copy()
+        else:
+            combined_UTV['taste'] += UTV['taste']
+        
+        #normalize the UTV
+        np.arctan(combined_UTV['taste'])
+
+    return combined_UTV
+
