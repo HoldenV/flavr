@@ -221,19 +221,20 @@ class _HomeScreenState extends State<HomeScreen> {
   ) async {
     final appState = Provider.of<AppState>(context, listen: false);
 
-    appState.incrementSwipeCount();
-
     if (direction == CardSwiperDirection.left) {
       print('swiped left');
       HapticFeedback.lightImpact();
       appState.negativeSwipe(pathToName(appState.imagePaths[previousIndex]));
+      appState.incrementSwipeCount();
     } else if (direction == CardSwiperDirection.right) {
       print('swiped right');
       HapticFeedback.lightImpact();
       appState.positiveSwipe(pathToName(appState.imagePaths[previousIndex]));
+      appState.incrementSwipeCount();
     } else if (direction == CardSwiperDirection.top) {
       print('swiped up');
       HapticFeedback.heavyImpact();
+      // do not increment if swipe up
     }
 
     print(appState.positiveSwipes);
