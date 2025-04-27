@@ -52,3 +52,6 @@ firebase_key.json
 
 # Secret
 secret.json
+
+# Old backend files
+backend.zip
