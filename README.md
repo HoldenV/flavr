@@ -21,10 +21,6 @@ Tinder for finding food.
     Potential Algorithm for Picking Top 3 Restaurants
 
     **Michael**
-    Create asset for better splash screen
-    Improve recommendation animations
-    Implementing restaurant range into Google Maps call
-    Improve swiping cards shown
 
     **Pierce**
 
