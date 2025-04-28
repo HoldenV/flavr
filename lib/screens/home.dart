@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:flavr/providers/app_state.dart';
 import 'package:flavr/services/google_maps.dart';
 import 'package:flavr/services/path_service.dart';
+import 'package:flavr/providers/authentication_state.dart';
 
 
 
@@ -220,6 +221,9 @@ class _HomeScreenState extends State<HomeScreen> {
     CardSwiperDirection direction,
   ) async {
     final appState = Provider.of<AppState>(context, listen: false);
+    final authState =
+        Provider.of<AuthenticationState>(context, listen: false);
+    final int radiusMeters = (authState.restaurantDistance * 1609.34).round();
 
     if (direction == CardSwiperDirection.left) {
       print('swiped left');
@@ -251,7 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
           latitude: longLat[1],
           longitude: longLat[0],
           apiKey: await getApiKey(),
-          radius: 1000,
+          radius: radiusMeters,
         ));
 
         // Set the recommendation in appState

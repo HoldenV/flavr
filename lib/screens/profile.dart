@@ -14,7 +14,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool isVeganOnly = false;
   bool isGFOnly = false;
   bool isAllergenFree = false;
-  double restaurantDistance = 50;
 
   @override
   Widget build(BuildContext context) {
@@ -132,20 +131,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
             Slider(
-              value: restaurantDistance,
+              value: authState.restaurantDistance,
               min: 2,
               max: 30,
               divisions: 28,
-              label: '${restaurantDistance.toInt()} miles',
+              label: '${authState.restaurantDistance.toInt()} miles',
               onChanged: (value) {
-                setState(() {
-                  restaurantDistance = value;
-                });
+                authState.setRestaurantDistance(value);
               },
               activeColor: Colors.orange,
               inactiveColor: Colors.grey,
             ),
-            const SizedBox(height: 30),
+            // const SizedBox(height: 30),
 /*
             Center( //additional button for terms and conditons
               child: ElevatedButton(

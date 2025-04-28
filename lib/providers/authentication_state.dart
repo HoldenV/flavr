@@ -18,13 +18,20 @@ class AuthenticationState extends ChangeNotifier {
   final firestore = FirebaseFirestore.instance;
 
   bool _loading = true;
+  double _restaurantDistance = 15;
   UserModel? _user;
 
   bool get loading => _loading;
   UserModel? get user => _user;
+  double get restaurantDistance => _restaurantDistance;
 
   set user(UserModel? newUser) {
     _user = newUser;
+    notifyListeners();
+  }
+
+  void setRestaurantDistance(double value) {
+    _restaurantDistance = value;
     notifyListeners();
   }
 
