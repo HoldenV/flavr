@@ -146,7 +146,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               inactiveColor: Colors.grey,
             ),
             const SizedBox(height: 30),
-
+/*
             Center( //additional button for terms and conditons
               child: ElevatedButton(
                 onPressed: () {
@@ -193,7 +193,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-
+commented out for now cannot get XCode to build*/ 
             const SizedBox(height: 30),
 
             Center( //sign out button
