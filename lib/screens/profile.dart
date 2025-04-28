@@ -146,7 +146,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
               inactiveColor: Colors.grey,
             ),
             const SizedBox(height: 30),
-            Center(
+
+            Center( //additional button for terms and conditons
+              child: ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          backgroundColor: Colors.red,
+                          title: const Text(
+                            'Terms and Conditions',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          content: const SingleChildScrollView(
+                            child: Text(
+                              'By using this app, you agree to our terms and conditions', //filler text
+                              style: TextStyle(color: Colors.white70),
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text(
+                                'Close',
+                                style: TextStyle(color: Colors.orange),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  ),
+                  child: const Text(
+                    'Terms and Conditions',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            Center( //sign out button
               child: ElevatedButton(
                 onPressed: () {
                   final authState =
